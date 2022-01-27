@@ -2,25 +2,38 @@ import 'package:flutter/material.dart';
 
 
 class ScreenNavContainers extends StatelessWidget {
-  const ScreenNavContainers({Key? key}) : super(key: key);
+  final String image;
+  final String title;
+  const ScreenNavContainers({Key? key,required this.image, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-            width: 200,
-            height: 200,
-            margin: EdgeInsets.only(bottom: 10.0),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0)
+    return SizedBox(
+      height: 200,
+      width: 300,
+      child: Card(
+              margin: EdgeInsets.only(bottom: 10.0),
+              elevation: 5.0,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: SizedBox(
+                        height: 200,
+                        width: 300,
+                        child: Image.network(image,fit: BoxFit.cover,),
+                      )),
+                  Positioned(
+                    top: 4,
+                      left: 5,
+                      child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          alignment: Alignment.center,
+                          child: Text(title,style: TextStyle(fontSize: 20.0,color: Colors.white),))),
+                ],
+              ),
             ),
-            child: GridTile(
-              child:
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: Image.network("https://images.unsplash.com/photo-1527525443983-6e6"
-                      "0c75fff46?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=385&q=80")),
-            ),
-          );
+    );
   }
 }

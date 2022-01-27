@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class ClassifyButtons extends StatelessWidget {
@@ -24,11 +25,14 @@ class ClassifyButtons extends StatelessWidget {
             child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(5.0),
-                child: Image.network(imageUrl)),
+                child: SvgPicture.network(imageUrl,  semanticsLabel: 'A shark?!',
+                  placeholderBuilder: (BuildContext context) => Container(
+
+                      child: const CircularProgressIndicator()),)),
           ),
         ),
         SizedBox(height: 5.0,),
-        Text("Meditate",style: TextStyle(fontSize: 15),)
+        Text("Meditate",style: TextStyle(fontSize: 15),softWrap: true,)
       ],
     );
   }

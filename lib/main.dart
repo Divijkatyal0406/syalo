@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syalo/screens/home_screen.dart';
+import 'package:syalo/screens/mainframe.dart';
 
 void main() {
   runApp(const SyaloApp());
@@ -15,7 +16,7 @@ class SyaloApp extends StatelessWidget {
       title: 'Syalo',
       theme: ThemeData(
       ),
-      home: const HomeScreen(),
+      home: const MainFrame(),
     );
   }
 }

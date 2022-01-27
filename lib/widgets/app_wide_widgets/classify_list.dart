@@ -51,7 +51,7 @@ class ClassifyList extends StatelessWidget {
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
                           child: GridTileBar(
-                            title: Text("Beach",textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold),),
+                            title: Text("Beach",textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold),softWrap: true,),
                           ),
                       ),
                     ),
