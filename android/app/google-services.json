@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "912096233649",
+    "firebase_url": "https://syalo-edcb0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "syalo-edcb0",
+    "storage_bucket": "syalo-edcb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912096233649:android:1c901c9298f918c48fba90",
+        "android_client_info": {
+          "package_name": "com.example.syalo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912096233649-nt0de2gmteodh6t5llmqoebv0m13u4u1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.syalo",
+            "certificate_hash": "49ac0d7d7233437e3fbdcf9fa1f6858a739d4552"
+          }
+        },
+        {
+          "client_id": "912096233649-qfkae83q5oep2hdhcufkppkj5nmaf47f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnN7Z16lZgo88CPmaV9OVHrGp56xoZWnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912096233649-qfkae83q5oep2hdhcufkppkj5nmaf47f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
