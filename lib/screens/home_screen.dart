@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syalo/widgets/app_wide_widgets/classify_list.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/habit_container.dart';
@@ -7,9 +8,9 @@ import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/screen_nav
 class HomeScreen extends StatelessWidget {
   static const routeName = "/HomeScreen";
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    var ref=FirebaseAuth.instance.currentUser;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -31,8 +32,8 @@ class HomeScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(top: 10.0),
                       child: Text(
-                        "Hi ! Shreyas",
-                        style: TextStyle(
+                        "Hi ! ${ref!.displayName!.split(' ')[0]}",
+                        style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w700,
                             color: Colors.white),
@@ -54,10 +55,10 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              HabitContainer(),
-              SizedBox(height: 10.0,),
+              const HabitContainer(),
+              const SizedBox(height: 10.0,),
               ClassifyList(title: "Discover Sounds"),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               const ScreenNavContainers(
                 image: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643014082/HomeScreen%20and%20Icons/habits_hs_b3wig5.png",
                 title: "Habits",
@@ -66,9 +67,9 @@ class HomeScreen extends StatelessWidget {
                 image: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643014082/HomeScreen%20and%20Icons/support_group_hs_czudpi.png",
                 title: "Support Groups",
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               ClassifyList(title: "Discover Paths"),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               const ScreenNavContainers(
                 image: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643014079/HomeScreen%20and%20Icons/appointments_hs_jl7hb8.png",
                 title: "Appointments",
