@@ -37,7 +37,8 @@ dependencies:
   date_time_picker: "^2.1.0"
   video_player: ^2.2.18
   chewie: ^1.2.2
-  camera: ^0.9.4+11
+  flutter_custom_cards: ^0.2.1
+#  camera: ^0.9.4+11
 
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:syalo/screens/mainframe.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:syalo/screens/onboarding_video.dart';
+import 'package:syalo/widgets/app_wide_widgets/habitWidget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +29,7 @@ class SyaloApp extends StatelessWidget {
       title: 'Syalo',
       theme: ThemeData(
       ),
-      home: OnboardingVideo(),
+      home: HabitCard(),
     );
   }
 }
