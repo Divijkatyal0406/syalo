@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syalo/screens/login_screen.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:syalo/screens/login_signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -19,7 +18,7 @@ class SyaloApp extends StatelessWidget {
       title: 'Syalo',
       theme: ThemeData(
       ),
-      home: const LoginPage(),
+      home: LoginSignupScreen(),
     );
   }
 }

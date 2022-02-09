@@ -1,17 +1,37 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:login_singup/config/palette.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:syalo/config/palette.dart';
+import 'package:syalo/screens/mainframe.dart';
 
 class LoginSignupScreen extends StatefulWidget {
   @override
   _LoginSignupScreenState createState() => _LoginSignupScreenState();
 }
 
-class _LoginSignupScreenState extends State<LoginSignupScreen> {
-  bool isSignupScreen = true;
-  bool isMale = true;
-  bool isRememberMe = false;
+  class _LoginSignupScreenState extends State<LoginSignupScreen> {
+    bool isSignupScreen = true;
+    bool isMale = true;
+    bool isRememberMe = false;
 
+    Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +44,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             left: 0,
             child: Container(
               height: 300,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("images/background.jpg"),
+                      image: AssetImage("assets/images/home_screen_bg.png"),
                       fit: BoxFit.fill)),
               child: Container(
                 padding: EdgeInsets.only(top: 90, left: 20),
@@ -177,10 +197,65 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildTextButton(MaterialCommunityIcons.facebook,
-                          "Facebook", Palette.facebookColor),
-                      buildTextButton(MaterialCommunityIcons.google_plus,
-                          "Google", Palette.googleColor),
+                      TextButton(
+                        onPressed: () async {
+
+                        },
+                        style: TextButton.styleFrom(
+                            side: BorderSide(width: 1, color: Colors.grey),
+                            minimumSize: Size(145, 40),
+                            shape:
+                                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            primary: Colors.white,
+                            backgroundColor: Palette.facebookColor),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              MaterialCommunityIcons.facebook,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Facebook",
+                            )
+                          ],
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          if(FirebaseAuth.instance.currentUser!=null) {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
+                          }
+                          else {
+                            //await signInWithGoogle();
+                            
+                            if(FirebaseAuth.instance.currentUser!=null) {
+                              Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
+                            }
+                          }
+                        },
+                        style: TextButton.styleFrom(
+                            side: BorderSide(width: 1, color: Colors.grey),
+                            minimumSize: Size(145, 40),
+                            shape:
+                                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            primary: Colors.white,
+                            backgroundColor: Palette.googleColor),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              MaterialCommunityIcons.google_plus,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Google",
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 )
@@ -336,33 +411,6 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                   ]),
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  TextButton buildTextButton(
-      IconData icon, String title, Color backgroundColor) {
-    return TextButton(
-      onPressed: () {},
-      style: TextButton.styleFrom(
-          side: BorderSide(width: 1, color: Colors.grey),
-          minimumSize: Size(145, 40),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          primary: Colors.white,
-          backgroundColor: backgroundColor),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            title,
-          )
         ],
       ),
     );
