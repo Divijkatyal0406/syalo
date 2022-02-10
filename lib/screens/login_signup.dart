@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:syalo/config/palette.dart';
 import 'package:syalo/screens/mainframe.dart';
@@ -211,7 +211,7 @@ class LoginSignupScreen extends StatefulWidget {
                         child: Row(
                           children: const [
                             Icon(
-                              MaterialCommunityIcons.facebook,
+                              FontAwesomeIcons.facebook,
                             ),
                             SizedBox(
                               width: 5,
@@ -224,11 +224,13 @@ class LoginSignupScreen extends StatefulWidget {
                       ),
                       TextButton(
                         onPressed: () async {
+                          // await GoogleSignIn().signOut();
+                          // await FirebaseAuth.instance.signOut();
                           if(FirebaseAuth.instance.currentUser!=null) {
                           Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
                           }
                           else {
-                            //await signInWithGoogle();
+                            await signInWithGoogle();
                             
                             if(FirebaseAuth.instance.currentUser!=null) {
                               Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
@@ -245,7 +247,7 @@ class LoginSignupScreen extends StatefulWidget {
                         child: Row(
                           children: const [
                             Icon(
-                              MaterialCommunityIcons.google_plus,
+                              FontAwesomeIcons.googlePlus,
                             ),
                             SizedBox(
                               width: 5,
@@ -274,7 +276,7 @@ class LoginSignupScreen extends StatefulWidget {
         children: [
           buildTextField(Icons.mail_outline, "info@demouri.com", false, true),
           buildTextField(
-              MaterialCommunityIcons.lock_outline, "**********", true, false),
+              FontAwesomeIcons.lockOpen, "**********", true, false),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -310,12 +312,12 @@ class LoginSignupScreen extends StatefulWidget {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField(MaterialCommunityIcons.account_outline, "User Name",
+          buildTextField(FontAwesomeIcons.user, "User Name",
               false, false),
           buildTextField(
-              MaterialCommunityIcons.email_outline, "email", false, true),
+              FontAwesomeIcons.mailBulk, "email", false, true),
           buildTextField(
-              MaterialCommunityIcons.lock_outline, "password", true, false),
+              FontAwesomeIcons.lockOpen, "password", true, false),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: Row(
@@ -343,7 +345,7 @@ class LoginSignupScreen extends StatefulWidget {
                                     : Palette.textColor1),
                             borderRadius: BorderRadius.circular(15)),
                         child: Icon(
-                          MaterialCommunityIcons.account_outline,
+                          FontAwesomeIcons.user,
                           color: isMale ? Colors.white : Palette.iconColor,
                         ),
                       ),
@@ -380,7 +382,7 @@ class LoginSignupScreen extends StatefulWidget {
                                     : Colors.transparent),
                             borderRadius: BorderRadius.circular(15)),
                         child: Icon(
-                          MaterialCommunityIcons.account_outline,
+                          FontAwesomeIcons.user,
                           color: isMale ? Palette.iconColor : Colors.white,
                         ),
                       ),
