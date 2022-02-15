@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:intl/intl.dart';
 
 import '../models/expense.dart';
@@ -10,6 +11,17 @@ class TxListItem extends StatelessWidget {
 
   final Expense txItem;
   final Function handler;
+
+  Future<void> share() async {
+    String formatDate(DateTime date) => new DateFormat("MMMM d").format(txItem.date);
+    await FlutterShare.share(
+        title: 'Share on..',
+        text: 'I am excited to start up ${txItem.title} from ${formatDate(txItem.date)}',
+        linkUrl: 'https://flutter.dev/',
+        chooserTitle: 'Example Chooser Title'
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,38 +103,78 @@ class TxListItem extends StatelessWidget {
                 ),
               ),
               mediaQuery.size.width > 450
-                  ? FlatButton.icon(
-                      icon: const Icon(Icons.delete, size: 22),
-                      label: Text(
-                        'Delete',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Quicksand',
+                  ? Row(
+                    children: [
+                      FlatButton.icon(
+                          icon: const Icon(Icons.delete, size: 22),
+                          label: Text(
+                            'Delete',
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Quicksand',
+                            ),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          textColor: Theme.of(context).accentColor,
+                          onPressed: () {
+                            DeleteTx(
+                              txItem.id,
+                              handler,
+                            ).openDialogue(context);
+                          },
                         ),
+                      FlatButton.icon(
+                        icon: const Icon(Icons.share_outlined, size: 22),
+                        label: Text(
+                          'Share',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Quicksand',
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        textColor: Theme.of(context).accentColor,
+                        onPressed:share
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                    ],
+                  )
+                  : Row(
+                    children: [
+                      IconButton(
+                          icon: const Icon(Icons.delete),
+                          iconSize: 22,
+                          color: Theme.of(context).accentColor,
+                          onPressed: () {
+                            DeleteTx(
+                              txItem.id,
+                              handler,
+                            ).openDialogue(context);
+                          },
+                        ),
+                      FlatButton.icon(
+                          icon: const Icon(Icons.share_outlined, size: 22),
+                          label: Text(
+                            'Share',
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Quicksand',
+                            ),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          textColor: Theme.of(context).accentColor,
+                          onPressed:share
                       ),
-                      textColor: Theme.of(context).accentColor,
-                      onPressed: () {
-                        DeleteTx(
-                          txItem.id,
-                          handler,
-                        ).openDialogue(context);
-                      },
-                    )
-                  : IconButton(
-                      icon: const Icon(Icons.delete),
-                      iconSize: 22,
-                      color: Theme.of(context).accentColor,
-                      onPressed: () {
-                        DeleteTx(
-                          txItem.id,
-                          handler,
-                        ).openDialogue(context);
-                      },
-                    ),
+                    ],
+                  ),
             ],
           ),
         ),
