@@ -235,7 +235,10 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-
+                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
+                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
+                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
+                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
                   ],
                 ),
               ),
