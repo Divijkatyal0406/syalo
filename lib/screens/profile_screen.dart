@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/habit_container.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/home_screen_round_button.dart';
@@ -6,9 +7,15 @@ import 'package:syalo/widgets/main_screen_widgets/profile_screen_widgets/habit_c
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    var photo;
+    var ref = FirebaseAuth.instance.currentUser;
+    if(ref!=null)
+    {
+    photo=ref.photoURL;}
+    else
+    {photo="";}
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -23,9 +30,12 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(radius: 40.0,),
+                CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(photo),
+                ),
                 SizedBox(height: 10.0,),
-                Text("Name",style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
+                Text("${ref!.displayName}",style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
                 SizedBox(height: 20.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

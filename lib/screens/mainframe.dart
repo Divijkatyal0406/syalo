@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:syalo/screens/consultant_screen.dart';
 import 'package:syalo/screens/home_screen.dart';
 import 'package:syalo/screens/profile_screen.dart';
@@ -54,12 +55,12 @@ class _MainFrameState extends State<MainFrame> {
 
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'tickets'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'calendar'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'microphone'),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'search')
+          items: const [
+            BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.home), label: 'tickets'),
+            BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.stethoscope), label: 'calendar'),
+            BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.book), label: 'home'),
+            BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.userFriends), label: 'microphone'),
+            BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.user), label: 'search')
           ],
         ),
       ),

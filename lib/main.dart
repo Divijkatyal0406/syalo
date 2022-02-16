@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syalo/screens/login_signup.dart';
 import 'package:syalo/habbits/habbitHome.dart';
 import 'package:syalo/screens/home_screen.dart';
 import 'package:syalo/screens/mainframe.dart';
@@ -14,13 +15,6 @@ void main() async {
   runApp(const SyaloApp());
 }
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-  );
-
 class SyaloApp extends StatelessWidget {
   const SyaloApp({Key? key}) : super(key: key);
   
@@ -31,7 +25,7 @@ class SyaloApp extends StatelessWidget {
       title: 'Syalo',
       theme: ThemeData(
       ),
-      home: HomePage(),
+      home: LoginSignupScreen(),
     );
   }
 }
