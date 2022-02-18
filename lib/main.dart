@@ -23,9 +23,10 @@ class SyaloApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SuprSelf',
-      theme: ThemeData(
-      ),
-      home: LoginSignupScreen(),
+      // theme: ThemeData(
+      // ),
+      home: MainFrame(),
+      // home: LoginSignupScreen(),
     );
   }
 }

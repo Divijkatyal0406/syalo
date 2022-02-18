@@ -4,6 +4,8 @@ import 'package:syalo/screens/consultant_screen.dart';
 import 'package:syalo/screens/home_screen.dart';
 import 'package:syalo/screens/profile_screen.dart';
 import 'package:syalo/screens/support_group_screen.dart';
+import 'package:syalo/songTracks/homePage.dart';
+
 
 class MainFrame extends StatefulWidget {
   const MainFrame({Key? key}) : super(key: key);
@@ -16,12 +18,12 @@ class _MainFrameState extends State<MainFrame> {
 
   int _selectedIndex = 0;
 
-  static const List<Widget> _screens = [
+  static List<Widget> _screens =[
     HomeScreen(),
     SupportGroupScreen(),
-    HomeScreen(),
+    HomePage(),
     ConsultantScreen(),
-    ProfileScreen(),
+    ProfileScreen()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -55,8 +57,8 @@ class _MainFrameState extends State<MainFrame> {
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
           items: [
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/bottom1.png')), label: 'tickets'),
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/bottom2.png')), label: 'calendar'),
+            BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/bottom2.png')), label: 'tickets'),
+            BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/bottom1.png')), label: 'calendar'),
             BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/bottom3.png')), label: 'home'),
             BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/bottom4.png')), label: 'microphone'),
             BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/bottom5.png')), label: 'search')

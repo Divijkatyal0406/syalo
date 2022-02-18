@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: (){
-
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
                       },
                       child: Material(
                         elevation:10,

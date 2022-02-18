@@ -19,12 +19,12 @@ class ClassifyList extends StatelessWidget {
   final heading1 = [
     "Moving on from Breakup",
     "Why and How to set a Routine",
-    "Rain"
+    "Cheating in relationship"
   ];
   final imgUrls1 = [
     "https://i.pinimg.com/originals/63/87/b1/6387b17d868499ee6484525e6ddad222.png",
     "https://www.soundsofchanges.eu/wp-content/uploads/2015/08/VS-47.jpg",
-    "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFpbnxlbnwwfHwwfHw%3D&w=1000&q=80"
+    "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2018/02/04/648034-relationship-social-media-thinkstock-072417.jpg"
   ];
   var idx1 = 0;
 
