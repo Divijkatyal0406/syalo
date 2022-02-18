@@ -48,6 +48,7 @@ dependencies:
   flutter_share: ^2.0.0
   audioplayers: ^0.20.1
   emoji_feedback: ^0.1.0
+  mixpanel_flutter: ^1.0.0
 #  camera: ^0.9.4+11
 
 dev_dependencies:
