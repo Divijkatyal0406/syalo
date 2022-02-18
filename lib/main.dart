@@ -43,7 +43,7 @@ class _SyaloAppState extends State<SyaloApp> {
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
-      home: MainFrame(),
+      home: LoginSignupScreen(),
       // home: LoginSignupScreen(),
     );
   }
