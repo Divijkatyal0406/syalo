@@ -47,6 +47,7 @@ dependencies:
   path: ^1.7.0
   flutter_share: ^2.0.0
   audioplayers: ^0.20.1
+  emoji_feedback: ^0.1.0
 #  camera: ^0.9.4+11
 
 dev_dependencies:
@@ -93,6 +94,16 @@ flutter:
     - assets/song8.jpg
     - assets/song9.jpg
     - assets/song10.jpg
+    - assets/sounds.png
+    - assets/journal.png
+    - assets/meditate.png
+    - assets/habbit.png
+    - assets/bottom1.png
+    - assets/bottom2.png
+    - assets/bottom3.png
+    - assets/bottom4.png
+    - assets/bottom5.png
+    - assets/images/journal_bg.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,21 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:syalo/DrawerScreens/favourites.dart';
-import 'package:syalo/DrawerScreens/habits_main.dart';
-import 'package:syalo/DrawerScreens/journal_main.dart';
-import 'package:syalo/model/drawer_button.dart';
+import 'package:syalo/songTracks/homePage.dart';
 import 'package:syalo/widgets/app_wide_widgets/classify_list.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/habit_container.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/home_screen_round_button.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/screen_nav_containers.dart';
 
+import '../habbits/habbitHome.dart';
+import '../journals/journalHome.dart';
+
 class HomeScreen extends StatelessWidget {
   static const routeName = "/HomeScreen";
   const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    var ref=FirebaseAuth.instance.currentUser;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -23,105 +22,7 @@ class HomeScreen extends StatelessWidget {
           actions: [Text("Refer")],
         ),
         extendBodyBehindAppBar: true,
-        drawer: Drawer(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 50),
-            Container(
-              width: 500,
-              margin: EdgeInsets.only(left: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hello, ${ref!.displayName!.split(' ')[0]}',
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        fontSize: 28,
-                        letterSpacing:
-                            0 /*percentages not used in flutter. defaulting to zero*/,
-                        fontWeight: FontWeight.normal,
-                        height: 1),
-                  ),
-                  SizedBox(height: 4,),
-                  const Text(
-                    'Conquer the day!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        fontSize: 16,
-                        letterSpacing:
-                            0 /*percentages not used in flutter. defaulting to zero*/,
-                        fontWeight: FontWeight.normal,
-                        height: 1),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(height: 50),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-
-                    },
-                    child: const DrawerButton(
-                        text: 'Appointment',
-                        icon: Icons.calendar_today_outlined),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HabitsMain(),
-                        ),
-                      );
-                    },
-                    child: const DrawerButton(
-                        text: 'Habits & Logs', icon: Icons.timelapse_sharp),
-                  ),
-                  InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => JournalMain(),
-                          ),
-                        );
-                      },
-                      child: const DrawerButton(
-                          text: 'Journal', icon: Icons.book_sharp)),
-                      // InkWell(
-                      //     onTap: () {
-                      //       Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //           builder: (context) => Favourite(),
-                      //         ),
-                      //       );
-                      //     },
-                      // child: const DrawerButton(
-                      //     text: 'Favourites', icon: Icons.favorite)),
-                  InkWell(
-                      onTap: () {
-                      },
-                      child:
-                          const DrawerButton(text: 'Settings', icon: Icons.settings)),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    ),
+        drawer: Drawer(),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -135,8 +36,8 @@ class HomeScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(top: 10.0),
                       child: Text(
-                        "Hi ! ${ref.displayName!.split(' ')[0]}",
-                        style: const TextStyle(
+                        "Hi ! Shreyas",
+                        style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w700,
                             color: Colors.white),
@@ -146,123 +47,121 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.2,
+                margin: EdgeInsets.all(20),
+                // padding: EdgeInsets.only(top: 10),
+                // height: MediaQuery.of(context).size.height * 0.2,
                 alignment: Alignment.center,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      width: 70,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color.fromRGBO(
-                                  188, 188, 188, 0.25),
-                              offset: Offset(10, 10),
-                              blurRadius: 20)
-                        ],
-                        color:
-                            Color.fromRGBO(255, 255, 255, 1),
-                        borderRadius: BorderRadius.all(
-                            Radius.elliptical(70, 70)),
-                      ),
-                      child: const Icon(
-                        FontAwesomeIcons.bookOpen,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Container(
-                      width: 70,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color.fromRGBO(
-                                  188, 188, 188, 0.25),
-                              offset: Offset(10, 10),
-                              blurRadius: 20)
-                        ],
-                        color:
-                            Color.fromRGBO(255, 255, 255, 1),
-                        borderRadius: BorderRadius.all(
-                            Radius.elliptical(70, 70)),
-                      ),
-                      child: const Icon(
-                        FontAwesomeIcons.globe,
-                        color: Colors.black,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                      },
+                      child: Material(
+                        elevation:10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 52.0,
+                          width: 52.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/sounds.png'),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
                       ),
                     ),
-                    Container(
-                      width: 70,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color.fromRGBO(
-                                  188, 188, 188, 0.25),
-                              offset: Offset(10, 10),
-                              blurRadius: 20)
-                        ],
-                        color:
-                            Color.fromRGBO(255, 255, 255, 1),
-                        borderRadius: BorderRadius.all(
-                            Radius.elliptical(70, 70)),
-                      ),
-                      child: const Icon(
-                        FontAwesomeIcons.stethoscope,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Container(
-                      width: 70,
-                      height: 70,
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color.fromRGBO(
-                                  188, 188, 188, 0.25),
-                              offset: Offset(10, 10),
-                              blurRadius: 20)
-                        ],
-                        color:
-                            Color.fromRGBO(255, 255, 255, 1),
-                        borderRadius: BorderRadius.all(
-                            Radius.elliptical(70, 70)),
-                      ),
-                      child: const Icon(
-                        FontAwesomeIcons.stopwatch,
-                        color: Colors.black,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HabbitScreen()));
+                      },
+                      child: Material(
+                        elevation:10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 52.0,
+                          width: 52.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/habbit.png'),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
                       ),
                     ),
-                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
-                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
-                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
-                    GestureDetector(onTap: (){},child: ClassifyButtons(imageUrl: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643262032/HomeScreen%20and%20Icons/meditate_icon_d0ixey.svg")),
+                    GestureDetector(
+                      onTap: (){
+
+                      },
+                      child: Material(
+                        elevation:10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 52,
+                          width: 52,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/meditate.png'),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => JournalScreen()));
+                      },
+                      child: Material(
+                        elevation:10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 52,
+                          width: 52,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/journal.png'),
+                              fit: BoxFit.fill,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
-              const HabitContainer(),
-              const SizedBox(height: 10.0,),
+              HabitContainer(),
+              SizedBox(height: 10.0,),
               ClassifyList(title: "Discover Sounds"),
-              const SizedBox(height: 10,),
+              SizedBox(height: 10,),
               const ScreenNavContainers(
-                image: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643014082/HomeScreen%20and%20Icons/habits_hs_b3wig5.png",
+                image:'https://s3.envato.com/files/227729934/syda_0215969.jpg',
                 title: "Habits",
               ),
               const ScreenNavContainers(
-                image: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643014082/HomeScreen%20and%20Icons/support_group_hs_czudpi.png",
+                image: "https://www.thiscaringhome.org/wp-content/uploads/2018/06/Support-Group.jpeg",
                 title: "Support Groups",
               ),
-              const SizedBox(height: 10,),
+              SizedBox(height: 10,),
               ClassifyList(title: "Discover Paths"),
-              const SizedBox(height: 10,),
+              SizedBox(height: 10,),
               const ScreenNavContainers(
-                image: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643014079/HomeScreen%20and%20Icons/appointments_hs_jl7hb8.png",
+                image: "https://cdn.lifehack.org/wp-content/uploads/2013/06/doctor-appointment.jpg",
                 title: "Appointments",
               ),
               const ScreenNavContainers(
-                image: "https://res.cloudinary.com/dhrju5vsa/image/upload/v1643014080/HomeScreen%20and%20Icons/brain_games_hs_mqsuua.png",
+                image: "https://content.thriveglobal.com/wp-content/uploads/2019/06/innovation-LIGHT-BULB-iStock-1023387542.jpg",
                 title: "Brain Games",
               ),
 
