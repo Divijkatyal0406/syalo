@@ -22,7 +22,7 @@ class SyaloApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Syalo',
+      title: 'SuprSelf',
       theme: ThemeData(
       ),
       home: LoginSignupScreen(),
