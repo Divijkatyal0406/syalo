@@ -2,7 +2,6 @@ import 'package:emoji_feedback/emoji_feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'global1.dart';
 
 class AddTransaction extends StatefulWidget {
   const AddTransaction(this.handler);
@@ -17,6 +16,37 @@ class _AddTransactionState extends State<AddTransaction> {
   var titleController = TextEditingController();
   var amountController = TextEditingController();
   DateTime selectedDate=DateTime.now();
+
+  InputDecoration addTxField(String fieldHintText) {
+    return InputDecoration(
+      contentPadding: const EdgeInsets.all(14),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: const BorderSide(width: 0.9),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: BorderSide(
+          width: 0.8,
+          color: Colors.grey[300]!.withOpacity(0.4),
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(25),
+        borderSide: BorderSide(width: 1.1, color: Colors.grey),
+      ),
+      filled: true,
+      fillColor: Colors.grey[200]!.withOpacity(0.6),
+      hintText: fieldHintText,
+      hintStyle: const TextStyle(
+        fontFamily: 'Quicksand',
+        color: Colors.black38,
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0.8,
+      ),
+    );
+  }
 
   void addTx() {
     var enteredText = titleController.text;

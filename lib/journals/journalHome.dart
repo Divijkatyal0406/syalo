@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -164,7 +165,7 @@ class _JournalScreenState extends State<JournalScreen> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(top: 10.0),
                     child: Text(
-                      "Hi ! Shreyas",
+                      "Hi ! ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w700,

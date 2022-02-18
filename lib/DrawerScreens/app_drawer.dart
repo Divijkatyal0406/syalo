@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syalo/DrawerScreens/chat_page.dart';
 import 'package:syalo/DrawerScreens/favourites.dart';
@@ -5,6 +6,10 @@ import 'package:syalo/DrawerScreens/habits_main.dart';
 import 'package:syalo/DrawerScreens/journal_main.dart';
 import 'package:syalo/OtherScreens/search_results.dart';
 import 'package:syalo/model/drawer_button.dart';
+
+import '../habbits/habbitHome.dart';
+import '../journals/journalHome.dart';
+import '../songTracks/homePage.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -26,7 +31,7 @@ class AppDrawer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello,Shreyas',
+                    'Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
@@ -51,62 +56,95 @@ class AppDrawer extends StatelessWidget {
               ),
             ),
             SizedBox(height: 50),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-
-                    },
-                    child: DrawerButton(
-                        text: 'Appointment',
-                        icon: Icons.calendar_today_outlined),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HabitsMain(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                  },
+                  child: Material(
+                    elevation:10,
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    child: Container(
+                      height: 52.0,
+                      width: 52.0,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/sounds.png'),
+                          fit: BoxFit.fill,
                         ),
-                      );
-                    },
-                    child: DrawerButton(
-                        text: 'Habits & Logs', icon: Icons.timelapse_sharp),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ),
-                  InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => JournalMain(),
-                          ),
-                        );
-                      },
-                      child: DrawerButton(
-                          text: 'Journal', icon: Icons.book_sharp)),
-                  InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Favourite(),
-                          ),
-                        );
-                      },
-                      child: DrawerButton(
-                          text: 'Favourites', icon: Icons.favorite)),
-                  InkWell(
-                      onTap: () {
-                      },
-                      child:
-                          DrawerButton(text: 'Settings', icon: Icons.settings)),
-                  DrawerButton(
-                      text: 'Payment & Cash', icon: Icons.monetization_on),
-                ],
-              ),
-            )
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HabbitScreen()));
+                  },
+                  child: Material(
+                    elevation:10,
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    child: Container(
+                      height: 52.0,
+                      width: 52.0,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/habbit.png'),
+                          fit: BoxFit.fill,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                  },
+                  child: Material(
+                    elevation:10,
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    child: Container(
+                      height: 52,
+                      width: 52,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/meditate.png'),
+                          fit: BoxFit.fill,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => JournalScreen()));
+                  },
+                  child: Material(
+                    elevation:10,
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    child: Container(
+                      height: 52,
+                      width: 52,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/journal.png'),
+                          fit: BoxFit.fill,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ],
         ),
       ),
