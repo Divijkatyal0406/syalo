@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "912096233649-ggm6im5qpe25unki3q2aro77adhsbr43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.syalo",
+            "certificate_hash": "74d1fce810f5db99ba4697d23e92140260048e1d"
+          }
+        },
+        {
           "client_id": "912096233649-nt0de2gmteodh6t5llmqoebv0m13u4u1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

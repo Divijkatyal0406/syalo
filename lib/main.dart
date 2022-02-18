@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syalo/screens/login_signup.dart';
 import 'package:syalo/habbits/habbitHome.dart';
@@ -20,12 +21,13 @@ class SyaloApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    //FirebaseAuth.instance.signOut();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
-      home: MainFrame(),
+      home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
       // home: LoginSignupScreen(),
     );
   }
