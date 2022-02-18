@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syalo/songTracks/homePage.dart';
@@ -36,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(top: 10.0),
                       child: Text(
-                        "Hi ! Shreyas",
+                        "Hi ! ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.w700,

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syalo/songTracks/musicPlayer.dart';
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hello, Shreyas",
+                "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
                 style: TextStyle(fontWeight: FontWeight.bold,
                  color: Colors.black)
                 ,

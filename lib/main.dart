@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
 import 'package:syalo/screens/login_signup.dart';
@@ -38,12 +39,13 @@ class _SyaloAppState extends State<SyaloApp> {
 
   @override
   Widget build(BuildContext context) {
+    //FirebaseAuth.instance.signOut();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
-      home: LoginSignupScreen(),
+      home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
       // home: LoginSignupScreen(),
     );
   }
