@@ -1,4 +1,4 @@
-package com.example.syalo
+package com.health.suprself
 
 import io.flutter.embedding.android.FlutterActivity
 

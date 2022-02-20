@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.syalo">
+    package="com.health.suprself">
    <application
         android:label="syalo"
         android:name="${applicationName}"
