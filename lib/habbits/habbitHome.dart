@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:syalo/habbits/transaction_list.dart';
+import 'package:syalo/habbits/habbit_list.dart';
 
-import '../models/expense.dart';
-import 'add_transaction.dart';
-import 'no_transaction_image.dart';
+import 'models/habbitModel.dart';
+import 'add_habbit.dart';
+import 'no_habbit_image.dart';
 
 
 class HabbitScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class HabbitScreen extends StatefulWidget {
 }
 
 class _HabbitScreenState extends State<HabbitScreen> {
-  List<Expense> txList = <Expense>[];
+  List<Habbit> txList = <Habbit>[];
   bool showChart = false;
 
   Future<Database> _getDatabase() async {
@@ -35,14 +35,14 @@ class _HabbitScreenState extends State<HabbitScreen> {
     return database;
   }
 
-  Future<List<Expense>> _getTransactions() async {
+  Future<List<Habbit>> _getTransactions() async {
     Database db = await _getDatabase();
     List<Map<String, dynamic>> transactions = await db.rawQuery(
       'SELECT * FROM expenses',
     );
 
     return List.generate(transactions.length, (index) {
-      return Expense(
+      return Habbit(
         id: transactions[index]['id'],
         title: transactions[index]['title'],
         amount: transactions[index]['amount'],
@@ -52,7 +52,7 @@ class _HabbitScreenState extends State<HabbitScreen> {
   }
 
   Future<void> _loadTransactions() async {
-    List<Expense> getTxList = await _getTransactions();
+    List<Habbit> getTxList = await _getTransactions();
 
     setState(() => txList = getTxList);
   }

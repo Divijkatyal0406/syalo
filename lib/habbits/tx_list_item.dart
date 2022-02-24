@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:intl/intl.dart';
 
-import '../models/expense.dart';
-import 'delete_tx_dialogue.dart';
+import 'models/habbitModel.dart';
+import 'delete_habbit.dart';
 
 
 class TxListItem extends StatelessWidget {
   const TxListItem(this.txItem, this.handler);
 
-  final Expense txItem;
+  final Habbit txItem;
   final Function handler;
 
   Future<void> share() async {

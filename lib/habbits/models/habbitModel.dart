@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 
-class Expense {
+class Habbit {
   final int id;
   final String title;
   final double amount;
   final DateTime date;
 
-  const Expense({
+  const Habbit({
     required this.id,
     required this.title,
     required this.amount,

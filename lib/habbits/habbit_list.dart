@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../models/expense.dart';
+import 'models/habbitModel.dart';
 import 'tx_list_item.dart';
 
 class TransactionList extends StatelessWidget {
   const TransactionList(this.txList, this.deleteTransaction);
 
-  final List<Expense> txList;
+  final List<Habbit> txList;
   final Function deleteTransaction;
 
   @override
