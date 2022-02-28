@@ -1,4 +1,4 @@
-import 'package:emoji_feedback/emoji_feedback.dart';
+//import 'package:emoji_feedback/emoji_feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -73,11 +73,11 @@ class _AddTransactionState extends State<AddTransaction> {
         ),
         child: Column(
           children: <Widget>[
-            EmojiFeedback(
-              onChange: (index) {
-                print(index);
-              },
-            ),
+            // EmojiFeedback(
+            //   onChange: (index) {
+            //     print(index);
+            //   },
+            // ),
             TextField(
               decoration: addTxField('Title'),
               controller: titleController,
@@ -96,7 +96,7 @@ class _AddTransactionState extends State<AddTransaction> {
               child: RaisedButton(
                 child: const Text(
                   'Add New Journal',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                     fontFamily: 'Quicksand',
                     fontWeight: FontWeight.w600,

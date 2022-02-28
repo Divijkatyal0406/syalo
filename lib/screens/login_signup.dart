@@ -1,7 +1,11 @@
+import 'package:easy_firebase/easy_firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sqflite/sqlite_api.dart';
 import 'package:syalo/config/palette.dart';
 import 'package:syalo/screens/mainframe.dart';
 
@@ -14,7 +18,9 @@ class LoginSignupScreen extends StatefulWidget {
     bool isSignupScreen = true;
     bool isMale = true;
     bool isRememberMe = false;
-
+    var username = TextEditingController();
+    var email = TextEditingController();
+    var password = TextEditingController();
     Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -197,31 +203,31 @@ class LoginSignupScreen extends StatefulWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TextButton(
-                        onPressed: () async {
+                      // TextButton(
+                      //   onPressed: () async {
 
-                        },
-                        style: TextButton.styleFrom(
-                            side: BorderSide(width: 1, color: Colors.grey),
-                            minimumSize: Size(145, 40),
-                            shape:
-                                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            primary: Colors.white,
-                            backgroundColor: Palette.facebookColor),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              FontAwesomeIcons.facebook,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Facebook",
-                            )
-                          ],
-                        ),
-                      ),
+                      //   },
+                      //   style: TextButton.styleFrom(
+                      //       side: BorderSide(width: 1, color: Colors.grey),
+                      //       minimumSize: Size(145, 40),
+                      //       shape:
+                      //           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      //       primary: Colors.white,
+                      //       backgroundColor: Palette.facebookColor),
+                      //   child: Row(
+                      //     children: const [
+                      //       Icon(
+                      //         FontAwesomeIcons.facebook,
+                      //       ),
+                      //       SizedBox(
+                      //         width: 5,
+                      //       ),
+                      //       Text(
+                      //         "Facebook",
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
                       TextButton(
                         onPressed: () async {
                           // await GoogleSignIn().signOut();
@@ -230,7 +236,7 @@ class LoginSignupScreen extends StatefulWidget {
                           Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
                           }
                           else {
-                            await signInWithGoogle();
+                            await EasyFire().getAuthObject().signInWithGoogle();
                             
                             if(FirebaseAuth.instance.currentUser!=null) {
                               Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
@@ -247,7 +253,8 @@ class LoginSignupScreen extends StatefulWidget {
                         child: Row(
                           children: const [
                             Icon(
-                              FontAwesomeIcons.googlePlus,
+                              FontAwesomeIcons.google,
+                              size: 20,
                             ),
                             SizedBox(
                               width: 5,
@@ -274,9 +281,9 @@ class LoginSignupScreen extends StatefulWidget {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField(Icons.mail_outline, "info@demouri.com", false, true),
+          buildTextField(Icons.mail_outline, "info@demouri.com", false, true,email),
           buildTextField(
-              FontAwesomeIcons.lockOpen, "**********", true, false),
+              FontAwesomeIcons.lockOpen, "**********", true, false,password),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -313,11 +320,11 @@ class LoginSignupScreen extends StatefulWidget {
       child: Column(
         children: [
           buildTextField(FontAwesomeIcons.user, "User Name",
-              false, false),
+              false, false,username),
           buildTextField(
-              FontAwesomeIcons.mailBulk, "email", false, true),
+              FontAwesomeIcons.mailBulk, "email", false, true,email),
           buildTextField(
-              FontAwesomeIcons.lockOpen, "password", true, false),
+              FontAwesomeIcons.lockOpen, "password", true, false ,password),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: Row(
@@ -401,7 +408,7 @@ class LoginSignupScreen extends StatefulWidget {
             margin: EdgeInsets.only(top: 20),
             child: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
+              text: const TextSpan(
                   text: "By pressing 'Submit' you agree to our ",
                   style: TextStyle(color: Palette.textColor2),
                   children: [
@@ -456,22 +463,55 @@ class LoginSignupScreen extends StatefulWidget {
                             blurRadius: 2,
                             offset: Offset(0, 1))
                       ]),
-                  child: Icon(
-                    Icons.arrow_forward,
+                  child: IconButton(
                     color: Colors.white,
+                    icon: const Icon(Icons.arrow_forward),
+                    onPressed: ()async {
+                      if(isSignupScreen)
+                      {
+                        var user =await EasyFire().getAuthObject().signupMail(email.text, password.text);
+                        await user!.updateDisplayName(username.text);
+                        await user.updatePhotoURL("https://static.vecteezy.com/system/resources/thumbnails/000/550/731/small/user_icon_004.jpg");
+                        if(FirebaseAuth.instance.currentUser!=null) {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sign Up Successfully"),));
+                        }
+                        else {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sign Up Failed"),));
+                        }
+                      }
+                      else {
+                        await EasyFire().getAuthObject().signinMail(email.text, password.text);
+                        if(FirebaseAuth.instance.currentUser!=null) {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Signed In Successfully"),));
+                        }
+                        else {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sign In Failed"),));
+                        }
+                      }
+                    },
                   ),
                 )
-              : Center(),
+              : const Center(),
         ),
       ),
     );
   }
 
-  Widget buildTextField(
-      IconData icon, String hintText, bool isPassword, bool isEmail) {
+  Widget buildTextField(IconData icon, String hintText, bool isPassword, bool isEmail, TextEditingController textController) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: TextField(
+        onSubmitted : (s) {
+          if(s.isNotEmpty) {
+          textController.text=s;
+          }
+          else {
+            textController.text="";
+          }
+        },
+        controller: textController,
         obscureText: isPassword,
         keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
         decoration: InputDecoration(
