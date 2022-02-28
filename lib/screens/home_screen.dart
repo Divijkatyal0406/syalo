@@ -2,6 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:syalo/DrawerScreens/habits_main.dart';
+import 'package:syalo/DrawerScreens/journal_main.dart';
+import 'package:syalo/model/drawer_button.dart';
 import 'package:syalo/songTracks/homePage.dart';
 import 'package:syalo/widgets/app_wide_widgets/classify_list.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/habit_container.dart';
@@ -17,6 +20,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ref=FirebaseAuth.instance.currentUser;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -24,7 +28,105 @@ class HomeScreen extends StatelessWidget {
           actions: [Text("Refer")],
         ),
         extendBodyBehindAppBar: true,
-        drawer: Drawer(),
+        drawer: Drawer(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 50),
+                Container(
+                  width: 500,
+                  margin: EdgeInsets.only(left: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hello, ${ref!.displayName!.split(' ')[0]}',
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                            fontSize: 28,
+                            letterSpacing:
+                                0 /*percentages not used in flutter. defaulting to zero*/,
+                            fontWeight: FontWeight.normal,
+                            height: 1),
+                      ),
+                      SizedBox(height: 4,),
+                      const Text(
+                        'Conquer the day!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                            fontSize: 16,
+                            letterSpacing:
+                                0 /*percentages not used in flutter. defaulting to zero*/,
+                            fontWeight: FontWeight.normal,
+                            height: 1),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 50),
+                Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                        
+                        },
+                        child: const DrawerButton(
+                            text: 'Appointment',
+                            icon: Icons.calendar_today_outlined),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HabitsMain(),
+                            ),
+                          );
+                        },
+                        child: const DrawerButton(
+                            text: 'Habits & Logs', icon: Icons.timelapse_sharp),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => JournalMain(),
+                              ),
+                            );
+                          },
+                          child: const DrawerButton(
+                              text: 'Journal', icon: Icons.book_sharp)),
+                          // InkWell(
+                          //     onTap: () {
+                          //       Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //           builder: (context) => Favourite(),
+                          //         ),
+                          //       );
+                          //     },
+                          // child: const DrawerButton(
+                          //     text: 'Favourites', icon: Icons.favorite)),
+                      InkWell(
+                          onTap: () {
+                          },
+                          child:
+                              const DrawerButton(text: 'Settings', icon: Icons.settings)),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [

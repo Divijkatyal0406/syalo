@@ -1,41 +1,50 @@
 {
   "project_info": {
-    "project_number": "719483479969",
-    "project_id": "suprself-90c49",
-    "storage_bucket": "suprself-90c49.appspot.com"
+    "project_number": "912096233649",
+    "firebase_url": "https://syalo-edcb0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "syalo-edcb0",
+    "storage_bucket": "syalo-edcb0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:719483479969:android:31a3a3a6adc08b8b650de0",
+        "mobilesdk_app_id": "1:912096233649:android:29d57c658032836c8fba90",
         "android_client_info": {
           "package_name": "com.health.suprself"
         }
       },
       "oauth_client": [
         {
-          "client_id": "719483479969-boj1ke6h42gbug9vbe1jnbpsk0d3psnh.apps.googleusercontent.com",
+          "client_id": "912096233649-50nctb0knhefoibp1oqkj1or58uujcgf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.health.suprself",
-            "certificate_hash": "94e2136f62af44c857ee703d1e678448435cd055"
+            "certificate_hash": "49ac0d7d7233437e3fbdcf9fa1f6858a739d4552"
           }
         },
         {
-          "client_id": "719483479969-t76u4oj0ca7lcar9rk3k0b5mapphdkjj.apps.googleusercontent.com",
+          "client_id": "912096233649-oh2old2k522oac7o9v02litfkst96ili.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.health.suprself",
+            "certificate_hash": "74d1fce810f5db99ba4697d23e92140260048e1d"
+          }
+        },
+        {
+          "client_id": "912096233649-qfkae83q5oep2hdhcufkppkj5nmaf47f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCSnWtGr1vNjtB_nJhJ8BetY6X-Bvu8E4A"
+          "current_key": "AIzaSyAnN7Z16lZgo88CPmaV9OVHrGp56xoZWnE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "719483479969-t76u4oj0ca7lcar9rk3k0b5mapphdkjj.apps.googleusercontent.com",
+              "client_id": "912096233649-qfkae83q5oep2hdhcufkppkj5nmaf47f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
