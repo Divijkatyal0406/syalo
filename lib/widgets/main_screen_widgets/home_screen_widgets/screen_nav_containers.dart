@@ -33,11 +33,18 @@ class ScreenNavContainers extends StatelessWidget {
                 )),
             Positioned(
               top: 4,
-              left: 5,
+              left: 7,
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  borderRadius: BorderRadius.all(Radius.circular(7)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.red,
+                      blurRadius: 4,
+                      offset: Offset(4, 8), // Shadow position
+                    ),
+                  ],
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 alignment: Alignment.center,

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:syalo/DrawerScreens/habits_main.dart';
 import 'package:syalo/DrawerScreens/journal_main.dart';
 import 'package:syalo/model/drawer_button.dart';
@@ -21,11 +22,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var ref=FirebaseAuth.instance.currentUser;
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          actions: [Text("Refer")],
+          titleSpacing: 10,
+          actions: [
+              Padding(padding: EdgeInsets.all(10),child: Text("Refer",style: TextStyle(fontWeight: FontWeight.bold),)),
+            ],
         ),
         extendBodyBehindAppBar: true,
         drawer: Drawer(
@@ -75,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                        
+
                         },
                         child: const DrawerButton(
                             text: 'Appointment',
@@ -128,148 +134,166 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.55,
-                width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    Image.asset("assets/images/home_screen_bg.png",fit: BoxFit.cover,),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        "Hi ! ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
-                        style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
+          child: Expanded(
+            child: Column(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.55,
+                  width: MediaQuery.of(context).size.width,
+                  child: Stack(
+                    children: [
+                      Image(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height/2,fit:BoxFit.cover,image: AssetImage(
+                        'assets/images/home_screen_bg.png',
+                        // height: 400,
+                        // fit:BoxFit.fitWidth,
                       ),
-                    )
-                  ],
+                      ),
+                      // Image.asset("assets/images/home_screen_bg.png",fit: BoxFit.cover,),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.15,top: MediaQuery.of(context).size.height/23),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white),
+                            ),
+                            Text(
+                              "Conquer the day!",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.all(20),
-                // padding: EdgeInsets.only(top: 10),
-                // height: MediaQuery.of(context).size.height * 0.2,
-                alignment: Alignment.center,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                      },
-                      child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          height: 52.0,
-                          width: 52.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/sounds.png'),
-                              fit: BoxFit.fill,
+                Container(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        },
+                        child: Material(
+                          elevation:10,
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          child: Container(
+                            height: 52.0,
+                            width: 52.0,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/sounds.png'),
+                                // fit: BoxFit.fill,
+                              ),
+                              shape: BoxShape.circle,
                             ),
-                            shape: BoxShape.circle,
                           ),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HabbitScreen()));
-                      },
-                      child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          height: 52.0,
-                          width: 52.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/habbit.png'),
-                              fit: BoxFit.fill,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HabbitScreen()));
+                        },
+                        child: Material(
+                          elevation:10,
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          child: Container(
+                            height: 52.0,
+                            width: 52.0,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/habbit.png'),
+                                // fit: BoxFit.fill,
+                              ),
+                              shape: BoxShape.circle,
                             ),
-                            shape: BoxShape.circle,
                           ),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-                      },
-                      child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          height: 52,
-                          width: 52,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/meditate.png'),
-                              fit: BoxFit.fill,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                        },
+                        child: Material(
+                          elevation:10,
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          child: Container(
+                            height: 52,
+                            width: 52,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/meditate.png'),
+                                // fit: BoxFit.fill,
+                              ),
+                              shape: BoxShape.circle,
                             ),
-                            shape: BoxShape.circle,
                           ),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => JournalScreen()));
-                      },
-                      child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          height: 52,
-                          width: 52,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/journal.png'),
-                              fit: BoxFit.fill,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => JournalScreen()));
+                        },
+                        child: Material(
+                          elevation:10,
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          child: Container(
+                            padding:EdgeInsets.all(50),
+                            height: 52,
+                            width: 52,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/journal.png'),
+                              ),
+                              shape: BoxShape.circle,
                             ),
-                            shape: BoxShape.circle,
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              HabitContainer(),
-              SizedBox(height: 10.0,),
-              ClassifyList(title: "Discover Sounds"),
-              SizedBox(height: 10,),
-              const ScreenNavContainers(
-                image:'https://s3.envato.com/files/227729934/syda_0215969.jpg',
-                title: "Habits",
-              ),
-              const ScreenNavContainers(
-                image: "https://www.thiscaringhome.org/wp-content/uploads/2018/06/Support-Group.jpeg",
-                title: "Support Groups",
-              ),
-              SizedBox(height: 10,),
-              ClassifyList(title: "Discover Paths"),
-              SizedBox(height: 10,),
-              const ScreenNavContainers(
-                image: "https://cdn.lifehack.org/wp-content/uploads/2013/06/doctor-appointment.jpg",
-                title: "Appointments",
-              ),
-              const ScreenNavContainers(
-                image: "https://content.thriveglobal.com/wp-content/uploads/2019/06/innovation-LIGHT-BULB-iStock-1023387542.jpg",
-                title: "Brain Games",
-              ),
+                SizedBox(height: 15.0,),
+                HabitContainer(),
+                SizedBox(height: 15.0,),
+                ClassifyList(title: "Discover Sounds"),
+                SizedBox(height: 15,),
+                const ScreenNavContainers(
+                  image:'https://s3.envato.com/files/227729934/syda_0215969.jpg',
+                  title: "Habits",
+                ),
+                const ScreenNavContainers(
+                  image: "https://www.thiscaringhome.org/wp-content/uploads/2018/06/Support-Group.jpeg",
+                  title: "Support Groups",
+                ),
+                SizedBox(height: 10,),
+                ClassifyList(title: "Discover Paths"),
+                SizedBox(height: 10,),
+                const ScreenNavContainers(
+                  image: "https://cdn.lifehack.org/wp-content/uploads/2013/06/doctor-appointment.jpg",
+                  title: "Appointments",
+                ),
+                const ScreenNavContainers(
+                  image: "https://content.thriveglobal.com/wp-content/uploads/2019/06/innovation-LIGHT-BULB-iStock-1023387542.jpg",
+                  title: "Brain Games",
+                ),
 
-            ],
+              ],
+            ),
           ),
         ));
   }

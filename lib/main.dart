@@ -45,8 +45,8 @@ class _SyaloAppState extends State<SyaloApp> {
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
-      home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
-      // home: LoginSignupScreen(),
+      // home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
+      home: MainFrame(),
     );
   }
 }

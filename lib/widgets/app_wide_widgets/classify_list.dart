@@ -8,6 +8,9 @@ class ClassifyList extends StatelessWidget {
 
   ClassifyList({Key? key, required this.title}) : super(key: key);
 
+  final colors=[Colors.teal,Colors.orange,Colors.red];
+  final colors1=[Colors.lightBlue,Colors.orange,Colors.tealAccent];
+
   final heading = ["Forest", "Beach", "Rain"];
   final imgUrls = [
     "https://images.unsplash.com/photo-1511497584788-876760111969?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80",
@@ -32,132 +35,122 @@ class ClassifyList extends StatelessWidget {
   Widget build(BuildContext context) {
     return title == "Discover Paths"
         ? Container(
-      height: MediaQuery.of(context).size.height * 0.3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.08,
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: ListView.builder(
-              itemCount: 3,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Container(
-                width: 165,
-                height: 100,
-                margin: EdgeInsets.symmetric(horizontal: 14.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: GridTile(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Image.network(
-                      imgUrls1[idx1],
-                      fit: BoxFit.cover,
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
                   ),
-                  footer: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                      child: Expanded(
-                        child: Column(
-                          children: [
-                            Text(
-                              heading1[idx1++],
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ListView.builder(
+                    itemCount: 3,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Container(
+                      width: 165,
+                      height: 100,
+                      margin: EdgeInsets.symmetric(horizontal: 14.0),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: GridTile(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Image.network(
+                            imgUrls1[idx1],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        footer: Container(
+                          decoration: BoxDecoration(color: colors1[idx1]),
+                          child: Expanded(
+                            child: Column(
+                              children: [
+                                Text(
+                                  heading1[idx1++],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 20),
+                                  // softWrap: true,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
+        : Container(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ListView.builder(
+                    itemCount: 3,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Container(
+                      width: 165,
+                      height: 100,
+                      margin: EdgeInsets.symmetric(horizontal: 14.0),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: GridTile(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child: Image.network(
+                            imgUrls[idx],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        footer: Container(
+                          decoration: BoxDecoration(color: colors[idx]),
+                          child: GridTileBar(
+                            title: Text(
+                              heading[idx++],
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   fontSize: 20),
-                              // softWrap: true,
+                              softWrap: true,
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
-      ),
-    )
-        : Container(
-      height: MediaQuery.of(context).size.height * 0.3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.08,
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: ListView.builder(
-              itemCount: 3,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Container(
-                width: 165,
-                height: 100,
-                margin: EdgeInsets.symmetric(horizontal: 14.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0)),
-                child: GridTile(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.0),
-                    child: Image.network(
-                      imgUrls[idx],
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  footer: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20.0),
-                        bottomRight: Radius.circular(20.0)),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                      child: GridTileBar(
-                        title: Text(
-                          heading[idx++],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 20),
-                          softWrap: true,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }
