@@ -45,6 +45,7 @@ dependencies:
   flutter_share: ^2.0.0
   audioplayers: ^0.20.1
   mixpanel_flutter: ^1.4.5
+  just_audio: ^0.9.20
 #  camera: ^0.9.4+11
 
 dev_dependencies:
