@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:suprself/sound_screen/music_player.dart';
-import 'package:suprself/sound_screen/songs_model.dart';
+import 'package:syalo/screens/songs_screen/music_player.dart';
+import 'package:syalo/screens/songs_screen/songs_model.dart';
 
 class AllSongs extends StatefulWidget {
   const AllSongs({Key? key}) : super(key: key);
