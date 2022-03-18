@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:syalo/screens/onboarding_screens/auth.dart';
+import 'package:syalo/screens/habits_screen/define_habits.dart';
 
 class SelectHabits extends StatefulWidget {
   const SelectHabits({Key? key}) : super(key: key);
@@ -68,7 +68,17 @@ class _SelectHabitsState extends State<SelectHabits> {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    print(
+                        "if this is for first time it is supposed to work the same way");
+                    print(
+                        "But if already account is set up this should go to home");
+                    print(
+                        "Unimplemented because local storage is not set up for the moment");
+                    print(
+                        "Same goes for the below button where adding 3 habits is mandatory for first time");
+                    Navigator.pop(context);
+                  },
                   child: Icon(
                     Icons.chevron_left,
                     size: 40,
@@ -80,7 +90,7 @@ class _SelectHabitsState extends State<SelectHabits> {
                 Text(
                   "Add Habits",
                   style: TextStyle(
-                      fontSize: 35,
+                      fontSize: 25,
                       fontWeight: FontWeight.w600,
                       color: Colors.black),
                 ),
@@ -118,11 +128,13 @@ class _SelectHabitsState extends State<SelectHabits> {
                       borderRadius: BorderRadius.circular(8))),
                 ),
                 onPressed: () {
-                  // Navigator.of(context).pushReplacement(
-                  //     MaterialPageRoute(builder: (_) => SelectHabits()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => HabitsDescription(habitName: "")));
                   // TODO: Navigate to home page after atleast 3 selection
                 },
-                child: Text("Continue")),
+                child: Text("Create My Own")),
           ),
         )
       ],
@@ -130,27 +142,33 @@ class _SelectHabitsState extends State<SelectHabits> {
   }
 
   Widget gridTile(double height, double width, Map<String, String> habit) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Stack(children: [
-          SizedBox.expand(
-            child: Image.network(
-              habit["imageURL"]!,
-              fit: BoxFit.fill,
+    return InkWell(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => HabitsDescription(habitName: habit['name']!))),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(children: [
+            SizedBox.expand(
+              child: Image.network(
+                habit["imageURL"]!,
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
-          Positioned(
-              left: 10,
-              bottom: 10,
-              child: Text(
-                habit["name"]!,
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-              ))
-        ]),
+            Positioned(
+                left: 10,
+                bottom: 10,
+                child: Text(
+                  habit["name"]!,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                ))
+          ]),
+        ),
       ),
     );
   }
