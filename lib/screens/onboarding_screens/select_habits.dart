@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:syalo/screens/habits_screen/define_habits.dart';
-import 'package:syalo/screens/mainframe.dart'
+import 'package:syalo/screens/mainframe.dart';
 
 class SelectHabits extends StatefulWidget {
   const SelectHabits({Key? key}) : super(key: key);
@@ -120,8 +120,8 @@ class _SelectHabitsState extends State<SelectHabits> {
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: ElevatedButton(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: ElevatedButton(
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(EdgeInsets.symmetric(
                       horizontal: width * .3, vertical: 18.0)),
@@ -129,10 +129,8 @@ class _SelectHabitsState extends State<SelectHabits> {
                       borderRadius: BorderRadius.circular(8))),
                 ),
                 onPressed: () {
-                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => MainFrame()));
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => MainFrame()));
 //                   Navigator.push(
 //                       context,
 //                       MaterialPageRoute(
@@ -140,8 +138,9 @@ class _SelectHabitsState extends State<SelectHabits> {
                   // TODO: Navigate to home page after atleast 3 selection
 //                 },
 //                 child: Text("Create My Own")),
-            child: Text("Go to Home")),
-          ),
+                },
+                child: Text("Go to Home"),
+              )),
         )
       ],
     ));
