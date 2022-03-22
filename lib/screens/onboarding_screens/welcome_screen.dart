@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:syalo/screens/onboarding_screens/auth.dart';
+import 'package:syalo/screens/login_signup.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -20,12 +20,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     super.initState();
     _videoPlayerController = VideoPlayerController.network(
         'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4');
-    _videoPlayerController.addListener(() {
-      setState(() {});
-    });
     _videoPlayerController.setLooping(false);
-    _videoPlayerController.initialize().then((value) => setState(() {}));
-    _videoPlayerController.play();
+  }
+Future<VideoPlayerController> getController() async {
+    await _videoPlayerController.initialize();
+    await _videoPlayerController.setLooping(false);
+    return _videoPlayerController;
   }
 
   @override
@@ -39,27 +39,60 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
-    return Scaffold(
+    return SafeArea(
+      Scaffold(
       body: Stack(
         fit: StackFit.loose,
         children: [
-          SizedBox.expand(
-            child: FittedBox(
-              fit: BoxFit.fill,
-              child: SizedBox(
-                width: _videoPlayerController.value.size.width,
-                height: _videoPlayerController.value.size.height,
-                child: VideoPlayer(_videoPlayerController),
-              ),
-            ),
-          ),
+          FutureBuilder(
+              future: getController(),
+              builder: (context,
+                  AsyncSnapshot<VideoPlayerController> playerSnapshot) {
+                if (playerSnapshot.hasData) {
+                  playerSnapshot.data!.play();
+
+                  return playerSnapshot.connectionState ==
+                          ConnectionState.waiting
+                      ? Center(child: CircularProgressIndicator())
+                      : playerSnapshot.connectionState == ConnectionState.done
+                          ? SizedBox.expand(
+                              child: FittedBox(
+                                fit: BoxFit.fill,
+                                child: SizedBox(
+                                  width:
+                                      _videoPlayerController.value.size.width,
+                                  height:
+                                      _videoPlayerController.value.size.height,
+                                  child: VideoPlayer(_videoPlayerController),
+                                ),
+                              ),
+                            )
+                          : Center(
+                              child: CircularProgressIndicator(
+                                semanticsLabel: "Loading",
+                              ),
+                            );
+                } else if (playerSnapshot.hasError) {
+                  return Center(
+                    child: IconButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        icon: Icon(Icons.star)),
+                  );
+                } else {
+                  return Center(
+                      child: CircularProgressIndicator(
+                    semanticsLabel: "Loading",
+                  ));
+                }
+              }),
           Align(
             alignment: Alignment.topRight,
             child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => AuthScreen()));
+                      MaterialPageRoute(builder: (_) => LoginSignupScreen()));
                 },
                 child: Text("skip >>")),
           ),
@@ -76,13 +109,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (_) => AuthScreen()));
+                        MaterialPageRoute(builder: (_) => LoginSignupScreen()));
                   },
                   child: Text("Next")),
             ),
           )
         ],
       ),
-    );
+    ),);
   }
 }
