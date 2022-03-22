@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:syalo/screens/habits_screen/define_habits.dart';
+import 'package:syalo/screens/mainframe.dart'
 
 class SelectHabits extends StatefulWidget {
   const SelectHabits({Key? key}) : super(key: key);
@@ -128,13 +129,18 @@ class _SelectHabitsState extends State<SelectHabits> {
                       borderRadius: BorderRadius.circular(8))),
                 ),
                 onPressed: () {
-                  Navigator.push(
+                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => HabitsDescription(habitName: "")));
+                          builder: (_) => MainFrame()));
+//                   Navigator.push(
+//                       context,
+//                       MaterialPageRoute(
+//                           builder: (_) => HabitsDescription(habitName: "")));
                   // TODO: Navigate to home page after atleast 3 selection
-                },
-                child: Text("Create My Own")),
+//                 },
+//                 child: Text("Create My Own")),
+            child: Text("Go to Home")),
           ),
         )
       ],
