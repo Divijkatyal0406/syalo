@@ -233,13 +233,13 @@ class LoginSignupScreen extends StatefulWidget {
                           // await GoogleSignIn().signOut();
                           // await FirebaseAuth.instance.signOut();
                           if(FirebaseAuth.instance.currentUser!=null) {
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
+                          Navigator.push(context,MaterialPageRoute(builder: (context) =>  SelectHabits()),);
                           }
                           else {
                             await EasyFire().getAuthObject().signInWithGoogle();
                             
                             if(FirebaseAuth.instance.currentUser!=null) {
-                              Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
+                              Navigator.push(context,MaterialPageRoute(builder: (context) =>  SelectHabits()),);
                             }
                           }
                         },
