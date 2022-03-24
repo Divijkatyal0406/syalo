@@ -485,7 +485,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MainFrame()),
+                                builder: (context) => const SelectHabits()),
                           );
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
@@ -505,7 +505,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MainFrame()),
+                                builder: (context) => const SelectHabits()),
                           );
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(

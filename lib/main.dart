@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+import 'package:syalo/screens/habits_screen/ongoing_habits.dart';
 import 'package:syalo/screens/login_signup.dart';
 import 'package:syalo/habbits/habbitHome.dart';
 import 'package:syalo/screens/home_screen.dart';
 import 'package:syalo/screens/mainframe.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:syalo/screens/onboarding_screens/welcome_screen.dart';
 import 'package:syalo/screens/onboarding_video.dart';
 import 'package:syalo/songTracks/homePage.dart';
 
@@ -45,8 +47,8 @@ class _SyaloAppState extends State<SyaloApp> {
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
-      // home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
-      home: MainFrame(),
+      home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): WelcomeScreen(),
+      //home: OngoingHabits(),
     );
   }
 }
