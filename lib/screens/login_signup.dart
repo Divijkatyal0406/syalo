@@ -232,7 +232,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           // await GoogleSignIn().signOut();
                           // await FirebaseAuth.instance.signOut();
                           if (FirebaseAuth.instance.currentUser != null) {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => SelectHabits(
@@ -243,7 +243,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             await EasyFire().getAuthObject().signInWithGoogle();
 
                             if (FirebaseAuth.instance.currentUser != null) {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => SelectHabits(
@@ -485,7 +485,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         await user.updatePhotoURL(
                             "https://static.vecteezy.com/system/resources/thumbnails/000/550/731/small/user_icon_004.jpg");
                         if (FirebaseAuth.instance.currentUser != null) {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SelectHabits(
@@ -507,7 +507,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             .getAuthObject()
                             .signinMail(email.text, password.text);
                         if (FirebaseAuth.instance.currentUser != null) {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SelectHabits(
