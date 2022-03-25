@@ -113,7 +113,7 @@ class _SelectHabitsState extends State<SelectHabits> {
                     ),
                     onPressed: () {
                       widget.firstPage == true
-                          ? Navigator.push(context,
+                          ? Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (_) => MainFrame()))
                           : Navigator.push(
                               context,
