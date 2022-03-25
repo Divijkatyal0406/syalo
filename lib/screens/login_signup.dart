@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:syalo/config/palette.dart';
-import 'package:syalo/screens/mainframe.dart';
 import 'package:syalo/screens/onboarding_screens/select_habits.dart';
 
 class LoginSignupScreen extends StatefulWidget {
@@ -236,7 +235,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SelectHabits()),
+                                  builder: (context) => SelectHabits(
+                                        firstPage: true,
+                                      )),
                             );
                           } else {
                             await EasyFire().getAuthObject().signInWithGoogle();
@@ -245,7 +246,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SelectHabits()),
+                                    builder: (context) => SelectHabits(
+                                          firstPage: true,
+                                        )),
                               );
                             }
                           }
@@ -485,7 +488,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MainFrame()),
+                                builder: (context) => SelectHabits(
+                                      firstPage: true,
+                                    )),
                           );
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
@@ -505,7 +510,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MainFrame()),
+                                builder: (context) => SelectHabits(
+                                      firstPage: true,
+                                    )),
                           );
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
