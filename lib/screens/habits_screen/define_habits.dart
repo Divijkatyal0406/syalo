@@ -47,6 +47,9 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
         floatingActionButton: ElevatedButton(
             onPressed: () {
               print("Save all the data in the database");
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  duration: Duration(seconds: 1),
+                  content: Text("Succesfully saved")));
             },
             child: Text("Save. Let's Win!")),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
