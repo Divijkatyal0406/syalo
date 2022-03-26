@@ -1,17 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:syalo/journals/add_transaction1.dart';
+import 'package:syalo/journals/models1/expense1.dart';
+import 'package:syalo/journals/no_transaction_image1.dart';
 import 'package:syalo/journals/transaction_list1.dart';
-
-import 'add_transaction1.dart';
-import 'models1/expense1.dart';
-import 'no_transaction_image1.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class JournalScreen extends StatefulWidget {
-  // const JournalScreen({Key key, this.title}) : super(key: key);
-
-  final String title='My Journal\'s';
+  String? title;
 
   @override
   State<StatefulWidget> createState() => _JournalScreenState();
@@ -27,7 +25,7 @@ class _JournalScreenState extends State<JournalScreen> {
       onCreate: (db, version) {
         return db.execute(
           'CREATE TABLE expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-              'title TEXT, amount TEXT, date TEXT)',
+          'title TEXT, amount REAL, date TEXT)',
         );
       },
       version: 1,
@@ -58,7 +56,7 @@ class _JournalScreenState extends State<JournalScreen> {
     setState(() => txList = getTxList);
   }
 
-  Future<void> _addNewTx(String title, String amount, DateTime date) async {
+  Future<void> _addNewTx(String title, double amount, DateTime date) async {
     Database db = await _getDatabase();
 
     await db.transaction((txn) async {
@@ -100,7 +98,7 @@ class _JournalScreenState extends State<JournalScreen> {
       backgroundColor: Colors.white,
       elevation: 0,
       title: Text(
-        widget.title,
+        'Journal',
         style: TextStyle(
             fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
       ),
@@ -156,11 +154,12 @@ class _JournalScreenState extends State<JournalScreen> {
         child: Column(
           children: <Widget>[
             Container(
+              margin: EdgeInsets.all(0),
               height: MediaQuery.of(context).size.height * 0.47,
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: [
-                  Image.asset("assets/images/journal_bg.jpg",fit: BoxFit.cover,),
+                  Image.asset("assets/images/journal_bg.png",fit: BoxFit.cover,),
                   Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(top: 10.0),
@@ -171,7 +170,7 @@ class _JournalScreenState extends State<JournalScreen> {
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -180,11 +179,15 @@ class _JournalScreenState extends State<JournalScreen> {
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _startAddTransaction(context),
-        backgroundColor: Colors.black,
-      ),
+          isExtended: true,
+          onPressed: () {
+            _startAddTransaction(context);
+          },
+          child: Icon(Icons.add,size: 30,),
+          backgroundColor: Colors.blue,
+        ),
     );
   }
 }

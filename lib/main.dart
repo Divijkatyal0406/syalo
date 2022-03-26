@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+import 'package:syalo/journals/journalHome.dart';
+import 'package:syalo/screens/learningPaths.dart';
 import 'package:syalo/screens/login_signup.dart';
 import 'package:syalo/habbits/habbitHome.dart';
 import 'package:syalo/screens/home_screen.dart';
@@ -46,7 +48,7 @@ class _SyaloAppState extends State<SyaloApp> {
       // theme: ThemeData(
       // ),
       // home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
-      home: MainFrame(),
+      home: JournalScreen(),
     );
   }
 }
