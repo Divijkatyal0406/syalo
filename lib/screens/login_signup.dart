@@ -7,26 +7,27 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:syalo/config/palette.dart';
-import 'package:syalo/screens/mainframe.dart';
+import 'package:syalo/screens/onboarding_screens/select_habits.dart';
 
 class LoginSignupScreen extends StatefulWidget {
   @override
   _LoginSignupScreenState createState() => _LoginSignupScreenState();
 }
 
-  class _LoginSignupScreenState extends State<LoginSignupScreen> {
-    bool isSignupScreen = true;
-    bool isMale = true;
-    bool isRememberMe = false;
-    var username = TextEditingController();
-    var email = TextEditingController();
-    var password = TextEditingController();
-    Future<UserCredential> signInWithGoogle() async {
+class _LoginSignupScreenState extends State<LoginSignupScreen> {
+  bool isSignupScreen = true;
+  bool isMale = true;
+  bool isRememberMe = false;
+  var username = TextEditingController();
+  var email = TextEditingController();
+  var password = TextEditingController();
+  Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -37,7 +38,7 @@ class LoginSignupScreen extends StatefulWidget {
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,11 +102,9 @@ class LoginSignupScreen extends StatefulWidget {
           //Main Contianer for Login and Signup
           AnimatedPositioned(
             duration: Duration(milliseconds: 300),
-            
             top: isSignupScreen ? 200 : 230,
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),
-
               height: isSignupScreen ? 380 : 250,
               padding: EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width - 40,
@@ -232,22 +231,33 @@ class LoginSignupScreen extends StatefulWidget {
                         onPressed: () async {
                           // await GoogleSignIn().signOut();
                           // await FirebaseAuth.instance.signOut();
-                          if(FirebaseAuth.instance.currentUser!=null) {
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
-                          }
-                          else {
+                          if (FirebaseAuth.instance.currentUser != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SelectHabits(
+                                        firstPage: true,
+                                      )),
+                            );
+                          } else {
                             await EasyFire().getAuthObject().signInWithGoogle();
-                            
-                            if(FirebaseAuth.instance.currentUser!=null) {
-                              Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
+
+                            if (FirebaseAuth.instance.currentUser != null) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SelectHabits(
+                                          firstPage: true,
+                                        )),
+                              );
                             }
                           }
                         },
                         style: TextButton.styleFrom(
                             side: BorderSide(width: 1, color: Colors.grey),
                             minimumSize: Size(145, 40),
-                            shape:
-                                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
                             primary: Colors.white,
                             backgroundColor: Palette.googleColor),
                         child: Row(
@@ -281,9 +291,10 @@ class LoginSignupScreen extends StatefulWidget {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField(Icons.mail_outline, "info@demouri.com", false, true,email),
           buildTextField(
-              FontAwesomeIcons.lockOpen, "**********", true, false,password),
+              Icons.mail_outline, "info@demouri.com", false, true, email),
+          buildTextField(
+              FontAwesomeIcons.lockOpen, "**********", true, false, password),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -319,12 +330,12 @@ class LoginSignupScreen extends StatefulWidget {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField(FontAwesomeIcons.user, "User Name",
-              false, false,username),
           buildTextField(
-              FontAwesomeIcons.mailBulk, "email", false, true,email),
+              FontAwesomeIcons.user, "User Name", false, false, username),
           buildTextField(
-              FontAwesomeIcons.lockOpen, "password", true, false ,password),
+              FontAwesomeIcons.mailBulk, "email", false, true, email),
+          buildTextField(
+              FontAwesomeIcons.lockOpen, "password", true, false, password),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: Row(
@@ -428,7 +439,6 @@ class LoginSignupScreen extends StatefulWidget {
   Widget buildBottomHalfContainer(bool showShadow) {
     return AnimatedPositioned(
       duration: Duration(milliseconds: 300),
-
       top: isSignupScreen ? 535 : 430,
       right: 0,
       left: 0,
@@ -466,28 +476,53 @@ class LoginSignupScreen extends StatefulWidget {
                   child: IconButton(
                     color: Colors.white,
                     icon: const Icon(Icons.arrow_forward),
-                    onPressed: ()async {
-                      if(isSignupScreen)
-                      {
-                        var user =await EasyFire().getAuthObject().signupMail(email.text, password.text);
+                    onPressed: () async {
+                      if (isSignupScreen) {
+                        var user = await EasyFire()
+                            .getAuthObject()
+                            .signupMail(email.text, password.text);
                         await user!.updateDisplayName(username.text);
-                        await user.updatePhotoURL("https://static.vecteezy.com/system/resources/thumbnails/000/550/731/small/user_icon_004.jpg");
-                        if(FirebaseAuth.instance.currentUser!=null) {
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sign Up Successfully"),));
+                        await user.updatePhotoURL(
+                            "https://static.vecteezy.com/system/resources/thumbnails/000/550/731/small/user_icon_004.jpg");
+                        if (FirebaseAuth.instance.currentUser != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SelectHabits(
+                                      firstPage: true,
+                                    )),
+                          );
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Sign Up Successfully"),
+                          ));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Sign Up Failed"),
+                          ));
                         }
-                        else {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sign Up Failed"),));
-                        }
-                      }
-                      else {
-                        await EasyFire().getAuthObject().signinMail(email.text, password.text);
-                        if(FirebaseAuth.instance.currentUser!=null) {
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => const MainFrame()),);
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Signed In Successfully"),));
-                        }
-                        else {
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sign In Failed"),));
+                      } else {
+                        await EasyFire()
+                            .getAuthObject()
+                            .signinMail(email.text, password.text);
+                        if (FirebaseAuth.instance.currentUser != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SelectHabits(
+                                      firstPage: true,
+                                    )),
+                          );
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Signed In Successfully"),
+                          ));
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Sign In Failed"),
+                          ));
                         }
                       }
                     },
@@ -499,16 +534,16 @@ class LoginSignupScreen extends StatefulWidget {
     );
   }
 
-  Widget buildTextField(IconData icon, String hintText, bool isPassword, bool isEmail, TextEditingController textController) {
+  Widget buildTextField(IconData icon, String hintText, bool isPassword,
+      bool isEmail, TextEditingController textController) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: TextField(
-        onSubmitted : (s) {
-          if(s.isNotEmpty) {
-          textController.text=s;
-          }
-          else {
-            textController.text="";
+        onSubmitted: (s) {
+          if (s.isNotEmpty) {
+            textController.text = s;
+          } else {
+            textController.text = "";
           }
         },
         controller: textController,

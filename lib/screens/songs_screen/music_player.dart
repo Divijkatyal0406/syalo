@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
 class MusicPlayer extends StatefulWidget {
-  String songURL, imageURL;
-  MusicPlayer({required this.songURL, required this.imageURL});
+  String songURL, imageURL, tag;
+  MusicPlayer(
+      {required this.songURL, required this.imageURL, required this.tag});
 
   @override
   _MusicPlayerState createState() => _MusicPlayerState();
@@ -29,6 +30,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     }
   }
 
+  bool liked = false; //TODO this should be from database too
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -37,14 +39,29 @@ class _MusicPlayerState extends State<MusicPlayer> {
       child: Scaffold(
         body: Stack(
           children: [
-            SizedBox(
-              height: height,
-              width: width,
-              child: Image.network(
-                widget.imageURL,
-                fit: BoxFit.fill,
-                errorBuilder: (_, __, ___) => Image.asset(
-                    "assets/onboarding/auth.png"), //TODO: add default image
+            Hero(
+              tag: widget.tag,
+              child: SizedBox(
+                height: height,
+                width: width,
+                child: Image.network(
+                  widget.imageURL,
+                  fit: BoxFit.fill,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                  errorBuilder: (_, __, ___) => Image.asset(
+                      "assets/onboarding/auth.png"), //TODO: add default image
+                ),
               ),
             ),
             Opacity(
@@ -87,10 +104,26 @@ class _MusicPlayerState extends State<MusicPlayer> {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    print("UPDATE IN DATABASE");
+                                    setState(() {
+                                      liked = !liked;
+                                      print(liked);
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            duration:
+                                                Duration(milliseconds: 10),
+                                            content: !liked
+                                                ? Text(
+                                                    "Removed from favourite list")
+                                                : Text(
+                                                    "Added to favourite list")));
                                   },
-                                  icon: Icon(Icons
-                                      .thumb_up_sharp)), //TODO: UPDATE THE DATABASE
+                                  icon: Icon(
+                                    Icons.thumb_up_sharp,
+                                    color: liked
+                                        ? Colors.blue
+                                        : Color.fromARGB(255, 0, 0, 0),
+                                  )), //TODO: UPDATE THE DATABASE
                             ],
                           )
                         ],
