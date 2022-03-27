@@ -16,10 +16,12 @@ class TxListItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          child: Text(DateFormat.yMMMEd().format(txItem.date),),
+          child: Text(
+            DateFormat.yMMMEd().format(txItem.date),
+          ),
         ),
         Container(
-          height: 150,
+          // height: 150,
           alignment: Alignment.center,
           width: double.infinity,
           child: Card(
@@ -43,33 +45,14 @@ class TxListItem extends StatelessWidget {
                 left: 8,
                 right: 6,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Flexible(
-                                child: Container(
-                                  child: Text(
-                                    txItem.title,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: Theme.of(context).textTheme.headline5,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+              child: Flexible(
+                child: Container(
+                  child: Text(
+                    txItem.title,
+                    // overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
-                ],
+                ),
               ),
             ),
           ),

@@ -117,8 +117,8 @@ class _JournalScreenState extends State<JournalScreen> {
     List<Widget> _buildPortrait() {
       return <Widget>[
         Container(
-          padding: EdgeInsets.only(top: 50),
-          height: bodySize * 0.7 + 20,
+          // padding: EdgeInsets.only(top: 50),
+          height: bodySize * 0.7+20,
           child: txList.isEmpty
               ? NoTransactionImage(isLandscape)
               : TransactionList(txList, _deleteTransaction),
@@ -155,11 +155,11 @@ class _JournalScreenState extends State<JournalScreen> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.all(0),
-              height: MediaQuery.of(context).size.height * 0.47,
+              height: MediaQuery.of(context).size.height * 0.32,
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: [
-                  Image.asset("assets/images/journal_bg.png",fit: BoxFit.cover,),
+                  Image.asset("assets/images/journal_bg.png",fit: BoxFit.fill,),
                   Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(top: 10.0),
