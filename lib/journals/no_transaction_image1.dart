@@ -16,7 +16,7 @@ class NoTransactionImage extends StatelessWidget {
           children: <Widget>[
             Text(
               'No Journals Added Yet!',
-              style: Theme.of(context).textTheme.headline3,
+              style: TextStyle(fontSize: 20),
             ),
           ],
         ),
