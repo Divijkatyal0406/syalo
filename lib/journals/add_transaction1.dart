@@ -1,6 +1,6 @@
-//import 'package:emoji_feedback/emoji_feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 
 
 class AddTransaction extends StatefulWidget {
@@ -48,11 +48,28 @@ class _AddTransactionState extends State<AddTransaction> {
     );
   }
 
+  void startDatePicker(BuildContext context) {
+    showDatePicker(
+      context: context,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2040),
+      initialDate: DateTime.now(),
+    ).then((date) {
+      if (date == null)
+        return;
+      else
+        setState(() => selectedDate = date);
+    });
+  }
+
   void addTx() {
     var enteredText = titleController.text;
-    var enteredAmount = amountController.text;
+    var enteredAmount = 0.0;
 
-    if (enteredText.isEmpty) {
+    if (enteredText.isEmpty ||
+        enteredAmount.isNaN ||
+        enteredAmount < 0 ||
+        selectedDate == null) {
       return;
     }
 
@@ -73,30 +90,54 @@ class _AddTransactionState extends State<AddTransaction> {
         ),
         child: Column(
           children: <Widget>[
-            // EmojiFeedback(
-            //   onChange: (index) {
-            //     print(index);
-            //   },
-            // ),
             TextField(
-              decoration: addTxField('Title'),
+              decoration: addTxField('Write your heart out...'),
               controller: titleController,
+              minLines: 10,
+              maxLines: 20,
               onSubmitted: (_) => addTx(),
             ),
             const SizedBox(height: 20),
-            TextField(
-              decoration: addTxField('Write More...'),
-              keyboardType: TextInputType.multiline,
-              controller: amountController,
-              onSubmitted: (_) => addTx(),
+            // TextField(
+            //   decoration: addTxField('Score'),
+            //   keyboardType: TextInputType.number,
+            //   controller: amountController,
+            //   onSubmitted: (_) => addTx(),
+            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    DateFormat('yyyy-MM-dd – kk:mm'). format(DateTime.now()),
+                    style: Theme.of(context).textTheme.headline6,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                // FlatButton(
+                //   child: Text(
+                //     'Choose Date of Start',
+                //     style: TextStyle(
+                //       fontSize: 15,
+                //       fontWeight: FontWeight.w900,
+                //       fontFamily: 'Quicksand',
+                //       color: Theme.of(context).primaryColor,
+                //       letterSpacing: 0.4,
+                //     ),
+                //   ),
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(30),
+                //   ),
+                //   onPressed: () => startDatePicker(context),
+                // ),
+              ],
             ),
-            const SizedBox(height: 20),
             Container(
               alignment: Alignment.centerRight,
               child: RaisedButton(
                 child: const Text(
-                  'Add New Journal',
-                  style: TextStyle(
+                  'Confirm Journal',
+                  style: const TextStyle(
                     fontSize: 15,
                     fontFamily: 'Quicksand',
                     fontWeight: FontWeight.w600,

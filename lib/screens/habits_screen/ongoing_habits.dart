@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:syalo/screens/habits_screen/friend_details_screen.dart';
 
 class OngoingHabits extends StatefulWidget {
   const OngoingHabits({Key? key}) : super(key: key);
@@ -39,6 +42,20 @@ class _OngoingHabitsState extends State<OngoingHabits> {
     }
   ];
 
+  List<String> raandomHappyImages = [
+    "https://cdn.pixabay.com/photo/2015/01/07/15/51/woman-591576_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2014/12/16/22/25/sunset-570881_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/11/29/09/49/woman-1868817_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2013/05/11/08/28/sunset-110305_960_720.jpg",
+  ];
+
+  List<String> randomPreetyFaces = [
+    "https://cdn.pixabay.com/photo/2019/11/18/00/38/dog-4633734_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2017/11/10/12/53/face-2936245_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635449_960_720.png",
+  ];
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -48,11 +65,12 @@ class _OngoingHabitsState extends State<OngoingHabits> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         title: Text(
-          "Habits",
+          "My Habits",
           style: TextStyle(
-              fontSize: 40, fontWeight: FontWeight.w600, color: Colors.black),
+              fontSize: 34, fontWeight: FontWeight.w600, color: Colors.black),
         ),
       ),
       body: SizedBox(
@@ -64,9 +82,23 @@ class _OngoingHabitsState extends State<OngoingHabits> {
               child: SizedBox(
                 height: height * .3,
                 width: width,
-                child: Image.asset(
-                  "assets/onboarding/jump.jpg",
+                child: Image.network(
+                  raandomHappyImages[Random().nextInt(4)],
                   fit: BoxFit.fill,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                  errorBuilder: (_, __, ___) =>
+                      Image.asset("assets/onboarding/auth.png"),
                   // color: Colors.grey[50],
                 ),
               ),
@@ -105,36 +137,7 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                               SizedBox(
                                 height: 20,
                               ),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    for (var i = 0; i < 10; i++)
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                          height: 50,
-                                          width: 50,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              color: Colors.black,
-                                              border: Border.all(
-                                                  color: Colors.blue,
-                                                  width: 2.0)),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            child: Image.asset(
-                                              "assets/onboarding/auth.png",
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                  ],
-                                ),
-                              ),
+                              friendsStatusWidgets(),
                               SizedBox(
                                 height: 10,
                               ),
@@ -162,6 +165,50 @@ class _OngoingHabitsState extends State<OngoingHabits> {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  SingleChildScrollView friendsStatusWidgets() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (var i = 0; i < 10; i++)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => FriendDetailScreen(
+                                imagePath: randomPreetyFaces[i % 4],
+                                tag: i.toString(),
+                                friend: {
+                                  "name": i.toString(),
+                                  "habitstogether": ["Dance", "Sing", "Yoga"]
+                                }))),
+                child: Hero(
+                  tag: i.toString(),
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.black,
+                        border: Border.all(color: Colors.green, width: 2.0)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.network(
+                        randomPreetyFaces[i % 4],
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+        ],
       ),
     );
   }

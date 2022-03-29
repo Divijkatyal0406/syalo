@@ -25,18 +25,18 @@ class FriendDetailScreen extends StatelessWidget {
           width: width,
           child: Stack(
             children: [
-              Hero(
-                tag: tag,
-                child: Container(
-                    height: height * .40,
-                    width: width,
-                    child: Image.asset(
+              Container(
+                  height: height * .40,
+                  width: width,
+                  child: Hero(
+                    tag: tag,
+                    child: Image.network(
                       imagePath,
                       fit: BoxFit.fill,
-                    )),
-              ),
+                    ),
+                  )),
               Positioned(
-                top: height * .4 - 15,
+                top: height * .35, // - 15,
                 child: Container(
                   height: height - height * .3,
                   width: width,
