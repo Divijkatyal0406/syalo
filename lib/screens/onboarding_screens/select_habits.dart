@@ -132,6 +132,7 @@ class _SelectHabitsState extends State<SelectHabits> {
                   appBar: AppBar(
                     backgroundColor: Colors.white,
                     elevation: 0,
+                    iconTheme: IconThemeData(color: Colors.black),
                     title: Text(
                       "Add Habits",
                       style: TextStyle(
@@ -139,16 +140,16 @@ class _SelectHabitsState extends State<SelectHabits> {
                           fontWeight: FontWeight.w600,
                           color: Colors.black),
                     ),
-                    actions: widget.firstPage == true
-                        ? []
-                        : [
-                            TextButton(
-                                onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => OngoingHabits())),
-                                child: Text("My Habits"))
-                          ],
+                    // actions: widget.firstPage == true
+                    //     ? []
+                    //     : [
+                    //         TextButton(
+                    //             onPressed: () => Navigator.push(
+                    //                 context,
+                    //                 MaterialPageRoute(
+                    //                     builder: (_) => OngoingHabits())),
+                    //             child: Text("My Habits"))
+                    //       ],
                   ),
                   body: Stack(
                     alignment: AlignmentDirectional.center,
