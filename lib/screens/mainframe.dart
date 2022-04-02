@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:syalo/screens/consultant_screen.dart';
+import 'package:syalo/screens/habits_screen/ongoing_habits.dart';
 import 'package:syalo/screens/home_screen.dart';
 import 'package:syalo/screens/onboarding_screens/select_habits.dart';
 import 'package:syalo/screens/profile_screen.dart';
@@ -23,10 +24,11 @@ class _MainFrameState extends State<MainFrame> {
     HomeScreen(),
     SupportGroupScreen(),
     // HomePage(),
-    // AllSongs(),
     // ConsultantScreen(),
-    SupportGroupScreen(),
-    SelectHabits(),
+    // SupportGroupScreen(),
+    OngoingHabits(),
+    AllSongs(),
+
     ProfileScreen()
   ];
   void _onItemTapped(int index) {
