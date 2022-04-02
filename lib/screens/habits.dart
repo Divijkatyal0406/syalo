@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +14,7 @@ class HabitsSelection extends StatelessWidget {
         elevation: 0,
         centerTitle: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black), onPressed: () {  },
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black), onPressed: () {  },
         ),
         backgroundColor: Colors.white,
         title: Text("Let's Add 3 habits",style: GoogleFonts.rowdies(fontStyle: FontStyle.normal,color: Colors.black,fontSize: 25),),
@@ -28,15 +27,15 @@ class HabitsSelection extends StatelessWidget {
           Expanded(
             child: GridView.count(
                 crossAxisCount: 2,
-                children: new List<Widget>.generate(8, (index) {
-                  return new GridTile(
+                children: List<Widget>.generate(8, (index) {
+                  return GridTile(
                       // child: new Card(
                       //     color: Colors.blue.shade200,
                       //     child: new Center(
                       //       child: new Text('tile $index'),
                       //     )
                       // ),
-                      child: new Card(
+                      child: Card(
                         child: Container(
                           // margin: EdgeInsets.all(3),
                           // padding: EdgeInsets.all(10),
@@ -49,10 +48,10 @@ class HabitsSelection extends StatelessWidget {
                                   image: AssetImage('assets/${imgs[index]}'))),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Text('${habits[index]}',style: TextStyle(fontSize: 22,color: Colors.white,fontWeight: FontWeight.bold),),
+                            child: Text(habits[index],style: const TextStyle(fontSize: 22,color: Colors.white,fontWeight: FontWeight.bold),),
                           ),
                         ),
-                        margin: EdgeInsets.only(left: 13.0, right: 13.0, top: 13.0),
+                        margin: const EdgeInsets.only(left: 13.0, right: 13.0, top: 13.0),
                       ),
                     );
                 }),

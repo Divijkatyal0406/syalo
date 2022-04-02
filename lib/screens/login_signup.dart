@@ -1,12 +1,9 @@
 import 'package:easy_firebase/easy_firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:syalo/config/palette.dart';
+import 'package:syalo/database/db.dart';
 import 'package:syalo/screens/onboarding_screens/select_habits.dart';
 
 class LoginSignupScreen extends StatefulWidget {
@@ -21,22 +18,17 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   var username = TextEditingController();
   var email = TextEditingController();
   var password = TextEditingController();
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+  Future<bool> checkIfDocExists(String docId) async {
+    try {
+      // Get reference to Firestore collection
+      //print(docId);
+      var collectionRef = EasyFire().getFirestoreObject().getFirestoreInstance().collection('User');
+      var doc = await collectionRef.doc(docId).get();
+      return doc.exists;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -241,7 +233,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             );
                           } else {
                             await EasyFire().getAuthObject().signInWithGoogle();
-
+                            //Create User if not exists in DB
+                            var user = FirebaseAuth.instance.currentUser;
+                            if(await checkIfDocExists(FirebaseAuth.instance.currentUser!.uid)==false) {
+                              await FireStoreDB().createUser("${user!.displayName}","${user.photoURL}");
+                            }
                             if (FirebaseAuth.instance.currentUser != null) {
                               Navigator.pushReplacement(
                                 context,
@@ -484,6 +480,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         await user!.updateDisplayName(username.text);
                         await user.updatePhotoURL(
                             "https://static.vecteezy.com/system/resources/thumbnails/000/550/731/small/user_icon_004.jpg");
+                        //Create User if not exists in DB
+                        if(await checkIfDocExists(FirebaseAuth.instance.currentUser!.uid)==false) {
+                          await FireStoreDB().createUser("${user.displayName}","${user.photoURL}");
+                        }
                         if (FirebaseAuth.instance.currentUser != null) {
                           Navigator.pushReplacement(
                             context,
@@ -506,6 +506,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         await EasyFire()
                             .getAuthObject()
                             .signinMail(email.text, password.text);
+                        var user = FirebaseAuth.instance.currentUser;
+                        while(FirebaseAuth.instance.currentUser==null){}
+                        if(await checkIfDocExists(FirebaseAuth.instance.currentUser!.uid)==false) {
+                          await FireStoreDB().createUser("${user!.displayName}","${user.photoURL}");
+                        }
                         if (FirebaseAuth.instance.currentUser != null) {
                           Navigator.pushReplacement(
                             context,

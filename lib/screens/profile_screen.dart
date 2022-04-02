@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/habit_container.dart';
-import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/home_screen_round_button.dart';
+//import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/home_screen_round_button.dart';
 import 'package:syalo/widgets/main_screen_widgets/profile_screen_widgets/habit_chart.dart';
 
 import '../habbits/habbitHome.dart';
@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           iconTheme: IconThemeData(color: Colors.black),
           elevation: 0,
-          actions: [Text("Refer",style: TextStyle(color: Colors.black),)],
+          //actions: [Text("Refer",style: TextStyle(color: Colors.black),)],
         ),
         extendBodyBehindAppBar: true,
         drawer: Drawer(),

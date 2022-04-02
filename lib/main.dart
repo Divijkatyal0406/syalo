@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+import 'package:syalo/database/db.dart';
 import 'package:syalo/journals/journalHome.dart';
 import 'package:syalo/screens/login_signup.dart';
 import 'package:syalo/habbits/habbitHome.dart';
@@ -8,7 +9,9 @@ import 'package:syalo/screens/home_screen.dart';
 import 'package:syalo/screens/mainframe.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:syalo/screens/onboarding_screens/welcome_screen.dart';
 import 'package:syalo/screens/onboarding_video.dart';
+import 'package:syalo/screens/profile_screen.dart';
 import 'package:syalo/songTracks/homePage.dart';
 
 
@@ -41,13 +44,15 @@ class _SyaloAppState extends State<SyaloApp> {
   @override
   Widget build(BuildContext context) {
     //FirebaseAuth.instance.signOut();
+    //FireStoreDB().addHabit("Random Happy Faces",1);
+    //print(FireStoreDB().getHabitsList());
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
-      // home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
-      home: JournalScreen(),
+      home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): const WelcomeScreen(),
+      //home: ProfileScreen(),
     );
   }
 }
