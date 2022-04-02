@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:syalo/OtherScreens/habits_friends.dart';
 import 'package:syalo/OtherScreens/habits_habits.dart';
-import 'package:syalo/OtherScreens/journal_entry.dart';
 import 'package:syalo/OtherScreens/new_habit.dart';
 
 class HabitsMain extends StatefulWidget {
@@ -245,10 +244,17 @@ class _HabitsMainState extends State<HabitsMain> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 5),
                         Expanded(
                           child: TabBarView(
-                            children: [HabitsFriends(), Habitshabits()],
+                            children: [
+                              SingleChildScrollView(
+                                child: HabitsFriends(),
+                              ),
+                              SingleChildScrollView(
+                                child: Habitshabits(),
+                              )
+                            ],
                           ),
                         ),
                       ],

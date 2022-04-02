@@ -11,6 +11,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:syalo/screens/onboarding_screens/welcome_screen.dart';
 import 'package:syalo/screens/onboarding_video.dart';
+import 'package:syalo/screens/profile_screen.dart';
 import 'package:syalo/songTracks/homePage.dart';
 
 
@@ -43,14 +44,15 @@ class _SyaloAppState extends State<SyaloApp> {
   @override
   Widget build(BuildContext context) {
     //FirebaseAuth.instance.signOut();
-    //FireStoreDB().addHabit(1,1);
+    //FireStoreDB().addHabit("Random Happy Faces",1);
+    //print(FireStoreDB().getHabitsList());
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
       home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): const WelcomeScreen(),
-      //home: JournalScreen(),
+      //home: ProfileScreen(),
     );
   }
 }

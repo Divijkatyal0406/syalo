@@ -25,6 +25,7 @@ class _MainFrameState extends State<MainFrame> {
     // HomePage(),
     // AllSongs(),
     // ConsultantScreen(),
+    SupportGroupScreen(),
     SelectHabits(),
     ProfileScreen()
   ];

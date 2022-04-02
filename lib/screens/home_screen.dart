@@ -29,9 +29,9 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           titleSpacing: 10,
-          actions: [
-              Padding(padding: EdgeInsets.all(10),child: Text("Refer",style: TextStyle(fontWeight: FontWeight.bold),)),
-            ],
+          // actions: [
+          //     Padding(padding: EdgeInsets.all(10),child: Text("Refer",style: TextStyle(fontWeight: FontWeight.bold),)),
+          //   ],
         ),
         extendBodyBehindAppBar: true,
         drawer: Drawer(
