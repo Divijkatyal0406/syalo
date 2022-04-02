@@ -101,33 +101,31 @@ class _SelectHabitsState extends State<SelectHabits> {
               ),
             ),
             Positioned(
-              bottom: 50,
-              child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                          horizontal: width * .3, vertical: 18.0)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8))),
-                    ),
-                    onPressed: () {
-                      widget.firstPage == true
-                          ? Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => MainFrame()))
-                          : Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) =>
-                                      HabitsDescription(habitName: "")));
-                      // TODO: Navigate to home page after atleast 3 selection
-                      //                 },
-                      //                 child: Text("Create My Own")),
-                    },
-                    child: widget.firstPage == true
-                        ? Text("Go to Home")
-                        : Text("Create my own"),
-                  )),
+              bottom: widget.firstPage == true ? 10 : 66,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                      horizontal: width * .3, vertical: 18.0)),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8))),
+                ),
+                onPressed: () {
+                  widget.firstPage == true
+                      ? Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => MainFrame()))
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) =>
+                                  HabitsDescription(habitName: "")));
+                  // TODO: Navigate to home page after atleast 3 selection
+                  //                 },
+                  //                 child: Text("Create My Own")),
+                },
+                child: widget.firstPage == true
+                    ? Text("Go to Home")
+                    : Text("Create my own"),
+              ),
             )
           ],
         ));
