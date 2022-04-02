@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
+import 'package:syalo/database/db.dart';
 import 'package:syalo/journals/journalHome.dart';
 import 'package:syalo/screens/login_signup.dart';
 import 'package:syalo/habbits/habbitHome.dart';
@@ -42,13 +43,14 @@ class _SyaloAppState extends State<SyaloApp> {
   @override
   Widget build(BuildContext context) {
     //FirebaseAuth.instance.signOut();
+    //FireStoreDB().addHabit(1,1);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SuprSelf',
       // theme: ThemeData(
       // ),
-      // home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): LoginSignupScreen(),
-      home: JournalScreen(),
+      home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): const WelcomeScreen(),
+      //home: JournalScreen(),
     );
   }
 }
