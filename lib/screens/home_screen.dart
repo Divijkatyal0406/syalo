@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var ref=FirebaseAuth.instance.currentUser;
+    var ref = FirebaseAuth.instance.currentUser;
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     return Scaffold(
@@ -59,7 +59,9 @@ class HomeScreen extends StatelessWidget {
                             fontWeight: FontWeight.normal,
                             height: 1),
                       ),
-                      SizedBox(height: 4,),
+                      SizedBox(
+                        height: 4,
+                      ),
                       const Text(
                         'Conquer the day!',
                         textAlign: TextAlign.center,
@@ -80,9 +82,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: () {
-
-                        },
+                        onTap: () {},
                         child: const DrawerButton(
                             text: 'Appointment',
                             icon: Icons.calendar_today_outlined),
@@ -110,22 +110,21 @@ class HomeScreen extends StatelessWidget {
                           },
                           child: const DrawerButton(
                               text: 'Journal', icon: Icons.book_sharp)),
-                          // InkWell(
-                          //     onTap: () {
-                          //       Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //           builder: (context) => Favourite(),
-                          //         ),
-                          //       );
-                          //     },
-                          // child: const DrawerButton(
-                          //     text: 'Favourites', icon: Icons.favorite)),
+                      // InkWell(
+                      //     onTap: () {
+                      //       Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //           builder: (context) => Favourite(),
+                      //         ),
+                      //       );
+                      //     },
+                      // child: const DrawerButton(
+                      //     text: 'Favourites', icon: Icons.favorite)),
                       InkWell(
-                          onTap: () {
-                          },
-                          child:
-                              const DrawerButton(text: 'Settings', icon: Icons.settings)),
+                          onTap: () {},
+                          child: const DrawerButton(
+                              text: 'Settings', icon: Icons.settings)),
                     ],
                   ),
                 )
@@ -134,166 +133,190 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          child: Expanded(
-            child: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.55,
-                  width: MediaQuery.of(context).size.width,
-                  child: Stack(
-                    children: [
-                      Image(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height/2,fit:BoxFit.cover,image: AssetImage(
+          child: Column(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.55,
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: [
+                    Image(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 2,
+                      fit: BoxFit.cover,
+                      image: AssetImage(
                         'assets/images/home_screen_bg.png',
                         // height: 400,
                         // fit:BoxFit.fitWidth,
                       ),
+                    ),
+                    // Image.asset("assets/images/home_screen_bg.png",fit: BoxFit.cover,),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.15,
+                          top: MediaQuery.of(context).size.height / 23),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
+                          Text(
+                            "Conquer the day!",
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
+                        ],
                       ),
-                      // Image.asset("assets/images/home_screen_bg.png",fit: BoxFit.cover,),
-                      Container(
-                        alignment: Alignment.topLeft,
-                        padding: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.15,top: MediaQuery.of(context).size.height/23),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              "Conquer the day!",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                        },
-                        child: Material(
-                          elevation:10,
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          child: Container(
-                            height: 52.0,
-                            width: 52.0,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/sounds.png'),
-                                // fit: BoxFit.fill,
-                              ),
-                              shape: BoxShape.circle,
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      },
+                      child: Material(
+                        elevation: 10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 52.0,
+                          width: 52.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/sounds.png'),
+                              // fit: BoxFit.fill,
                             ),
+                            shape: BoxShape.circle,
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HabbitScreen()));
-                        },
-                        child: Material(
-                          elevation:10,
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          child: Container(
-                            height: 52.0,
-                            width: 52.0,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/habbit.png'),
-                                // fit: BoxFit.fill,
-                              ),
-                              shape: BoxShape.circle,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HabbitScreen()));
+                      },
+                      child: Material(
+                        elevation: 10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 52.0,
+                          width: 52.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/habbit.png'),
+                              // fit: BoxFit.fill,
                             ),
+                            shape: BoxShape.circle,
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-                        },
-                        child: Material(
-                          elevation:10,
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          child: Container(
-                            height: 52,
-                            width: 52,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/meditate.png'),
-                                // fit: BoxFit.fill,
-                              ),
-                              shape: BoxShape.circle,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      },
+                      child: Material(
+                        elevation: 10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 52,
+                          width: 52,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/meditate.png'),
+                              // fit: BoxFit.fill,
                             ),
+                            shape: BoxShape.circle,
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => JournalScreen()));
-                        },
-                        child: Material(
-                          elevation:10,
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          child: Container(
-                            padding:EdgeInsets.all(50),
-                            height: 52,
-                            width: 52,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/journal.png'),
-                              ),
-                              shape: BoxShape.circle,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => JournalScreen()));
+                      },
+                      child: Material(
+                        elevation: 10,
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          padding: EdgeInsets.all(50),
+                          height: 52,
+                          width: 52,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/journal.png'),
                             ),
+                            shape: BoxShape.circle,
                           ),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],
                 ),
-                SizedBox(height: 15.0,),
-                HabitContainer(),
-                SizedBox(height: 15.0,),
-                ClassifyList(title: "Discover Sounds"),
-                SizedBox(height: 15,),
-                const ScreenNavContainers(
-                  image:'https://s3.envato.com/files/227729934/syda_0215969.jpg',
-                  title: "Habits",
-                ),
-                const ScreenNavContainers(
-                  image: "https://www.thiscaringhome.org/wp-content/uploads/2018/06/Support-Group.jpeg",
-                  title: "Support Groups",
-                ),
-                SizedBox(height: 10,),
-                ClassifyList(title: "Discover Paths"),
-                SizedBox(height: 10,),
-                const ScreenNavContainers(
-                  image: "https://cdn.lifehack.org/wp-content/uploads/2013/06/doctor-appointment.jpg",
-                  title: "Appointments",
-                ),
-                const ScreenNavContainers(
-                  image: "https://content.thriveglobal.com/wp-content/uploads/2019/06/innovation-LIGHT-BULB-iStock-1023387542.jpg",
-                  title: "Brain Games",
-                ),
-
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              HabitContainer(),
+              SizedBox(
+                height: 15.0,
+              ),
+              ClassifyList(title: "Discover Sounds"),
+              SizedBox(
+                height: 15,
+              ),
+              const ScreenNavContainers(
+                image: 'https://s3.envato.com/files/227729934/syda_0215969.jpg',
+                title: "Habits",
+              ),
+              const ScreenNavContainers(
+                image:
+                    "https://www.thiscaringhome.org/wp-content/uploads/2018/06/Support-Group.jpeg",
+                title: "Support Groups",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ClassifyList(title: "Discover Paths"),
+              SizedBox(
+                height: 10,
+              ),
+              const ScreenNavContainers(
+                image:
+                    "https://cdn.lifehack.org/wp-content/uploads/2013/06/doctor-appointment.jpg",
+                title: "Appointments",
+              ),
+              const ScreenNavContainers(
+                image:
+                    "https://content.thriveglobal.com/wp-content/uploads/2019/06/innovation-LIGHT-BULB-iStock-1023387542.jpg",
+                title: "Brain Games",
+              ),
+            ],
           ),
         ));
   }

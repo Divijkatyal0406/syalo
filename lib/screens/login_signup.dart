@@ -224,7 +224,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           // await GoogleSignIn().signOut();
                           // await FirebaseAuth.instance.signOut();
                           if (FirebaseAuth.instance.currentUser != null) {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => SelectHabits(
@@ -239,7 +239,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               await FireStoreDB().createUser("${user!.displayName}","${user.photoURL}");
                             }
                             if (FirebaseAuth.instance.currentUser != null) {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => SelectHabits(
@@ -485,7 +485,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           await FireStoreDB().createUser("${user.displayName}","${user.photoURL}");
                         }
                         if (FirebaseAuth.instance.currentUser != null) {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SelectHabits(
@@ -512,7 +512,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           await FireStoreDB().createUser("${user!.displayName}","${user.photoURL}");
                         }
                         if (FirebaseAuth.instance.currentUser != null) {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SelectHabits(

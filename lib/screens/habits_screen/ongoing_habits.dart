@@ -3,8 +3,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:syalo/database/db.dart';
 import 'package:syalo/screens/habits_screen/friend_details_screen.dart';
+import 'package:syalo/screens/onboarding_screens/add_habits.dart';
+import 'package:syalo/screens/onboarding_screens/select_habits.dart';
 
 class OngoingHabits extends StatefulWidget {
   const OngoingHabits({Key? key}) : super(key: key);
@@ -15,11 +18,13 @@ class OngoingHabits extends StatefulWidget {
 
 class _OngoingHabitsState extends State<OngoingHabits> {
   //TODO: this list of map should be from database
-  List<Map<String, dynamic>> onGoingHabits = [{
-    "name":"No habit found",
-    "streak_days": 0,
-    "friends" : ["No friends added"]
-  }];
+  List<Map<String, dynamic>> onGoingHabits = [
+    {
+      "name": "No habit found",
+      "streak_days": 0,
+      "friends": ["No friends added"]
+    }
+  ];
   //   {
   //     "name": "Meditate",
   //     "streak_days": 10,
@@ -65,11 +70,12 @@ class _OngoingHabitsState extends State<OngoingHabits> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    String url = "https://www.naturopathy.ie/wp-content/uploads/2014/07/leaping-banner.jpg";
+    String url =
+        "https://www.naturopathy.ie/wp-content/uploads/2014/07/leaping-banner.jpg";
     return FutureBuilder(
-      future: FireStoreDB().getOngoingHabits(),
-      builder: (context, snapshot) {
-        SingleChildScrollView friendsStatusWidgets() {
+        future: FireStoreDB().getOngoingHabits(),
+        builder: (context, snapshot) {
+          SingleChildScrollView friendsStatusWidgets() {
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -86,7 +92,11 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                                         tag: i.toString(),
                                         friend: {
                                           "name": i.toString(),
-                                          "habitstogether": ["Dance", "Sing", "Yoga"]
+                                          "habitstogether": [
+                                            "Dance",
+                                            "Sing",
+                                            "Yoga"
+                                          ]
                                         }))),
                         child: Hero(
                           tag: i.toString(),
@@ -96,7 +106,8 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 color: Colors.black,
-                                border: Border.all(color: Colors.green, width: 2.0)),
+                                border: Border.all(
+                                    color: Colors.green, width: 2.0)),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(30),
                               child: Image.network(
@@ -112,8 +123,9 @@ class _OngoingHabitsState extends State<OngoingHabits> {
               ),
             );
           }
-        
-        Widget habitsRemainderCard(double height, double width, Map<String, dynamic> habitDetails) {
+
+          Widget habitsRemainderCard(
+              double height, double width, Map<String, dynamic> habitDetails) {
             return Card(
               elevation: 20,
               child: Padding(
@@ -138,7 +150,9 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                                 onChanged: (newVal) {},
                               ),
                             ),
-                            Text(habitDetails['streak_days'].toString() + " " + 'days'),
+                            Text(habitDetails['streak_days'].toString() +
+                                " " +
+                                'days'),
                           ],
                         ),
                         Row(
@@ -146,8 +160,8 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                           children: [
                             Text(
                               habitDetails['name'],
-                              style:
-                                  TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+                              style: TextStyle(
+                                  fontSize: 28, fontWeight: FontWeight.w500),
                             ),
                             Container(
                               height: 50,
@@ -168,9 +182,11 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                                           decoration: BoxDecoration(
                                               border: Border.all(),
                                               color: Colors.red,
-                                              borderRadius: BorderRadius.circular(20)),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(20),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
                                             child: Image.asset(
                                               "assets/onboarding/auth.png",
                                               fit: BoxFit.fill,
@@ -194,7 +210,8 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                                 height: 30,
                                 child: Center(
                                     child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
                                   child: Text(
                                     "Remind",
                                     style: TextStyle(color: Colors.red),
@@ -214,7 +231,8 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                               child: Container(
                                 height: 30,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
                                   child: Row(
                                     children: [
                                       Text("Done"),
@@ -239,141 +257,174 @@ class _OngoingHabitsState extends State<OngoingHabits> {
               ),
             );
           }
-        // Checking if future is resolved
-        if (snapshot.connectionState == ConnectionState.done) {
-          // If we got an error
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                '${snapshot.error} occured',
-                style: TextStyle(fontSize: 18),
-              ),
-            );
 
-            // if we got our data
-          } 
-          else if (snapshot.hasData) {
-            // Extracting data from snapshot object
-            final data = snapshot.data as List;
-            if(onGoingHabits.length==1) {
-              onGoingHabits=[];
-            }
-            for(int i=0;i<data.length;i++) {
-              onGoingHabits.add(data[i]);
-            }
-            //print(onGoingHabits);
-            return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                iconTheme: IconThemeData(color: Colors.black),
-                elevation: 0,
-                title: Text(
-                  "My Habits",
-                  style: TextStyle(
-                      fontSize: 34, fontWeight: FontWeight.w600, color: Colors.black),
+          // Checking if future is resolved
+          if (snapshot.connectionState == ConnectionState.done) {
+            // If we got an error
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  '${snapshot.error} occured',
+                  style: TextStyle(fontSize: 18),
                 ),
-              ),
-              body: SizedBox(
-                height: height,
-                width: width,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      child: SizedBox(
-                        height: height * .3,
-                        width: width,
-                        child: Image.network(
-                          randomHappyImages[Random().nextInt(4)],
-                          fit: BoxFit.fill,
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes != null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            );
-                          },
-                          errorBuilder: (_, __, ___) =>
-                              Image.asset("assets/onboarding/auth.png"),
-                          // color: Colors.grey[50],
+              );
+
+              // if we got our data
+            } else if (snapshot.hasData) {
+              // Extracting data from snapshot object
+              final data = snapshot.data as List;
+              if (onGoingHabits.length == 1) {
+                onGoingHabits = [];
+              }
+              for (int i = 0; i < data.length; i++) {
+                onGoingHabits.add(data[i]);
+              }
+              //print(onGoingHabits);
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  iconTheme: IconThemeData(color: Colors.black),
+                  elevation: 0,
+                  title: Text(
+                    "My Habits",
+                    style: TextStyle(
+                        fontSize: 34,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
+                  // actions: [
+                  //   Center(
+                  //     child: TextButton(
+                  //         onPressed: () => Navigator.push(
+                  //             context,
+                  //             (MaterialPageRoute(
+                  //                 builder: (_) => SelectHabits()))),
+                  //         child: FaIcon(
+                  //           FontAwesomeIcons.plusCircle,
+                  //           color: Colors.black,
+                  //         )),
+                  //   )
+                  // ],
+                ),
+                body: SizedBox(
+                  height: height,
+                  width: width,
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Positioned(
+                        child: SizedBox(
+                          height: height * .3,
+                          width: width,
+                          child: Image.network(
+                            randomHappyImages[Random().nextInt(4)],
+                            fit: BoxFit.fill,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              );
+                            },
+                            errorBuilder: (_, __, ___) =>
+                                Image.asset("assets/onboarding/auth.png"),
+                            // color: Colors.grey[50],
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      top: height * .25 - 50,
-                      child: Container(
-                        height: height * .75,
-                        width: width,
-                        color: Colors.transparent,
-                        child: Column(
-                          children: [
-                            Text(
-                              "A little a day will make a great fortune in the future",
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w400,
+                      Positioned(
+                        top: height * .25 - 50,
+                        child: Container(
+                          height: height * .75,
+                          width: width,
+                          color: Colors.transparent,
+                          child: Column(
+                            children: [
+                              Text(
+                                "A little a day will make a great fortune in the future",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
                               ),
-                              maxLines: 2,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20)),
-                                child: Container(
-                                  // height: height * .7,
-                                  // width: width,
-                                  color: Colors.white,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      friendsStatusWidgets(),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Expanded(
-                                        child: ListView.builder(
-                                            itemCount: onGoingHabits.length + 1,
-                                            itemBuilder: (_, index) {
-                                              if (index == onGoingHabits.length) {
-                                                return Container(
-                                                  height: 100,
-                                                );
-                                              }
-                                              return habitsRemainderCard(
-                                                  300, width, onGoingHabits[index]);
-                                            }),
-                                      )
-                                    ],
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20)),
+                                  child: Container(
+                                    // height: height * .7,
+                                    // width: width,
+                                    color: Colors.white,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        friendsStatusWidgets(),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Expanded(
+                                          child: ListView.builder(
+                                              itemCount:
+                                                  onGoingHabits.length + 1,
+                                              itemBuilder: (_, index) {
+                                                if (index ==
+                                                    onGoingHabits.length) {
+                                                  return Container(
+                                                    height: 100,
+                                                  );
+                                                }
+                                                return habitsRemainderCard(
+                                                    300,
+                                                    width,
+                                                    onGoingHabits[index]);
+                                              }),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    )
-                  ],
+                      Positioned(
+                        bottom: 70,
+                        child: FloatingActionButton(
+                          // backgroundColor: Colors.white,
+                          // foregroundColor: Colors.white,
+                          child: FaIcon(FontAwesomeIcons.plus,
+                              color: Colors.white),
+                          onPressed: () => Navigator.push(
+                              context,
+                              (MaterialPageRoute(
+                                  builder: (_) => SelectHabits()))),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           }
-        }
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-    );
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        });
   }
 }
 
