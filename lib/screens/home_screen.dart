@@ -151,29 +151,32 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     // Image.asset("assets/images/home_screen_bg.png",fit: BoxFit.cover,),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.15,
-                          top: MediaQuery.of(context).size.height / 23),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
-                          Text(
-                            "Conquer the day!",
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
-                        ],
+                    Center(
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.32,
+                            top: MediaQuery.of(context).size.height / 3),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white),
+                            ),
+                            Text(
+                              "Conquer the day!",
+                              style: TextStyle(
+                                  fontSize: 19,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -191,20 +194,26 @@ class HomeScreen extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
                       },
-                      child: Material(
-                        elevation: 10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          height: 52.0,
-                          width: 52.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/sounds.png'),
-                              // fit: BoxFit.fill,
+                      child: Column(
+                        children: [
+                          Material(
+                            elevation: 10,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            child: Container(
+                              height: 52.0,
+                              width: 52.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/sounds.png'),
+                                  // fit: BoxFit.fill,
+                                ),
+                                shape: BoxShape.circle,
+                              ),
                             ),
-                            shape: BoxShape.circle,
                           ),
-                        ),
+                          SizedBox(height:10),
+                          Text('Sounds')
+                        ],
                       ),
                     ),
                     GestureDetector(
@@ -214,43 +223,26 @@ class HomeScreen extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => HabbitScreen()));
                       },
-                      child: Material(
-                        elevation: 10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          height: 52.0,
-                          width: 52.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/habbit.png'),
-                              // fit: BoxFit.fill,
+                      child: Column(
+                        children: [
+                          Material(
+                            elevation: 10,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            child: Container(
+                              height: 52.0,
+                              width: 52.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/habbit.png'),
+                                  // fit: BoxFit.fill,
+                                ),
+                                shape: BoxShape.circle,
+                              ),
                             ),
-                            shape: BoxShape.circle,
                           ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()));
-                      },
-                      child: Material(
-                        elevation: 10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          height: 52,
-                          width: 52,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/meditate.png'),
-                              // fit: BoxFit.fill,
-                            ),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
+                          SizedBox(height:10),
+                          Text('Habbit')
+                        ],
                       ),
                     ),
                     GestureDetector(
@@ -260,20 +252,58 @@ class HomeScreen extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => JournalScreen()));
                       },
-                      child: Material(
-                        elevation: 10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        child: Container(
-                          padding: EdgeInsets.all(50),
-                          height: 52,
-                          width: 52,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage('assets/journal.png'),
+                      child: Column(
+                        children: [
+                          Material(
+                            elevation: 10,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            child: Container(
+                              height: 52,
+                              width: 52,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.contain,
+                                  image: AssetImage('assets/meditate.png'),
+                                  alignment: Alignment.center,
+                                  centerSlice: Rect.zero,
+                                  scale: 1.2,
+                                ),
+                                shape: BoxShape.circle,
+                              ),
                             ),
-                            shape: BoxShape.circle,
                           ),
-                        ),
+                          SizedBox(height:10),
+                          Text('Journal')
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => JournalScreen()));
+                      },
+                      child: Column(
+                        children: [
+                          Material(
+                            elevation: 10,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            child: Container(
+                              padding: EdgeInsets.all(50),
+                              height: 52,
+                              width: 52,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/learn_path.png'),
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height:10),
+                          Text('Learn')
+                        ],
                       ),
                     )
                   ],
@@ -290,14 +320,63 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
-              const ScreenNavContainers(
-                image: 'https://s3.envato.com/files/227729934/syda_0215969.jpg',
-                title: "Habits",
+
+              GestureDetector(
+                onTap: ()=>{
+                  HabbitScreen()
+                },
+                child:Material(
+                  elevation: 10,
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 350,
+                    width: MediaQuery.of(context).size.width/1.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/habbit_card.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      // shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
               ),
-              const ScreenNavContainers(
-                image:
-                    "https://www.thiscaringhome.org/wp-content/uploads/2018/06/Support-Group.jpeg",
-                title: "Support Groups",
+
+              // const ScreenNavContainers(
+              //   image: 'https://s3.envato.com/files/227729934/syda_0215969.jpg',
+              //   title: "Habits",
+              // ),
+              SizedBox(
+                height: 15.0,
+              ),
+              // const ScreenNavContainers(
+              //   image:
+              //       "https://www.thiscaringhome.org/wp-content/uploads/2018/06/Support-Group.jpeg",
+              //   title: "Support Groups",
+              // ),
+              GestureDetector(
+                onTap: ()=>{
+                  // HabbitScreen()
+                },
+                child:Material(
+                  elevation: 10,
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 350,
+                    width: MediaQuery.of(context).size.width/1.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/support_card.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      // shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -306,15 +385,87 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              const ScreenNavContainers(
-                image:
-                    "https://cdn.lifehack.org/wp-content/uploads/2013/06/doctor-appointment.jpg",
-                title: "Appointments",
+              // const ScreenNavContainers(
+              //   image:
+              //       "https://cdn.lifehack.org/wp-content/uploads/2013/06/doctor-appointment.jpg",
+              //   title: "Appointments",
+              // ),
+              GestureDetector(
+                onTap: ()=>{
+                  // HabbitScreen()
+                },
+                child:Material(
+                  elevation: 10,
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 350,
+                    width: MediaQuery.of(context).size.width/1.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/appointment_card.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      // shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
               ),
-              const ScreenNavContainers(
-                image:
-                    "https://content.thriveglobal.com/wp-content/uploads/2019/06/innovation-LIGHT-BULB-iStock-1023387542.jpg",
-                title: "Brain Games",
+              SizedBox(
+                height: 10,
+              ),
+              // const ScreenNavContainers(
+              //   image:
+              //       "https://content.thriveglobal.com/wp-content/uploads/2019/06/innovation-LIGHT-BULB-iStock-1023387542.jpg",
+              //   title: "Brain Games",
+              // ),
+              GestureDetector(
+                onTap: ()=>{
+                  JournalScreen()
+                },
+                child:Material(
+                  elevation: 10,
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 350,
+                    width: MediaQuery.of(context).size.width/1.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/journal_card.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      // shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: ()=>{
+                  // JournalScreen()
+                },
+                child:Material(
+                  elevation: 10,
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 350,
+                    width: MediaQuery.of(context).size.width/1.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/brain_card.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                      // shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

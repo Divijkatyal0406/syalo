@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:syalo/habbits/habbitHome.dart';
 import 'package:syalo/screens/consultant_screen.dart';
 import 'package:syalo/screens/habits_screen/ongoing_habits.dart';
 import 'package:syalo/screens/home_screen.dart';
@@ -22,14 +23,17 @@ class _MainFrameState extends State<MainFrame> {
 
   static List<Widget> _screens = [
     HomeScreen(),
-    SupportGroupScreen(),
-    // HomePage(),
-    // ConsultantScreen(),
-    // SupportGroupScreen(),
-    OngoingHabits(),
-    AllSongs(),
+    ConsultantScreen(),
+    //Add learning path widget here @mayank
 
-    ProfileScreen()
+    AllSongs(),
+    HabbitScreen(),
+    // SupportGroupScreen(),
+    // HomePage(),
+    // SupportGroupScreen(),
+    // OngoingHabits(),
+
+    // ProfileScreen()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -40,21 +44,21 @@ class _MainFrameState extends State<MainFrame> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
+      extendBody: false,
       body: _screens[_selectedIndex],
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
         child: SnakeNavigationBar.color(
           behaviour: SnakeBarBehaviour.floating,
-          snakeShape: SnakeShape.circle,
+          // snakeShape: SnakeShape.circle,
           elevation: 5.0,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
-          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          // shape:
+          //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(.0)),
+          padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
 
           ///configuration for SnakeNavigationBar.color
-          snakeViewColor: Colors.black,
+          snakeViewColor: Colors.grey,
           // selectedItemColor: snakeShape == SnakeShape.indicator ? selectedColor : null,
           unselectedItemColor: Color(0xFF131016),
 
@@ -65,19 +69,19 @@ class _MainFrameState extends State<MainFrame> {
           onTap: _onItemTapped,
           items: const [
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/bottom2.png')),
+                icon: ImageIcon(AssetImage('assets/bottom1.png'),size: 45,),
                 label: 'tickets'),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/bottom1.png')),
+                icon: ImageIcon(AssetImage('assets/bottom2.png'),size: 45,),
                 label: 'calendar'),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/bottom3.png')),
+                icon: ImageIcon(AssetImage('assets/bottom3.png'),size: 45,),
                 label: 'home'),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/bottom4.png')),
+                icon: ImageIcon(AssetImage('assets/sounds.png'),size: 45,),
                 label: 'microphone'),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/bottom5.png')),
+                icon: ImageIcon(AssetImage('assets/bottom5.png'),size: 45,),
                 label: 'search')
           ],
         ),

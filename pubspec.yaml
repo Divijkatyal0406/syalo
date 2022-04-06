@@ -103,6 +103,13 @@ flutter:
     - assets/bottom5.png
     - assets/images/journal_bg.jpg
     - assets/images/journal_bg.png
+    - assets/learn_path.png
+    - assets/habbit_card.png
+    - assets/support_card.png
+    - assets/journal_card.png
+    - assets/appointment_card.png
+    - assets/brain_card.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
