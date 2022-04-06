@@ -52,7 +52,7 @@ class _SyaloAppState extends State<SyaloApp> {
       // theme: ThemeData(
       // ),
       home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): const WelcomeScreen(),
-      //home: ProfileScreen(),
+      // home: JournalScreen(),
     );
   }
 }
