@@ -1,15 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:syalo/screens/songs_screen/music_player.dart';
+import 'package:syalo/screens/songs_screen/search_songs.dart';
 import 'package:syalo/screens/songs_screen/songs_model.dart';
 
-import '../mainframe.dart';
-
 class AllSongs extends StatefulWidget {
-  const AllSongs({Key? key}) : super(key: key);
+  bool needBack;
+  AllSongs({Key? key, this.needBack = false}) : super(key: key);
 
   @override
   _AllSongsState createState() => _AllSongsState();
@@ -19,11 +17,16 @@ class _AllSongsState extends State<AllSongs> {
   var mostPopularSOngs = SongsContainer().mostPopular;
   TextEditingController _searchController = TextEditingController();
 
-  List<String> randomYogaImages = [
-    "https://images.pexels.com/photos/372281/pexels-photo-372281.jpeg",
-    "https://cdn.pixabay.com/photo/2018/02/06/14/07/ease-3134828_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2017/03/26/21/54/yoga-2176668_960_720.jpg",
-    "https://cdn.pixabay.com/photo/2016/05/10/21/50/meditation-1384758_960_720.jpg",
+  List<String> songsImage = [
+    "https://s18670.pcdn.co/wp-content/uploads/WAT-Relaxing-Music.png",
+    "https://m.media-amazon.com/images/I/91CpAVMdz2L._SS500_.jpg",
+    "https://i.pinimg.com/originals/13/f7/f3/13f7f3512ab2804636c28c14e9f3daac.jpg",
+    "https://img.apmcdn.org/9ef69ededb1f2792f45e52294af605d4b4aaecc4/widescreen/786473-20200402-trees-in-vermont-at-sunset.jpg",
+    "https://i.scdn.co/image/ab67616d0000b2738876ae72bcec463ef10916ef",
+    "https://wallpaperaccess.com/full/7307632.jpg",
+    "https://i1.sndcdn.com/artworks-B5DCzAZwe4DTSnqu-ZmElDA-t500x500.jpg",
+    "https://i.pinimg.com/originals/cd/0e/3c/cd0e3c6522beab0f62b5a7cf363e216c.jpg",
+    "https://st.depositphotos.com/2284893/2439/i/450/depositphotos_24390641-stock-photo-monk-in-meditation-at-sunrise.jpg",
   ];
 
   @override
@@ -32,77 +35,106 @@ class _AllSongsState extends State<AllSongs> {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        body: Stack(
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          centerTitle: widget.needBack,
+          title: Text(
+            "All Music",
+            style: TextStyle(color: Colors.red, fontSize: 24),
+          ),
+          leading: widget.needBack
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back))
+              : null,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => SearchSongs()));
+                },
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ))
+          ],
+        ),
+        body: ListView(
           children: [
-            SizedBox(
-              height: height,
-              width: width,
-              // color: Colors.red,
-            ),
-            Row(
-              children: [
-                IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back)),
-                SizedBox(
-                    height: height * .10,
-                    width: width,
-                    // color: Colors.white,
-                    child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width * .125 - 8,
-                            vertical: height * .025 - 8),
-                        child: GestureDetector(
-                          onTap: () {
-                            print(
-                                "We will shift to a page where the seach feature is implemented on all the songs");
-                          }, //TODO: implementt the debug log
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                    child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: TextFormField(
-                                    controller: _searchController,
-                                    onEditingComplete: () =>
-                                        FocusScope.of(context).unfocus(),
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none,
-                                        prefixIcon: Icon(Icons.search),
-                                        hintText: "What are you looking for?"),
-                                    style: TextStyle(
-                                        fontSize: 15, fontWeight: FontWeight.w400),
-                                  ),
-                                )),
-                                //TODO: implemnt search feature
-                                // )
-                              ],
-                            ),
-                          ),
-                        ))),
-              ],
-            ),
-            Positioned(
-              top: height * .10,
-              child: SizedBox(
-                height: height * .90,
-                width: width,
-                child: ListView(
-                  //TODO: this is hardcoded need to add more data in the songs model and category name
-                  children: [
-                    songCategoryWise("Trending", mostPopularSOngs),
-                    songCategoryWise("Favorites", mostPopularSOngs),
-                    songCategoryWise("Calm", mostPopularSOngs),
-                    songCategoryWise("Hard Rock", mostPopularSOngs),
-                    songCategoryWise("Instrumental", mostPopularSOngs),
-                    songCategoryWise("Nature", mostPopularSOngs),
-                    Padding(padding: EdgeInsets.only(bottom: 200)),
-                  ],
-                ),
-              ),
-            ),
+            songCategoryWise("Trending", mostPopularSOngs),
+            songCategoryWise("Favorites", mostPopularSOngs),
+            songCategoryWise("Calm", mostPopularSOngs),
+            songCategoryWise("Hard Rock", mostPopularSOngs),
+            songCategoryWise("Instrumental", mostPopularSOngs),
+            songCategoryWise("Nature", mostPopularSOngs),
+
+            // SizedBox(
+            //   height: height,
+            //   width: width,
+            //   // color: Colors.red,
+            // ),
+            // Row(
+            //   children: [
+            //     // IconButton(
+            //     //     onPressed: () {
+            //     //       Navigator.pop(context);
+            //     //     },
+            //     //     icon: Icon(Icons.arrow_back)),
+            //     SizedBox(
+            //         height: height * .10,
+            //         width: width,
+            //         // color: Colors.white,
+            //         child: Padding(
+            //             padding: EdgeInsets.symmetric(
+            //                 horizontal: width * .125 - 8,
+            //                 vertical: height * .025 - 8),
+            //             child: GestureDetector(
+            //               onTap: () {
+            //                 print(
+            //                     "We will shift to a page where the seach feature is implemented on all the songs");
+            //               }, //TODO: implementt the debug log
+            //               child: Card(
+            //                 shape: RoundedRectangleBorder(
+            //                     borderRadius: BorderRadius.circular(20)),
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.center,
+            //                   children: [
+            //                     Expanded(
+            //                         child: Padding(
+            //                       padding: const EdgeInsets.all(8.0),
+            //                       child: TextFormField(
+            //                         controller: _searchController,
+            //                         onEditingComplete: () =>
+            //                             FocusScope.of(context).unfocus(),
+            //                         decoration: InputDecoration(
+            //                             border: InputBorder.none,
+            //                             prefixIcon: Icon(Icons.search),
+            //                             hintText: "What are you looking for?"),
+            //                         style: TextStyle(
+            //                             fontSize: 15,
+            //                             fontWeight: FontWeight.w400),
+            //                       ),
+            //                     )),
+            //                     //TODO: implemnt search feature
+            //                     // )
+            //                   ],
+            //                 ),
+            //               ),
+            //             ))),
+            //   ],
+            // ),
+            // Positioned(
+            //   top: height * .10,
+            //   child: SizedBox(
+            //     height: height * .90,
+            //     width: width,
+            //     child:
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -138,7 +170,6 @@ class _AllSongsState extends State<AllSongs> {
   }
 
   Padding songCardWidget(String categoryName, Song songDetail, int index) {
-    String imageSelected = randomYogaImages[Random().nextInt(4)];
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -146,7 +177,7 @@ class _AllSongsState extends State<AllSongs> {
             builder: (_) => MusicPlayer(
                   tag: categoryName + index.toString(),
                   songURL: songDetail.url,
-                  imageURL: imageSelected,
+                  imageURL: songsImage[index],
                 ))), //TODO: image url should be provided not assets
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -160,7 +191,7 @@ class _AllSongsState extends State<AllSongs> {
                 children: [
                   SizedBox.expand(
                     child: Image.network(
-                      imageSelected,
+                      songsImage[index],
                       //TODO: use songdetail.image
                       fit: BoxFit.fill,
                       loadingBuilder: (BuildContext context, Widget child,
@@ -168,11 +199,11 @@ class _AllSongsState extends State<AllSongs> {
                         if (loadingProgress == null) return child;
                         return Center(
                           child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
+                              // value: loadingProgress.expectedTotalBytes != null
+                              //     ? loadingProgress.cumulativeBytesLoaded /
+                              //         loadingProgress.expectedTotalBytes!
+                              //     : null,
+                              ),
                         );
                       },
                       errorBuilder: (_, __, ___) =>
