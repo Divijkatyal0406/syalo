@@ -43,7 +43,7 @@ class _SyaloAppState extends State<SyaloApp> {
 
   @override
   Widget build(BuildContext context) {
-    //FirebaseAuth.instance.signOut();
+    // FirebaseAuth.instance.signOut();
     //FireStoreDB().addHabit("Random Happy Faces",1);
     //print(FireStoreDB().getHabitsList());
     return MaterialApp(
@@ -52,7 +52,7 @@ class _SyaloAppState extends State<SyaloApp> {
       // theme: ThemeData(
       // ),
       home: FirebaseAuth.instance.currentUser!=null ? const MainFrame(): const WelcomeScreen(),
-      // home: JournalScreen(),
+      // home: HabbitScreen(),
     );
   }
 }

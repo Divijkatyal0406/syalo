@@ -24,9 +24,9 @@ class _MainFrameState extends State<MainFrame> {
   static List<Widget> _screens = [
     HomeScreen(),
     ConsultantScreen(),
-    //Add learning path widget here @mayank
-
-    AllSongs(),
+    ConsultantScreen(),
+    // AllSongs(),
+    HomePage(),
     HabbitScreen(),
     // SupportGroupScreen(),
     // HomePage(),
