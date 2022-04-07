@@ -4,6 +4,7 @@ import 'package:syalo/habbits/habbitHome.dart';
 import 'package:syalo/screens/consultant_screen.dart';
 import 'package:syalo/screens/habits_screen/ongoing_habits.dart';
 import 'package:syalo/screens/home_screen.dart';
+import 'package:syalo/screens/learningPaths.dart';
 import 'package:syalo/screens/onboarding_screens/select_habits.dart';
 import 'package:syalo/screens/profile_screen.dart';
 import 'package:syalo/screens/songs_screen/all_songs.dart';
@@ -25,7 +26,7 @@ class _MainFrameState extends State<MainFrame> {
     HomeScreen(),
     ConsultantScreen(),
     //Add learning path widget here @mayank
-
+    LearingPath(),
     AllSongs(),
     HabbitScreen(),
     // SupportGroupScreen(),

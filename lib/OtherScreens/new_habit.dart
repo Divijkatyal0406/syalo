@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:syalo/database/db.dart';
 import 'package:syalo/model/blue_button.dart';
 import 'package:syalo/model/random_box.dart';
 
@@ -119,8 +120,10 @@ class NewHabit extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             InkWell(
-                              onTap: () {
-                                // Done
+                              onTap: () async {
+                                //Provide text controllers for habit name
+                                var count = await FireStoreDB().getHabitsList();
+                                FireStoreDB().addHabit("Random Happy Faces",count.length+1);
                               },
                               child: BlueButton(text: 'Done'),
                             ),

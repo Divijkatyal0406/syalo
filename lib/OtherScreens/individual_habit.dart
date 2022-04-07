@@ -11,7 +11,7 @@ class IndividualHabit extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
             width: size.width,
-            height: size.height,
+            //height: size.height,
             child: Stack(
               children: [
                 Padding(
