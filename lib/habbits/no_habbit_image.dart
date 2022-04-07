@@ -16,7 +16,7 @@ class NoTransactionImage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Text(
-              'No Habbits Added Yet!',
+              'No Habits Added Yet!',
               style: TextStyle(fontSize: 30,fontWeight: FontWeight.w400,fontStyle: FontStyle.italic),
               textAlign:TextAlign.center,
             ),

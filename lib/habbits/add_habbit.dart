@@ -91,7 +91,7 @@ class _AddTransactionState extends State<AddTransaction> {
         child: Column(
           children: <Widget>[
             TextField(
-              decoration: addTxField('Habbit Name'),
+              decoration: addTxField('Habit Name'),
               controller: titleController,
               onSubmitted: (_) => addTx(),
             ),

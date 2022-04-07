@@ -6,6 +6,7 @@ import 'package:flutter/painting.dart';
 import 'package:syalo/DrawerScreens/habits_main.dart';
 import 'package:syalo/DrawerScreens/journal_main.dart';
 import 'package:syalo/model/drawer_button.dart';
+import 'package:syalo/screens/songs_screen/all_songs.dart';
 import 'package:syalo/songTracks/homePage.dart';
 import 'package:syalo/widgets/app_wide_widgets/classify_list.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/habit_container.dart';
@@ -241,7 +242,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height:10),
-                          Text('Habbit')
+                          Text('Habit')
                         ],
                       ),
                     ),

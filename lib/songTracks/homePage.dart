@@ -19,9 +19,13 @@ class _HomePageState extends State<HomePage> {
         brightness: Brightness.dark,
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: Icon(Icons.search,
-                      size: 30,
-              color: Colors.black),
+        // leading: Icon(Icons.search,
+        //               size: 30,
+        //       color: Colors.black),
+        leading:IconButton(
+          onPressed: (){Navigator.pop(context);},
+          icon:Icon(Icons.arrow_back,color: Colors.black,size:30),
+        ),
         actions: [
           Column(
             mainAxisSize: MainAxisSize.min,

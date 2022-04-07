@@ -45,7 +45,7 @@ class _HabbitScreenState extends State<HabbitScreen> {
       return Habbit(
         id: transactions[index]['id'],
         title: transactions[index]['title'],
-        amount: transactions[index]['amount'],
+        amount: double.parse(transactions[index]['amount']),
         date: DateTime.parse(transactions[index]['date']),
       );
     }).toList();
@@ -99,7 +99,7 @@ class _HabbitScreenState extends State<HabbitScreen> {
       backgroundColor: Colors.white,
       elevation: 0,
       title: Text(
-        'Habbit\'s',
+        'Habit\'s',
         style: TextStyle(
             fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
       ),

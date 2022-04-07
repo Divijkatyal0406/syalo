@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:syalo/screens/songs_screen/music_player.dart';
 import 'package:syalo/screens/songs_screen/songs_model.dart';
 
+import '../mainframe.dart';
+
 class AllSongs extends StatefulWidget {
   const AllSongs({Key? key}) : super(key: key);
 
@@ -30,73 +32,80 @@ class _AllSongsState extends State<AllSongs> {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-          body: Stack(
-        children: [
-          SizedBox(
-            height: height,
-            width: width,
-            // color: Colors.red,
-          ),
-          SizedBox(
-              height: height * .10,
+        body: Stack(
+          children: [
+            SizedBox(
+              height: height,
               width: width,
-              // color: Colors.white,
-              child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: width * .125 - 8,
-                      vertical: height * .025 - 8),
-                  child: GestureDetector(
-                    onTap: () {
-                      print(
-                          "We will shift to a page where the seach feature is implemented on all the songs");
-                    }, //TODO: implementt the debug log
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                              child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: _searchController,
-                              onEditingComplete: () =>
-                                  FocusScope.of(context).unfocus(),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: Icon(Icons.search),
-                                  hintText: "What are you looking for?"),
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w400),
+              // color: Colors.red,
+            ),
+            Row(
+              children: [
+                IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back)),
+                SizedBox(
+                    height: height * .10,
+                    width: width,
+                    // color: Colors.white,
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * .125 - 8,
+                            vertical: height * .025 - 8),
+                        child: GestureDetector(
+                          onTap: () {
+                            print(
+                                "We will shift to a page where the seach feature is implemented on all the songs");
+                          }, //TODO: implementt the debug log
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                    child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextFormField(
+                                    controller: _searchController,
+                                    onEditingComplete: () =>
+                                        FocusScope.of(context).unfocus(),
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        prefixIcon: Icon(Icons.search),
+                                        hintText: "What are you looking for?"),
+                                    style: TextStyle(
+                                        fontSize: 15, fontWeight: FontWeight.w400),
+                                  ),
+                                )),
+                                //TODO: implemnt search feature
+                                // )
+                              ],
                             ),
-                          )), //TODO: implemnt search feature
-                          // )
-                        ],
-                      ),
-                    ),
-                  ))),
-          Positioned(
-            top: height * .10,
-            child: SizedBox(
-              height: height * .90,
-              width: width,
-              child: ListView(
-                //TODO: this is hardcoded need to add more data in the songs model and category name
-                children: [
-                  songCategoryWise("Trending", mostPopularSOngs),
-                  songCategoryWise("Favorites", mostPopularSOngs),
-                  songCategoryWise("Calm", mostPopularSOngs),
-                  songCategoryWise("Hard Rock", mostPopularSOngs),
-                  songCategoryWise("Instrumental", mostPopularSOngs),
-                  songCategoryWise("Nature", mostPopularSOngs),
-                  Padding(padding: EdgeInsets.only(bottom: 200)),
-                ],
+                          ),
+                        ))),
+              ],
+            ),
+            Positioned(
+              top: height * .10,
+              child: SizedBox(
+                height: height * .90,
+                width: width,
+                child: ListView(
+                  //TODO: this is hardcoded need to add more data in the songs model and category name
+                  children: [
+                    songCategoryWise("Trending", mostPopularSOngs),
+                    songCategoryWise("Favorites", mostPopularSOngs),
+                    songCategoryWise("Calm", mostPopularSOngs),
+                    songCategoryWise("Hard Rock", mostPopularSOngs),
+                    songCategoryWise("Instrumental", mostPopularSOngs),
+                    songCategoryWise("Nature", mostPopularSOngs),
+                    Padding(padding: EdgeInsets.only(bottom: 200)),
+                  ],
+                ),
               ),
             ),
-          )
-        ],
-      )),
+          ],
+        ),
+      ),
     );
   }
 
