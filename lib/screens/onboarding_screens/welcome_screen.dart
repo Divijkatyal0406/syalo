@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:syalo/screens/onboarding_screens/auth.dart';
 import 'package:video_player/video_player.dart';
 import 'package:syalo/screens/login_signup.dart';
 
@@ -109,8 +110,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           borderRadius: BorderRadius.circular(8))),
                     ),
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (_) => LoginSignupScreen()));
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => AuthScreen()));
                     },
                     child: Text("Next")),
               ),

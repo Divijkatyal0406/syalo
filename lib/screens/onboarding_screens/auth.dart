@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:syalo/screens/onboarding_screens/add_habits.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:syalo/screens/onboarding_screens/lets_win.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -71,17 +72,18 @@ class _AuthScreenState extends State<AuthScreen> {
                 style: ButtonStyle(
                     side: MaterialStateProperty.all(BorderSide(
                       width: 1,
+                      color: Colors.blue,
                     )),
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                     padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                        vertical: 16, horizontal: width * .10))),
+                        vertical: 8, horizontal: width * .20))),
                 onPressed: () {
                   print("Connect me with firebase to signin"); //TODO
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => AddHabits()));
+                      MaterialPageRoute(builder: (_) => LetsWinScreen()));
                 },
-                icon: Icon(Icons.photo),
+                icon: FaIcon(FontAwesomeIcons.google),
                 label: Padding(
                   padding: const EdgeInsets.only(left: 4.0),
                   child: Text("Sign in with Google"),

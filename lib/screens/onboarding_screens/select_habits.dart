@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:syalo/database/db.dart';
 import 'package:syalo/screens/habits_screen/define_habits.dart';
-import 'package:syalo/screens/habits_screen/ongoing_habits.dart';
 import 'package:syalo/screens/mainframe.dart';
 
 class SelectHabits extends StatefulWidget {
@@ -156,7 +155,7 @@ class _SelectHabitsState extends State<SelectHabits> {
                     children: [
                       Positioned(
                         top: 0,
-                        child: Container(
+                        child: SizedBox(
                           height: height,
                           width: width,
                           child: GridView.count(
