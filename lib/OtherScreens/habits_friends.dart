@@ -1,23 +1,22 @@
 import 'package:easy_firebase/easy_firebase.dart';
 import 'package:flutter/material.dart';
-import 'package:syalo/model/habit_container.dart';
 import 'package:syalo/model/habit_container2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class HabitsFriends extends StatefulWidget {
-  const HabitsFriends({ Key? key }) : super(key: key);
+  const HabitsFriends({Key? key}) : super(key: key);
 
   @override
   State<HabitsFriends> createState() => _HabitsFriendsState();
 }
 
 class _HabitsFriendsState extends State<HabitsFriends> {
-
   Future<List> getFriendsInfo() async {
     var obj = EasyFire().getFirestoreObject().getFirestoreInstance();
-    var data = await obj.collection("User")
-    .doc(FirebaseAuth.instance.currentUser!.uid)
-    .get();
+    var data = await obj
+        .collection("User")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
     //print(data["friends"]);
     return data["friends"];
   }
@@ -25,16 +24,16 @@ class _HabitsFriendsState extends State<HabitsFriends> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getFriendsInfo(),
-      builder: (context,snapshot) {
-        // Checking if future is resolved or not
-        if (snapshot.connectionState == ConnectionState.done) {
+        future: getFriendsInfo(),
+        builder: (context, snapshot) {
+          // Checking if future is resolved or not
+          if (snapshot.connectionState == ConnectionState.done) {
             // If we got an error
             if (snapshot.hasError) {
               return Center(
                 child: Text(
                   '${snapshot.error} occured',
-                  style: TextStyle(fontSize: 18),
+                  style: const TextStyle(fontSize: 18),
                 ),
               );
 
@@ -47,7 +46,7 @@ class _HabitsFriendsState extends State<HabitsFriends> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     children: [
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Row(
@@ -89,32 +88,26 @@ class _HabitsFriendsState extends State<HabitsFriends> {
                           ],
                         ),
                       ),
-                      Divider(color: Color.fromRGBO(0, 0, 0, 1), thickness: 1),
-                      SizedBox(height: 10),
+                      const Divider(
+                          color: Color.fromRGBO(0, 0, 0, 1), thickness: 1),
+                      const SizedBox(height: 10),
                       ListView.builder(
-                        itemCount: data.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context,index) {
-                        return HabitContainer2(
-                            image_url: data[index]["imageUrl"],
-                            name: data[index]["name"],
-                            habitsCompleted: data[index]["habitsCompleted"],
-                            score: data[index]["score"]
-                          );
-                        }
-                      ),
+                          itemCount: data.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return HabitContainer2(
+                                image_url: data[index]["imageUrl"],
+                                name: data[index]["name"],
+                                habitsCompleted: data[index]["habitsCompleted"],
+                                score: data[index]["score"]);
+                          }),
                     ],
                   ),
                 ),
               );
             }
-        }
-        return const Center(
-          child: CircularProgressIndicator()
-        ); 
-      }
-    );
+          }
+          return const Center(child: CircularProgressIndicator());
+        });
   }
-  
 }
-

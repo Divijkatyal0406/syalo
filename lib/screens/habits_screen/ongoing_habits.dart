@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:syalo/database/db.dart';
 import 'package:syalo/screens/habits_screen/friend_details_screen.dart';
-import 'package:syalo/screens/onboarding_screens/add_habits.dart';
 import 'package:syalo/screens/onboarding_screens/select_habits.dart';
 
 class OngoingHabits extends StatefulWidget {
@@ -92,7 +91,7 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                                         tag: i.toString(),
                                         friend: {
                                           "name": i.toString(),
-                                          "habitstogether": [
+                                          "habitstogether": const [
                                             "Dance",
                                             "Sing",
                                             "Yoga"
@@ -130,7 +129,7 @@ class _OngoingHabitsState extends State<OngoingHabits> {
               elevation: 20,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                child: SizedBox(
                   // height: height,
                   width: width,
                   child: Padding(
@@ -140,7 +139,7 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                               width: width -
                                   100, //TODO: here 100 need to be changes with limit of days width
                               child: Slider(
@@ -163,7 +162,7 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                               style: TextStyle(
                                   fontSize: 28, fontWeight: FontWeight.w500),
                             ),
-                            Container(
+                            SizedBox(
                               height: 50,
                               width: 150,
                               // color: Colors.black,
@@ -234,7 +233,7 @@ class _OngoingHabitsState extends State<OngoingHabits> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0),
                                   child: Row(
-                                    children: [
+                                    children: const [
                                       Text("Done"),
                                       Icon(
                                         Icons.celebration,

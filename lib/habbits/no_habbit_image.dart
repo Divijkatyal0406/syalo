@@ -15,10 +15,13 @@ class NoTransactionImage extends StatelessWidget {
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
-            Text(
+            const Text(
               'No Habits Added Yet!',
-              style: TextStyle(fontSize: 30,fontWeight: FontWeight.w400,fontStyle: FontStyle.italic),
-              textAlign:TextAlign.center,
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.italic),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 60),
             Image.asset(

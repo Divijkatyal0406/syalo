@@ -14,16 +14,16 @@ class HabitContainer extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => IndividualHabit(),
+            builder: (context) => const IndividualHabit(),
           ),
         );
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         width: 328,
         height: 88,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
               bottomLeft: Radius.circular(25),
@@ -34,13 +34,12 @@ class HabitContainer extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 'Habit Name',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Color.fromRGBO(255, 255, 255, 1),
-
                     fontSize: 20,
                     letterSpacing:
                         0 /*percentages not used in flutter. defaulting to zero*/,

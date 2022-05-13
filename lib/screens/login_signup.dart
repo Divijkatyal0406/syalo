@@ -23,7 +23,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
     try {
       // Get reference to Firestore collection
       //print(docId);
-      var collectionRef = EasyFire().getFirestoreObject().getFirestoreInstance().collection('User');
+      var collectionRef = EasyFire()
+          .getFirestoreObject()
+          .getFirestoreInstance()
+          .collection('User');
       var doc = await collectionRef.doc(docId).get();
       return doc.exists;
     } catch (e) {
@@ -48,8 +51,8 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       image: AssetImage("assets/images/home_screen_bg.png"),
                       fit: BoxFit.fill)),
               child: Container(
-                padding: EdgeInsets.only(top: 90, left: 20),
-                color: Color(0xFF3b5999).withOpacity(0),
+                padding: const EdgeInsets.only(top: 90, left: 20),
+                color: const Color(0xFF3b5999).withOpacity(0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -72,14 +75,14 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             )
                           ]),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
                       isSignupScreen
                           ? "SignUp to Continue"
                           : "SignIn to Continue",
-                      style: TextStyle(
+                      style: const TextStyle(
                         letterSpacing: 1,
                         color: Colors.white,
                       ),
@@ -93,14 +96,14 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           buildBottomHalfContainer(true),
           //Main Contianer for Login and Signup
           AnimatedPositioned(
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             top: isSignupScreen ? 200 : 230,
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               height: isSignupScreen ? 380 : 250,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width - 40,
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -135,7 +138,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               ),
                               if (!isSignupScreen)
                                 Container(
-                                  margin: EdgeInsets.only(top: 3),
+                                  margin: const EdgeInsets.only(top: 3),
                                   height: 2,
                                   width: 55,
                                   color: Colors.orange,
@@ -162,7 +165,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                               ),
                               if (isSignupScreen)
                                 Container(
-                                  margin: EdgeInsets.only(top: 3),
+                                  margin: const EdgeInsets.only(top: 3),
                                   height: 2,
                                   width: 55,
                                   color: Colors.orange,
@@ -190,7 +193,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
               children: [
                 Text(isSignupScreen ? "Or SignUp with" : "Or SignIn with"),
                 Container(
-                  margin: EdgeInsets.only(right: 20, left: 20, top: 15),
+                  margin: const EdgeInsets.only(right: 20, left: 20, top: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -235,8 +238,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             await EasyFire().getAuthObject().signInWithGoogle();
                             //Create User if not exists in DB
                             var user = FirebaseAuth.instance.currentUser;
-                            if(await checkIfDocExists(FirebaseAuth.instance.currentUser!.uid)==false) {
-                              await FireStoreDB().createUser("${user!.displayName}","${user.photoURL}");
+                            if (await checkIfDocExists(
+                                    FirebaseAuth.instance.currentUser!.uid) ==
+                                false) {
+                              await FireStoreDB().createUser(
+                                  "${user!.displayName}", "${user.photoURL}");
                             }
                             if (FirebaseAuth.instance.currentUser != null) {
                               Navigator.pushReplacement(
@@ -250,8 +256,9 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           }
                         },
                         style: TextButton.styleFrom(
-                            side: BorderSide(width: 1, color: Colors.grey),
-                            minimumSize: Size(145, 40),
+                            side:
+                                const BorderSide(width: 1, color: Colors.grey),
+                            minimumSize: const Size(145, 40),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             primary: Colors.white,
@@ -284,7 +291,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
 
   Container buildSigninSection() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           buildTextField(
@@ -305,13 +312,13 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       });
                     },
                   ),
-                  Text("Remember me",
+                  const Text("Remember me",
                       style: TextStyle(fontSize: 12, color: Palette.textColor1))
                 ],
               ),
               TextButton(
                 onPressed: () {},
-                child: Text("Forgot Password?",
+                child: const Text("Forgot Password?",
                     style: TextStyle(fontSize: 12, color: Palette.textColor1)),
               )
             ],
@@ -323,7 +330,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
 
   Container buildSignupSection() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           buildTextField(
@@ -347,7 +354,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       Container(
                         width: 30,
                         height: 30,
-                        margin: EdgeInsets.only(right: 8),
+                        margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
                             color: isMale
                                 ? Palette.textColor2
@@ -363,14 +370,14 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           color: isMale ? Colors.white : Palette.iconColor,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "Male",
                         style: TextStyle(color: Palette.textColor1),
                       )
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
                 GestureDetector(
@@ -384,7 +391,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                       Container(
                         width: 30,
                         height: 30,
-                        margin: EdgeInsets.only(right: 8),
+                        margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
                             color: isMale
                                 ? Colors.transparent
@@ -400,7 +407,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                           color: isMale ? Palette.iconColor : Colors.white,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "Female",
                         style: TextStyle(color: Palette.textColor1),
                       )
@@ -412,7 +419,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           ),
           Container(
             width: 200,
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             child: RichText(
               textAlign: TextAlign.center,
               text: const TextSpan(
@@ -434,7 +441,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
 
   Widget buildBottomHalfContainer(bool showShadow) {
     return AnimatedPositioned(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       top: isSignupScreen ? 535 : 430,
       right: 0,
       left: 0,
@@ -442,7 +449,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
         child: Container(
           height: 90,
           width: 90,
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(50),
@@ -457,7 +464,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
           child: !showShadow
               ? Container(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                           colors: [Colors.black, Colors.orange],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight),
@@ -467,7 +474,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             color: Colors.black.withOpacity(.3),
                             spreadRadius: 1,
                             blurRadius: 2,
-                            offset: Offset(0, 1))
+                            offset: const Offset(0, 1))
                       ]),
                   child: IconButton(
                     color: Colors.white,
@@ -481,8 +488,11 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         await user.updatePhotoURL(
                             "https://static.vecteezy.com/system/resources/thumbnails/000/550/731/small/user_icon_004.jpg");
                         //Create User if not exists in DB
-                        if(await checkIfDocExists(FirebaseAuth.instance.currentUser!.uid)==false) {
-                          await FireStoreDB().createUser("${user.displayName}","${user.photoURL}");
+                        if (await checkIfDocExists(
+                                FirebaseAuth.instance.currentUser!.uid) ==
+                            false) {
+                          await FireStoreDB().createUser(
+                              "${user.displayName}", "${user.photoURL}");
                         }
                         if (FirebaseAuth.instance.currentUser != null) {
                           Navigator.pushReplacement(
@@ -507,9 +517,12 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                             .getAuthObject()
                             .signinMail(email.text, password.text);
                         var user = FirebaseAuth.instance.currentUser;
-                        while(FirebaseAuth.instance.currentUser==null){}
-                        if(await checkIfDocExists(FirebaseAuth.instance.currentUser!.uid)==false) {
-                          await FireStoreDB().createUser("${user!.displayName}","${user.photoURL}");
+                        while (FirebaseAuth.instance.currentUser == null) {}
+                        if (await checkIfDocExists(
+                                FirebaseAuth.instance.currentUser!.uid) ==
+                            false) {
+                          await FireStoreDB().createUser(
+                              "${user!.displayName}", "${user.photoURL}");
                         }
                         if (FirebaseAuth.instance.currentUser != null) {
                           Navigator.pushReplacement(
@@ -559,17 +572,17 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
             icon,
             color: Palette.iconColor,
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Palette.textColor1),
             borderRadius: BorderRadius.all(Radius.circular(35.0)),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Palette.textColor1),
             borderRadius: BorderRadius.all(Radius.circular(35.0)),
           ),
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
           hintText: hintText,
-          hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+          hintStyle: const TextStyle(fontSize: 14, color: Palette.textColor1),
         ),
       ),
     );

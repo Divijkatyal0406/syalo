@@ -12,7 +12,7 @@ class NewHabit extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: SingleChildScrollView(
@@ -123,7 +123,8 @@ class NewHabit extends StatelessWidget {
                               onTap: () async {
                                 //Provide text controllers for habit name
                                 var count = await FireStoreDB().getHabitsList();
-                                FireStoreDB().addHabit("Random Happy Faces",count.length+1);
+                                FireStoreDB().addHabit(
+                                    "Random Happy Faces", count.length + 1);
                               },
                               child: BlueButton(text: 'Done'),
                             ),

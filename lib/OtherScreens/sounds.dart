@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:syalo/model/app_header2.dart';
 
 class Sounds extends StatelessWidget {
   const Sounds({Key? key}) : super(key: key);
@@ -13,7 +11,7 @@ class Sounds extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding:
-          const EdgeInsets.symmetric(horizontal: 16.0).copyWith(top: 25),
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(top: 25),
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
@@ -50,8 +48,8 @@ class Sounds extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 7.0),
                       child: Image(
                           image: AssetImage(
-                            'assets/images/triangle.png',
-                          )),
+                        'assets/images/triangle.png',
+                      )),
                     ),
                   ),
                 ),

@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ClassifyList extends StatelessWidget {
@@ -8,8 +5,8 @@ class ClassifyList extends StatelessWidget {
 
   ClassifyList({Key? key, required this.title}) : super(key: key);
 
-  final colors=[Colors.teal,Colors.orange,Colors.red];
-  final colors1=[Colors.lightBlue,Colors.orange,Colors.tealAccent];
+  final colors = [Colors.teal, Colors.orange, Colors.red];
+  final colors1 = [Colors.lightBlue, Colors.orange, Colors.tealAccent];
 
   final heading = ["Forest", "Beach", "Rain"];
   final imgUrls = [
@@ -34,17 +31,17 @@ class ClassifyList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return title == "Discover Paths"
-        ? Container(
+        ? SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height * 0.08,
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                   ),
@@ -52,14 +49,14 @@ class ClassifyList extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.2,
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: ListView.builder(
                     itemCount: 3,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => Container(
                       width: 165,
                       height: 100,
-                      margin: EdgeInsets.symmetric(horizontal: 14.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 14.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0)),
                       child: GridTile(
@@ -78,7 +75,7 @@ class ClassifyList extends StatelessWidget {
                                 Text(
                                   heading1[idx1++],
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                       fontSize: 20),
@@ -95,17 +92,17 @@ class ClassifyList extends StatelessWidget {
               ],
             ),
           )
-        : Container(
+        : SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height * 0.08,
-                  padding: EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                   ),
@@ -113,14 +110,14 @@ class ClassifyList extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.2,
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: ListView.builder(
                     itemCount: 3,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => Container(
                       width: 165,
                       height: 100,
-                      margin: EdgeInsets.symmetric(horizontal: 14.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 14.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0)),
                       child: GridTile(
@@ -137,7 +134,7 @@ class ClassifyList extends StatelessWidget {
                             title: Text(
                               heading[idx++],
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   fontSize: 20),

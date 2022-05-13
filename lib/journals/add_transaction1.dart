@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
-
 class AddTransaction extends StatefulWidget {
   const AddTransaction(this.handler);
 
@@ -15,7 +13,7 @@ class AddTransaction extends StatefulWidget {
 class _AddTransactionState extends State<AddTransaction> {
   var titleController = TextEditingController();
   var amountController = TextEditingController();
-  DateTime selectedDate=DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
   InputDecoration addTxField(String fieldHintText) {
     return InputDecoration(
@@ -33,7 +31,7 @@ class _AddTransactionState extends State<AddTransaction> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(25),
-        borderSide: BorderSide(width: 1.1, color: Colors.grey),
+        borderSide: const BorderSide(width: 1.1, color: Colors.grey),
       ),
       filled: true,
       fillColor: Colors.grey[200]!.withOpacity(0.6),
@@ -55,10 +53,11 @@ class _AddTransactionState extends State<AddTransaction> {
       lastDate: DateTime(2040),
       initialDate: DateTime.now(),
     ).then((date) {
-      if (date == null)
+      if (date == null) {
         return;
-      else
+      } else {
         setState(() => selectedDate = date);
+      }
     });
   }
 
@@ -66,10 +65,7 @@ class _AddTransactionState extends State<AddTransaction> {
     var enteredText = titleController.text;
     var enteredAmount = 0.0;
 
-    if (enteredText.isEmpty ||
-        enteredAmount.isNaN ||
-        enteredAmount < 0 ||
-        selectedDate == null) {
+    if (enteredText.isEmpty || enteredAmount.isNaN || enteredAmount < 0) {
       return;
     }
 
@@ -109,7 +105,7 @@ class _AddTransactionState extends State<AddTransaction> {
               children: <Widget>[
                 Expanded(
                   child: Text(
-                    DateFormat('yyyy-MM-dd – kk:mm'). format(DateTime.now()),
+                    DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now()),
                     style: Theme.of(context).textTheme.headline6,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -137,7 +133,7 @@ class _AddTransactionState extends State<AddTransaction> {
               child: RaisedButton(
                 child: const Text(
                   'Confirm Journal',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                     fontFamily: 'Quicksand',
                     fontWeight: FontWeight.w600,

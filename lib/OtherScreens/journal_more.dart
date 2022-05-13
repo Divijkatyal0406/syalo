@@ -10,7 +10,7 @@ class JournalMore extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        body: SizedBox(
           width: size.width,
           height: size.height,
           child: SingleChildScrollView(
@@ -18,28 +18,27 @@ class JournalMore extends StatelessWidget {
               children: [
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 150),
-                        Text(
+                        const SizedBox(height: 150),
+                        const Text(
                           'NICEEE DAY!   (topic)',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Color.fromRGBO(0, 0, 0, 1),
-
                               fontSize: 28,
                               letterSpacing:
                                   0 /*percentages not used in flutter. defaulting to zero*/,
                               fontWeight: FontWeight.normal,
                               height: 1),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         Container(
                           width: 368,
                           height: 600,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(35),
                               topRight: Radius.circular(35),
@@ -50,20 +49,19 @@ class JournalMore extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Audio',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: Colors.black,
-
                                           fontSize: 25,
                                           letterSpacing:
                                               0 /*percentages not used in flutter. defaulting to zero*/,
@@ -73,11 +71,11 @@ class JournalMore extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Container(
                                 width: 288,
                                 height: 75,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(25),
                                     topRight: Radius.circular(25),
@@ -87,7 +85,7 @@ class JournalMore extends StatelessWidget {
                                   color: Color.fromRGBO(30, 30, 30, 1),
                                 ),
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.play_arrow,
                                       color: Colors.white,
@@ -96,20 +94,19 @@ class JournalMore extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 50),
+                              const SizedBox(height: 50),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Photo',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: Colors.black,
-
                                           fontSize: 25,
                                           letterSpacing:
                                               0 /*percentages not used in flutter. defaulting to zero*/,
@@ -119,11 +116,11 @@ class JournalMore extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Container(
                                   width: 288,
                                   height: 175,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(25),
                                       topRight: Radius.circular(25),
@@ -142,20 +139,19 @@ class JournalMore extends StatelessWidget {
                                             'assets/images/Unsplashjbcy_yvsdzk.png'),
                                         fit: BoxFit.fitWidth),
                                   )),
-                              SizedBox(height: 50),
+                              const SizedBox(height: 50),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Text',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: Colors.black,
-
                                           fontSize: 25,
                                           letterSpacing:
                                               0 /*percentages not used in flutter. defaulting to zero*/,
@@ -181,19 +177,18 @@ class JournalMore extends StatelessWidget {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back_ios,
                           color: Colors.black,
                           size: 45,
                         ),
                       ),
-                      SizedBox(width: 30),
-                      Text(
+                      const SizedBox(width: 30),
+                      const Text(
                         'Journal',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Color.fromRGBO(0, 0, 0, 1),
-
                             fontSize: 45,
                             letterSpacing:
                                 0 /*percentages not used in flutter. defaulting to zero*/,

@@ -20,12 +20,12 @@ class FriendDetailScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        body: SizedBox(
           height: height,
           width: width,
           child: Stack(
             children: [
-              Container(
+              SizedBox(
                   height: height * .40,
                   width: width,
                   child: Hero(
@@ -65,7 +65,7 @@ class FriendDetailScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
-                            children: [
+                            children: const [
                               Text(
                                 "275",
                                 style: TextStyle(
@@ -122,7 +122,7 @@ class FriendDetailScreen extends StatelessWidget {
                   icon: Icon(Icons.arrow_back)),
               Positioned(
                   bottom: 10,
-                  child: Container(
+                  child: SizedBox(
                     width: width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

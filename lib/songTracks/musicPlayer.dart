@@ -35,7 +35,7 @@ class _MusicPlayerState extends State<MusicPlayer>
 
   AudioPlayer audioPlayer = AudioPlayer();
   // AudioPlayerState audioPlayerState = AudioPlayerState.PAUSED;
-  bool audioPlayerState=false;
+  bool audioPlayerState = false;
   late AudioCache audioCache;
 
   // String path = song.url;
@@ -47,7 +47,7 @@ class _MusicPlayerState extends State<MusicPlayer>
     audioCache = AudioCache(fixedPlayer: audioPlayer);
     audioPlayer.onAudioPositionChanged.listen((event) {
       setState(() {
-        audioPlayerState=event as bool;
+        audioPlayerState = event as bool;
         // audioPlayerState = event as AudioPlayerState;
       });
     });
@@ -63,7 +63,7 @@ class _MusicPlayerState extends State<MusicPlayer>
 
   playMusic(String url) async {
     setState(() {
-      audioPlayerState=true;
+      audioPlayerState = true;
       // audioPlayerState = AudioPlayerState.PLAYING;
     });
     // await audioCache.load(url).whenComplete(() => audioCache.play(url));
@@ -73,7 +73,7 @@ class _MusicPlayerState extends State<MusicPlayer>
   pauseMusic() async {
     setState(() {
       // audioPlayerState = AudioPlayerState.PAUSED;
-      audioPlayerState=false;
+      audioPlayerState = false;
     });
     await audioPlayer.pause();
   }
@@ -103,11 +103,11 @@ class _MusicPlayerState extends State<MusicPlayer>
                 children: [
                   Text(
                     "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(right: 8, left: 15),
                 child: Icon(Icons.notifications_active_outlined, size: 30),
               )
@@ -116,7 +116,7 @@ class _MusicPlayerState extends State<MusicPlayer>
           body: Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(bottom: 50, left: 20, right: 20),
+              margin: const EdgeInsets.only(bottom: 50, left: 20, right: 20),
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
                   blurRadius: 14,
@@ -140,20 +140,20 @@ class _MusicPlayerState extends State<MusicPlayer>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding:
-                              EdgeInsets.only(left: 20, right: 20, top: 20),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, top: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 widget.song.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold),
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.favorite,
                                 color: Colors.pink,
                                 size: 40,
@@ -162,10 +162,10 @@ class _MusicPlayerState extends State<MusicPlayer>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.only(left: 20),
                           child: Text(
                             widget.song.singer,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                         // Container(
@@ -211,16 +211,19 @@ class _MusicPlayerState extends State<MusicPlayer>
                         //     ],
                         //   ),
                         // ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.settings_backup_restore_sharp,size: 40,),
+                              icon: const Icon(
+                                Icons.settings_backup_restore_sharp,
+                                size: 40,
+                              ),
                               onPressed: () {
-                                audioPlayer.seek(Duration(seconds: -10));
+                                audioPlayer.seek(const Duration(seconds: -10));
                               },
                             ),
                             IconButton(
@@ -237,9 +240,12 @@ class _MusicPlayerState extends State<MusicPlayer>
                               },
                             ),
                             IconButton(
-                              icon: Icon(Icons.forward_10,size: 40,),
+                              icon: const Icon(
+                                Icons.forward_10,
+                                size: 40,
+                              ),
                               onPressed: () {
-                                audioPlayer.seek(Duration(seconds: 10));
+                                audioPlayer.seek(const Duration(seconds: 10));
                               },
                             ),
                             // InkWell(

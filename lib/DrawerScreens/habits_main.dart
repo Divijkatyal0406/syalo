@@ -19,7 +19,7 @@ class _HabitsMainState extends State<HabitsMain> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: size.width,
             height: size.height * 1.7,
             child: DefaultTabController(
@@ -209,7 +209,7 @@ class _HabitsMainState extends State<HabitsMain> {
                           ),
                         ),
                         SizedBox(height: 50),
-                        Container(
+                        SizedBox(
                           width: 414,
                           height: 40,
                           child: TabBar(

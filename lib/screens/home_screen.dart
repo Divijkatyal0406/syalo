@@ -1,17 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:syalo/DrawerScreens/habits_main.dart';
 import 'package:syalo/DrawerScreens/journal_main.dart';
 import 'package:syalo/model/drawer_button.dart';
-import 'package:syalo/screens/songs_screen/all_songs.dart';
 import 'package:syalo/songTracks/homePage.dart';
 import 'package:syalo/widgets/app_wide_widgets/classify_list.dart';
 import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/habit_container.dart';
-import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/home_screen_round_button.dart';
-import 'package:syalo/widgets/main_screen_widgets/home_screen_widgets/screen_nav_containers.dart';
 
 import '../habbits/habbitHome.dart';
 import '../journals/journalHome.dart';
@@ -36,16 +30,16 @@ class HomeScreen extends StatelessWidget {
         ),
         extendBodyBehindAppBar: true,
         drawer: Drawer(
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Container(
                   width: 500,
-                  margin: EdgeInsets.only(left: 16),
+                  margin: const EdgeInsets.only(left: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -60,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                             fontWeight: FontWeight.normal,
                             height: 1),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       const Text(
@@ -77,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HabitsMain(),
+                              builder: (context) => const HabitsMain(),
                             ),
                           );
                         },
@@ -105,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => JournalMain(),
+                                builder: (context) => const JournalMain(),
                               ),
                             );
                           },
@@ -136,7 +130,7 @@ class HomeScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.55,
                 width: MediaQuery.of(context).size.width,
                 child: Stack(
@@ -145,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 2,
                       fit: BoxFit.cover,
-                      image: AssetImage(
+                      image: const AssetImage(
                         'assets/images/home_screen_bg.png',
                         // height: 400,
                         // fit:BoxFit.fitWidth,
@@ -163,12 +157,12 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Text(
                               "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 30,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white),
                             ),
-                            Text(
+                            const Text(
                               "Conquer the day!",
                               style: TextStyle(
                                   fontSize: 19,
@@ -199,11 +193,12 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Material(
                             elevation: 10,
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(50)),
                             child: Container(
                               height: 52.0,
                               width: 52.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage('assets/sounds.png'),
                                   // fit: BoxFit.fill,
@@ -212,8 +207,8 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height:10),
-                          Text('Sounds')
+                          const SizedBox(height: 10),
+                          const Text('Sounds')
                         ],
                       ),
                     ),
@@ -228,11 +223,12 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Material(
                             elevation: 10,
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(50)),
                             child: Container(
                               height: 52.0,
                               width: 52.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage('assets/habbit.png'),
                                   // fit: BoxFit.fill,
@@ -241,8 +237,8 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height:10),
-                          Text('Habit')
+                          const SizedBox(height: 10),
+                          const Text('Habit')
                         ],
                       ),
                     ),
@@ -257,11 +253,12 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Material(
                             elevation: 10,
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(50)),
                             child: Container(
                               height: 52,
                               width: 52,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   fit: BoxFit.contain,
                                   image: AssetImage('assets/meditate.png'),
@@ -273,8 +270,8 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height:10),
-                          Text('Journal')
+                          const SizedBox(height: 10),
+                          const Text('Journal')
                         ],
                       ),
                     ),
@@ -289,12 +286,13 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Material(
                             elevation: 10,
-                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(50)),
                             child: Container(
-                              padding: EdgeInsets.all(50),
+                              padding: const EdgeInsets.all(50),
                               height: 52,
                               width: 52,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage('assets/learn_path.png'),
                                 ),
@@ -302,38 +300,36 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height:10),
-                          Text('Learn')
+                          const SizedBox(height: 10),
+                          const Text('Learn')
                         ],
                       ),
                     )
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15.0,
               ),
-              HabitContainer(),
-              SizedBox(
+              const HabitContainer(),
+              const SizedBox(
                 height: 15.0,
               ),
               ClassifyList(title: "Discover Sounds"),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
 
               GestureDetector(
-                onTap: ()=>{
-                  HabbitScreen()
-                },
-                child:Material(
+                onTap: () => {HabbitScreen()},
+                child: Material(
                   elevation: 10,
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   child: Container(
                     alignment: Alignment.center,
                     height: 350,
-                    width: MediaQuery.of(context).size.width/1.2,
-                    decoration: BoxDecoration(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/habbit_card.png'),
                         fit: BoxFit.fill,
@@ -349,7 +345,7 @@ class HomeScreen extends StatelessWidget {
               //   image: 'https://s3.envato.com/files/227729934/syda_0215969.jpg',
               //   title: "Habits",
               // ),
-              SizedBox(
+              const SizedBox(
                 height: 15.0,
               ),
               // const ScreenNavContainers(
@@ -358,17 +354,17 @@ class HomeScreen extends StatelessWidget {
               //   title: "Support Groups",
               // ),
               GestureDetector(
-                onTap: ()=>{
+                onTap: () => {
                   // HabbitScreen()
                 },
-                child:Material(
+                child: Material(
                   elevation: 10,
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   child: Container(
                     alignment: Alignment.center,
                     height: 350,
-                    width: MediaQuery.of(context).size.width/1.2,
-                    decoration: BoxDecoration(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/support_card.png'),
                         fit: BoxFit.fill,
@@ -379,11 +375,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ClassifyList(title: "Discover Paths"),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               // const ScreenNavContainers(
@@ -392,17 +388,17 @@ class HomeScreen extends StatelessWidget {
               //   title: "Appointments",
               // ),
               GestureDetector(
-                onTap: ()=>{
+                onTap: () => {
                   // HabbitScreen()
                 },
-                child:Material(
+                child: Material(
                   elevation: 10,
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   child: Container(
                     alignment: Alignment.center,
                     height: 350,
-                    width: MediaQuery.of(context).size.width/1.2,
-                    decoration: BoxDecoration(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/appointment_card.png'),
                         fit: BoxFit.fill,
@@ -413,7 +409,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               // const ScreenNavContainers(
@@ -422,17 +418,15 @@ class HomeScreen extends StatelessWidget {
               //   title: "Brain Games",
               // ),
               GestureDetector(
-                onTap: ()=>{
-                  JournalScreen()
-                },
-                child:Material(
+                onTap: () => {JournalScreen()},
+                child: Material(
                   elevation: 10,
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   child: Container(
                     alignment: Alignment.center,
                     height: 350,
-                    width: MediaQuery.of(context).size.width/1.2,
-                    decoration: BoxDecoration(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/journal_card.png'),
                         fit: BoxFit.fill,
@@ -443,21 +437,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GestureDetector(
-                onTap: ()=>{
+                onTap: () => {
                   // JournalScreen()
                 },
-                child:Material(
+                child: Material(
                   elevation: 10,
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   child: Container(
                     alignment: Alignment.center,
                     height: 350,
-                    width: MediaQuery.of(context).size.width/1.2,
-                    decoration: BoxDecoration(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/brain_card.png'),
                         fit: BoxFit.fill,

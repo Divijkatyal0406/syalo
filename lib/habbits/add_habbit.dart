@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
-
 class AddTransaction extends StatefulWidget {
   const AddTransaction(this.handler);
 
@@ -33,7 +31,7 @@ class _AddTransactionState extends State<AddTransaction> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(25),
-        borderSide: BorderSide(width: 1.1, color: Colors.grey),
+        borderSide: const BorderSide(width: 1.1, color: Colors.grey),
       ),
       filled: true,
       fillColor: Colors.grey[200]!.withOpacity(0.6),
@@ -55,10 +53,11 @@ class _AddTransactionState extends State<AddTransaction> {
       lastDate: DateTime(2040),
       initialDate: DateTime.now(),
     ).then((date) {
-      if (date == null)
+      if (date == null) {
         return;
-      else
+      } else {
         setState(() => selectedDate = date);
+      }
     });
   }
 
@@ -137,7 +136,7 @@ class _AddTransactionState extends State<AddTransaction> {
               child: RaisedButton(
                 child: const Text(
                   'Add Habbit',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                     fontFamily: 'Quicksand',
                     fontWeight: FontWeight.w600,

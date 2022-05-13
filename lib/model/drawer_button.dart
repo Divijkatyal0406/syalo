@@ -10,7 +10,7 @@ class DrawerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       width: 250,
       height: 67,
       decoration: const BoxDecoration(
@@ -38,7 +38,7 @@ class DrawerButton extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Text(
-            '$text',
+            text,
             textAlign: TextAlign.center,
             style: const TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1),

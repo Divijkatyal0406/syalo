@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ScreenNavContainers extends StatelessWidget {
@@ -15,10 +14,10 @@ class ScreenNavContainers extends StatelessWidget {
       height: 200,
       width: 300,
       child: Card(
-        margin: EdgeInsets.only(bottom: 10.0),
+        margin: const EdgeInsets.only(bottom: 10.0),
         elevation: 5.0,
         shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Stack(
           children: [
             ClipRRect(
@@ -35,7 +34,7 @@ class ScreenNavContainers extends StatelessWidget {
               top: 4,
               left: 7,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(7)),
                   boxShadow: [
@@ -46,11 +45,11 @@ class ScreenNavContainers extends StatelessWidget {
                     ),
                   ],
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 alignment: Alignment.center,
                 child: Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold),
