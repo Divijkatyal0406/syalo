@@ -15,7 +15,7 @@ class AllSongs extends StatefulWidget {
 
 class _AllSongsState extends State<AllSongs> {
   var mostPopularSOngs = SongsContainer().mostPopular;
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   List<String> songsImage = [
     "https://s18670.pcdn.co/wp-content/uploads/WAT-Relaxing-Music.png",

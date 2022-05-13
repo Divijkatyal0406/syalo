@@ -13,7 +13,7 @@ class NoTransactionImage extends StatelessWidget {
       return Container(
         alignment: Alignment.center,
         child: Column(
-          children: <Widget>[
+          children: const <Widget>[
             Text(
               'No Journals Added Yet!',
               style: TextStyle(fontSize: 20),

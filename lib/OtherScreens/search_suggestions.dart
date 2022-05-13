@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:syalo/model/search_field.dart';
+
 class SearchSuggestions extends StatelessWidget {
   const SearchSuggestions({Key? key}) : super(key: key);
 

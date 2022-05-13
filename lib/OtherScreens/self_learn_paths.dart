@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:syalo/model/app_header2.dart';
 
 class SelfLearn extends StatelessWidget {
   const SelfLearn({Key? key}) : super(key: key);
@@ -13,7 +11,7 @@ class SelfLearn extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding:
-          const EdgeInsets.symmetric(horizontal: 16.0).copyWith(top: 30),
+              const EdgeInsets.symmetric(horizontal: 16.0).copyWith(top: 30),
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
@@ -75,7 +73,7 @@ class SelfLearn extends StatelessWidget {
                             onTap: () {},
                             child: Image(
                                 image:
-                                AssetImage('assets/images/triangle.png')),
+                                    AssetImage('assets/images/triangle.png')),
                           ),
                         ),
                         Expanded(
@@ -90,10 +88,10 @@ class SelfLearn extends StatelessWidget {
                               SizedBox(height: 7),
                               Padding(
                                 padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       '00:00',
@@ -119,7 +117,7 @@ class SelfLearn extends StatelessWidget {
                 ),
                 Padding(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 50).copyWith(top: 45),
+                      EdgeInsets.symmetric(horizontal: 50).copyWith(top: 45),
                   child: Text(
                     'Text, also includes memes, starts with relatability, ends with uplifting',
                     style: TextStyle(

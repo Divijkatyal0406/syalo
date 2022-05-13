@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'models/habbitModel.dart';
 import 'delete_habbit.dart';
 
-
 class TxListItem extends StatelessWidget {
   const TxListItem(this.txItem, this.handler);
 
@@ -13,21 +12,21 @@ class TxListItem extends StatelessWidget {
   final Function handler;
 
   Future<void> share() async {
-    String formatDate(DateTime date) => new DateFormat("MMMM d").format(txItem.date);
+    String formatDate(DateTime date) =>
+        DateFormat("MMMM d").format(txItem.date);
     await FlutterShare.share(
         title: 'Share on..',
-        text: 'I am excited to start up ${txItem.title} from ${formatDate(txItem.date)}',
+        text:
+            'I am excited to start up ${txItem.title} from ${formatDate(txItem.date)}',
         linkUrl: 'https://flutter.dev/',
-        chooserTitle: 'Example Chooser Title'
-    );
+        chooserTitle: 'Example Chooser Title');
   }
-
 
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Card(
         shape: RoundedRectangleBorder(
@@ -66,7 +65,7 @@ class TxListItem extends StatelessWidget {
                       ),
                       child: FittedBox(
                         child: Text(
-                          '${txItem.amount.toStringAsFixed(0)}',
+                          txItem.amount.toStringAsFixed(0),
                           style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
@@ -104,12 +103,12 @@ class TxListItem extends StatelessWidget {
               ),
               mediaQuery.size.width > 450
                   ? Row(
-                    children: [
-                      FlatButton.icon(
+                      children: [
+                        FlatButton.icon(
                           icon: const Icon(Icons.delete, size: 22),
-                          label: Text(
+                          label: const Text(
                             'Delete',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Quicksand',
@@ -118,7 +117,7 @@ class TxListItem extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          textColor: Theme.of(context).accentColor,
+                          textColor: Theme.of(context).colorScheme.secondary,
                           onPressed: () {
                             DeleteTx(
                               txItem.id,
@@ -126,30 +125,29 @@ class TxListItem extends StatelessWidget {
                             ).openDialogue(context);
                           },
                         ),
-                      FlatButton.icon(
-                        icon: const Icon(Icons.share_outlined, size: 22),
-                        label: Text(
-                          'Share',
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Quicksand',
-                          ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        textColor: Theme.of(context).accentColor,
-                        onPressed:share
-                      ),
-                    ],
-                  )
+                        FlatButton.icon(
+                            icon: const Icon(Icons.share_outlined, size: 22),
+                            label: const Text(
+                              'Share',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Quicksand',
+                              ),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            textColor: Theme.of(context).colorScheme.secondary,
+                            onPressed: share),
+                      ],
+                    )
                   : Row(
-                    children: [
-                      IconButton(
+                      children: [
+                        IconButton(
                           icon: const Icon(Icons.delete),
                           iconSize: 22,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           onPressed: () {
                             DeleteTx(
                               txItem.id,
@@ -157,24 +155,23 @@ class TxListItem extends StatelessWidget {
                             ).openDialogue(context);
                           },
                         ),
-                      FlatButton.icon(
-                          icon: const Icon(Icons.share_outlined, size: 22),
-                          label: Text(
-                            'Share',
-                            style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Quicksand',
+                        FlatButton.icon(
+                            icon: const Icon(Icons.share_outlined, size: 22),
+                            label: const Text(
+                              'Share',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Quicksand',
+                              ),
                             ),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          textColor: Theme.of(context).accentColor,
-                          onPressed:share
-                      ),
-                    ],
-                  ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            textColor: Theme.of(context).colorScheme.secondary,
+                            onPressed: share),
+                      ],
+                    ),
             ],
           ),
         ),

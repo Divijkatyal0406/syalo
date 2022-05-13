@@ -11,7 +11,7 @@ class JournalEntry extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: Container(
+        body: SizedBox(
           width: size.width,
           height: size.height,
           child: SingleChildScrollView(
@@ -19,15 +19,15 @@ class JournalEntry extends StatelessWidget {
               children: [
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 150),
+                        const SizedBox(height: 150),
                         Container(
                           width: 368,
                           height: 600,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(35),
                               topRight: Radius.circular(35),
@@ -38,14 +38,14 @@ class JournalEntry extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Topic',
                                       textAlign: TextAlign.center,
@@ -73,11 +73,12 @@ class JournalEntry extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Container(
-                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 height: 70,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(25),
                                     topRight: Radius.circular(25),
@@ -94,7 +95,7 @@ class JournalEntry extends StatelessWidget {
                                 ),
                                 child: TextField(
                                   maxLines: 5,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     contentPadding: EdgeInsets.only(
                                         left: 15,
                                         bottom: 11,
@@ -108,14 +109,14 @@ class JournalEntry extends StatelessWidget {
                                   controller: message1,
                                 ),
                               ),
-                              SizedBox(height: 30),
+                              const SizedBox(height: 30),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Let it out!',
                                       textAlign: TextAlign.center,
@@ -136,11 +137,12 @@ class JournalEntry extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Container(
                                 height: 300,
-                                margin: EdgeInsets.symmetric(horizontal: 20),
-                                decoration: BoxDecoration(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(25),
                                     topRight: Radius.circular(25),
@@ -157,7 +159,7 @@ class JournalEntry extends StatelessWidget {
                                 ),
                                 child: TextField(
                                   maxLines: 15,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     contentPadding: EdgeInsets.only(
                                         left: 15,
                                         bottom: 11,
@@ -171,16 +173,16 @@ class JournalEntry extends StatelessWidget {
                                   controller: message2,
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Padding(
-                                padding: EdgeInsets.only(right: 20),
+                                padding: const EdgeInsets.only(right: 20),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Container(
                                       width: 86,
                                       height: 50,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(15),
                                           topRight: Radius.circular(15),
@@ -196,7 +198,7 @@ class JournalEntry extends StatelessWidget {
                                         ],
                                         color: Color.fromRGBO(97, 255, 0, 1),
                                       ),
-                                      child: Center(
+                                      child: const Center(
                                         child: Text(
                                           'Done',
                                           textAlign: TextAlign.center,
@@ -230,14 +232,14 @@ class JournalEntry extends StatelessWidget {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_back_ios,
                           color: Colors.black,
                           size: 40,
                         ),
                       ),
-                      SizedBox(width: 30),
-                      Text(
+                      const SizedBox(width: 30),
+                      const Text(
                         'Journal',
                         textAlign: TextAlign.center,
                         style: TextStyle(

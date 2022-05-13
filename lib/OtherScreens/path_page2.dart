@@ -16,7 +16,7 @@ class PathPage2 extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 'New',
                 style: TextStyle(
@@ -33,7 +33,7 @@ class PathPage2 extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -42,27 +42,27 @@ class PathPage2 extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Sounds(),
+                        builder: (context) => const Sounds(),
                       ),
                     );
                   },
-                  child: EmptyBox()),
+                  child: const EmptyBox()),
               InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SelfLearn(),
+                        builder: (context) => const SelfLearn(),
                       ),
                     );
                   },
-                  child: EmptyBox()),
+                  child: const EmptyBox()),
             ],
           ),
-          SizedBox(height: 55),
+          const SizedBox(height: 55),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 'Recommended',
                 style: TextStyle(
@@ -79,7 +79,7 @@ class PathPage2 extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -88,27 +88,27 @@ class PathPage2 extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RequestLearningPath(),
+                        builder: (context) => const RequestLearningPath(),
                       ),
                     );
                   },
-                  child: EmptyBox()),
+                  child: const EmptyBox()),
               InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SearchResult(),
+                        builder: (context) => const SearchResult(),
                       ),
                     );
                   },
-                  child: EmptyBox()),
+                  child: const EmptyBox()),
             ],
           ),
-          SizedBox(height: 55),
+          const SizedBox(height: 55),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 'Anxiety',
                 style: TextStyle(
@@ -125,15 +125,15 @@ class PathPage2 extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               EmptyBox(),
               EmptyBox(),
             ],
           ),
-          SizedBox(height: 55),
+          const SizedBox(height: 55),
         ],
       ),
     );

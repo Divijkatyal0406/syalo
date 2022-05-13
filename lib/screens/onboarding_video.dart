@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-
 
 class OnboardingVideo extends StatefulWidget {
   const OnboardingVideo({Key? key}) : super(key: key);
@@ -35,7 +33,6 @@ class _OnboardingVideoState extends State<OnboardingVideo> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -48,26 +45,30 @@ class _OnboardingVideoState extends State<OnboardingVideo> {
           FlatButton(
             textColor: Colors.black,
             onPressed: () {},
-            child: Text("Skip",style: TextStyle(fontSize: 20),),
-            shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
+            child: const Text(
+              "Skip",
+              style: TextStyle(fontSize: 20),
+            ),
+            shape:
+                const CircleBorder(side: BorderSide(color: Colors.transparent)),
           ),
         ],
       ),
       body: FutureBuilder(
-          future: _initializeVideoPlayerFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return AspectRatio(
-                aspectRatio: deviceRatio,
-                child: VideoPlayer(_controller),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ),
+        future: _initializeVideoPlayerFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return AspectRatio(
+              aspectRatio: deviceRatio,
+              child: VideoPlayer(_controller),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {

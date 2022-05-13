@@ -12,10 +12,10 @@ class Habitshabits extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Morning',
                   textAlign: TextAlign.center,
@@ -29,13 +29,13 @@ class Habitshabits extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            HabitContainer(color: Color.fromRGBO(194, 10, 77, 1)),
-            HabitContainer(color: Color.fromRGBO(194, 10, 77, 1)),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            const HabitContainer(color: Color.fromRGBO(194, 10, 77, 1)),
+            const HabitContainer(color: Color.fromRGBO(194, 10, 77, 1)),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Noon',
                   textAlign: TextAlign.center,
@@ -49,12 +49,12 @@ class Habitshabits extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            HabitContainer(color: Color.fromRGBO(255, 101, 12, 1)),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            const HabitContainer(color: Color.fromRGBO(255, 101, 12, 1)),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Evening',
                   textAlign: TextAlign.center,
@@ -68,13 +68,13 @@ class Habitshabits extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            HabitContainer(color: Color.fromRGBO(0, 129, 255, 1)),
-            HabitContainer(color: Color.fromRGBO(0, 129, 255, 1)),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            const HabitContainer(color: Color.fromRGBO(0, 129, 255, 1)),
+            const HabitContainer(color: Color.fromRGBO(0, 129, 255, 1)),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'All day',
                   textAlign: TextAlign.center,
@@ -88,9 +88,9 @@ class Habitshabits extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            HabitContainer(color: Color.fromRGBO(101, 55, 155, 1)),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            const HabitContainer(color: Color.fromRGBO(101, 55, 155, 1)),
+            const SizedBox(height: 20),
           ],
         ),
       ),

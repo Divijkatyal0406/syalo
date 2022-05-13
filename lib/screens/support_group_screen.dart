@@ -7,10 +7,12 @@ class SupportGroupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          child: Center(
-            child: Text("Coming Soon",style: TextStyle(fontSize: 40.0),),
-          ),
-        )
-    );
+      child: const Center(
+        child: Text(
+          "Coming Soon",
+          style: TextStyle(fontSize: 40.0),
+        ),
+      ),
+    ));
   }
 }

@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-
 class HabitChart extends StatelessWidget {
   const HabitChart({Key? key}) : super(key: key);
 
@@ -13,12 +12,12 @@ class HabitChart extends StatelessWidget {
         lineBarsData: [
           LineChartBarData(
             spots: [
-              FlSpot(0, 1),
-              FlSpot(1, 1),
-              FlSpot(2, 3),
-              FlSpot(3, 4),
-              FlSpot(3, 5),
-              FlSpot(4, 4)
+              const FlSpot(0, 1),
+              const FlSpot(1, 1),
+              const FlSpot(2, 3),
+              const FlSpot(3, 4),
+              const FlSpot(3, 5),
+              const FlSpot(4, 4)
             ],
             isCurved: true,
             barWidth: 2,
@@ -54,17 +53,15 @@ class HabitChart extends StatelessWidget {
           ),
         ),
         axisTitleData: FlAxisTitleData(
-            leftTitle: AxisTitle(
-                showTitle: true, titleText: 'Value', margin: 10),
+            leftTitle:
+                AxisTitle(showTitle: true, titleText: 'Value', margin: 10),
             bottomTitle: AxisTitle(
                 showTitle: true,
                 margin: 10,
                 titleText: 'Year',
-                textStyle: TextStyle(),
+                textStyle: const TextStyle(),
                 textAlign: TextAlign.right)),
       ),
     );
   }
 }
-
-

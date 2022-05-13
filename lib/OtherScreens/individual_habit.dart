@@ -9,38 +9,37 @@ class IndividualHabit extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: size.width,
             //height: size.height,
             child: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SizedBox(
                     width: size.width,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 100),
+                        const SizedBox(height: 100),
                         Center(
                           child: Container(
                             width: 150,
                             height: 150,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color.fromRGBO(196, 196, 196, 1),
                               borderRadius:
                                   BorderRadius.all(Radius.elliptical(150, 150)),
                             ),
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Center(
+                        const SizedBox(height: 10),
+                        const Center(
                           child: Text(
                             'Name',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Color.fromRGBO(0, 0, 0, 1),
-
                                 fontSize: 33,
                                 letterSpacing:
                                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -48,24 +47,23 @@ class IndividualHabit extends StatelessWidget {
                                 height: 1),
                           ),
                         ),
-                        SizedBox(height: 30),
-                        Text(
+                        const SizedBox(height: 30),
+                        const Text(
                           'Habits with You',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Color.fromRGBO(0, 0, 0, 1),
-
                               fontSize: 25,
                               letterSpacing:
                                   0 /*percentages not used in flutter. defaulting to zero*/,
                               fontWeight: FontWeight.normal,
                               height: 1),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Container(
                           width: 378,
                           height: 241,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(25),
                               topRight: Radius.circular(25),
@@ -76,21 +74,20 @@ class IndividualHabit extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 16),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Habit 1(name)',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color:
                                               Color.fromRGBO(255, 255, 255, 1),
-
                                           fontSize: 25,
                                           letterSpacing:
                                               0 /*percentages not used in flutter. defaulting to zero*/,
@@ -103,7 +100,6 @@ class IndividualHabit extends StatelessWidget {
                                       style: TextStyle(
                                           color:
                                               Color.fromRGBO(255, 255, 255, 1),
-
                                           fontSize: 20,
                                           letterSpacing:
                                               0 /*percentages not used in flutter. defaulting to zero*/,
@@ -113,11 +109,11 @@ class IndividualHabit extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Container(
                                 width: 368,
                                 height: 177,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(15),
                                     topRight: Radius.circular(15),
@@ -136,14 +132,13 @@ class IndividualHabit extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Streak',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color:
                                                     Color.fromRGBO(0, 0, 0, 1),
-
                                                 fontSize: 25,
                                                 letterSpacing:
                                                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -156,7 +151,6 @@ class IndividualHabit extends StatelessWidget {
                                             style: TextStyle(
                                                 color:
                                                     Color.fromRGBO(0, 0, 0, 1),
-
                                                 fontSize: 25,
                                                 letterSpacing:
                                                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -172,14 +166,13 @@ class IndividualHabit extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Today',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color:
                                                     Color.fromRGBO(0, 0, 0, 1),
-
                                                 fontSize: 30,
                                                 letterSpacing:
                                                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -200,11 +193,11 @@ class IndividualHabit extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Container(
                           width: 378,
                           height: 241,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(25),
                               topRight: Radius.circular(25),
@@ -215,21 +208,20 @@ class IndividualHabit extends StatelessWidget {
                           ),
                           child: Column(
                             children: [
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 16),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Habit 2(name)',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color:
                                               Color.fromRGBO(255, 255, 255, 1),
-
                                           fontSize: 25,
                                           letterSpacing:
                                               0 /*percentages not used in flutter. defaulting to zero*/,
@@ -242,7 +234,6 @@ class IndividualHabit extends StatelessWidget {
                                       style: TextStyle(
                                           color:
                                               Color.fromRGBO(255, 255, 255, 1),
-
                                           fontSize: 20,
                                           letterSpacing:
                                               0 /*percentages not used in flutter. defaulting to zero*/,
@@ -252,11 +243,11 @@ class IndividualHabit extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Container(
                                 width: 368,
                                 height: 177,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(15),
                                     topRight: Radius.circular(15),
@@ -275,14 +266,13 @@ class IndividualHabit extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Streak',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color:
                                                     Color.fromRGBO(0, 0, 0, 1),
-
                                                 fontSize: 25,
                                                 letterSpacing:
                                                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -295,7 +285,6 @@ class IndividualHabit extends StatelessWidget {
                                             style: TextStyle(
                                                 color:
                                                     Color.fromRGBO(0, 0, 0, 1),
-
                                                 fontSize: 25,
                                                 letterSpacing:
                                                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -311,14 +300,13 @@ class IndividualHabit extends StatelessWidget {
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Today',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color:
                                                     Color.fromRGBO(0, 0, 0, 1),
-
                                                 fontSize: 30,
                                                 letterSpacing:
                                                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -347,7 +335,7 @@ class IndividualHabit extends StatelessWidget {
                   top: 20,
                   left: 20,
                   child: Container(
-                    padding: EdgeInsets.only(right: 40),
+                    padding: const EdgeInsets.only(right: 40),
                     width: size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -358,19 +346,18 @@ class IndividualHabit extends StatelessWidget {
                               onTap: () {
                                 Navigator.pop(context);
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.arrow_back_ios,
                                 color: Colors.black,
                                 size: 45,
                               ),
                             ),
-                            SizedBox(width: 30),
-                            Text(
+                            const SizedBox(width: 30),
+                            const Text(
                               'Habits',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Color.fromRGBO(0, 0, 0, 1),
-
                                   fontSize: 45,
                                   letterSpacing:
                                       0 /*percentages not used in flutter. defaulting to zero*/,

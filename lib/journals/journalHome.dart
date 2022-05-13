@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -97,13 +96,13 @@ class _JournalScreenState extends State<JournalScreen> {
     AppBar appBar = AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Text(
+      title: const Text(
         'Journal',
         style: TextStyle(
             fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
       ),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -116,9 +115,9 @@ class _JournalScreenState extends State<JournalScreen> {
 
     List<Widget> _buildPortrait() {
       return <Widget>[
-        Container(
+        SizedBox(
           // padding: EdgeInsets.only(top: 50),
-          height: bodySize * 0.7+20,
+          height: bodySize * 0.7 + 20,
           child: txList.isEmpty
               ? NoTransactionImage(isLandscape)
               : TransactionList(txList, _deleteTransaction),
@@ -154,18 +153,21 @@ class _JournalScreenState extends State<JournalScreen> {
         child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               height: MediaQuery.of(context).size.height * 0.32,
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: [
-                  Image.asset("assets/images/journal_bg.png",fit: BoxFit.fill,),
+                  Image.asset(
+                    "assets/images/journal_bg.png",
+                    fit: BoxFit.fill,
+                  ),
                   Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.only(top: 10.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: Text(
                       "Hi ! ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
@@ -181,13 +183,16 @@ class _JournalScreenState extends State<JournalScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-          isExtended: true,
-          onPressed: () {
-            _startAddTransaction(context);
-          },
-          child: Icon(Icons.add,size: 30,),
-          backgroundColor: Colors.blue,
+        isExtended: true,
+        onPressed: () {
+          _startAddTransaction(context);
+        },
+        child: const Icon(
+          Icons.add,
+          size: 30,
         ),
+        backgroundColor: Colors.blue,
+      ),
     );
   }
 }

@@ -11,10 +11,10 @@ class DeleteTx {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Habbit Completed for the day'),
+          title: const Text('Habbit Completed for the day'),
           actions: <Widget>[
             FlatButton(
-              child: Text('Yes'),
+              child: const Text('Yes'),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(3),
                 side: BorderSide(
@@ -24,13 +24,13 @@ class DeleteTx {
               ),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            SizedBox(width: 1),
+            const SizedBox(width: 1),
             FlatButton(
-              child: Text('Delete'),
+              child: const Text('Delete'),
               color: Colors.redAccent,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(3),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Colors.redAccent,
                   width: 1,
                 ),
@@ -41,7 +41,7 @@ class DeleteTx {
               },
             ),
           ],
-          actionsPadding: EdgeInsets.only(right: 10, bottom: 5),
+          actionsPadding: const EdgeInsets.only(right: 10, bottom: 5),
         );
       },
     );

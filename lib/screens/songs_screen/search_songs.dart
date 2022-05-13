@@ -17,7 +17,7 @@ class _SearchSongsState extends State<SearchSongs> {
   }
 
   Future<List<String>> getListofSOngs(String name) async {
-    return await Future.delayed(Duration(seconds: 1), () {
+    return await Future.delayed(const Duration(seconds: 1), () {
       return ["SOme songs Name"];
     });
   }
@@ -58,7 +58,7 @@ class _SearchSongsState extends State<SearchSongs> {
                       itemCount: 5,
                       itemBuilder: (context, index) => customTile(75, width,
                           "https://s18670.pcdn.co/wp-content/uploads/WAT-Relaxing-Music.png"))
-                  : Center(
+                  : const Center(
                       child: CircularProgressIndicator(),
                     );
             }),
@@ -88,7 +88,7 @@ class _SearchSongsState extends State<SearchSongs> {
               flex: 2,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: const [
                   Text("Song Name"),
                   Text("Artist"),
                 ],
@@ -96,8 +96,8 @@ class _SearchSongsState extends State<SearchSongs> {
             ),
             Expanded(
                 flex: 1,
-                child:
-                    IconButton(onPressed: () {}, icon: Icon(Icons.play_arrow)))
+                child: IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.play_arrow)))
           ],
         ),
       ),

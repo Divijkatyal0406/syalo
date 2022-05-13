@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../journals/delete_tx_dialogue1.dart';
 import 'models1/expense1.dart';
 
 class TxListItem extends StatelessWidget {

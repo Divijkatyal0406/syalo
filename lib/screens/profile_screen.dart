@@ -8,27 +8,26 @@ import '../habbits/habbitHome.dart';
 import '../journals/journalHome.dart';
 import '../songTracks/homePage.dart';
 
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var photo;
+    String? photo;
     var ref = FirebaseAuth.instance.currentUser;
-    if(ref!=null)
-    {
-    photo=ref.photoURL;}
-    else
-    {photo="";}
+    if (ref != null) {
+      photo = ref.photoURL;
+    } else {
+      photo = "";
+    }
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           elevation: 0,
           //actions: [Text("Refer",style: TextStyle(color: Colors.black),)],
         ),
         extendBodyBehindAppBar: true,
-        drawer: Drawer(),
+        drawer: const Drawer(),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -36,28 +35,39 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(photo),
+                  backgroundImage: NetworkImage(photo!),
                 ),
-                SizedBox(height: 10.0,),
-                Text("${ref!.displayName}",style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),),
-                SizedBox(height: 20.0,),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Text(
+                  "${ref!.displayName}",
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       },
                       child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        elevation: 10,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(50)),
                         child: Container(
                           height: 52.0,
                           width: 52.0,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/sounds.png'),
+                              image: AssetImage('assets/sounds.png'),
                               fit: BoxFit.fill,
                             ),
                             shape: BoxShape.circle,
@@ -66,19 +76,22 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HabbitScreen()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HabbitScreen()));
                       },
                       child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        elevation: 10,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(50)),
                         child: Container(
                           height: 52.0,
                           width: 52.0,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/habbit.png'),
+                              image: AssetImage('assets/habbit.png'),
                               fit: BoxFit.fill,
                             ),
                             shape: BoxShape.circle,
@@ -87,19 +100,22 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       },
                       child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        elevation: 10,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(50)),
                         child: Container(
                           height: 52,
                           width: 52,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/meditate.png'),
+                              image: AssetImage('assets/meditate.png'),
                               fit: BoxFit.fill,
                             ),
                             shape: BoxShape.circle,
@@ -108,19 +124,22 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => JournalScreen()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => JournalScreen()));
                       },
                       child: Material(
-                        elevation:10,
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        elevation: 10,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(50)),
                         child: Container(
                           height: 52,
                           width: 52,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/journal.png'),
+                              image: AssetImage('assets/journal.png'),
                               fit: BoxFit.fill,
                             ),
                             shape: BoxShape.circle,
@@ -130,17 +149,17 @@ class ProfileScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 20.0,),
-                HabitContainer(),
-                SizedBox(height: 20.0,),
-                Container(
-                    height: 300,
-                    width: 600,
-                    child: HabitChart())
+                const SizedBox(
+                  height: 20.0,
+                ),
+                const HabitContainer(),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                const SizedBox(height: 300, width: 600, child: HabitChart())
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }

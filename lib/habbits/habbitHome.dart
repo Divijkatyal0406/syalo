@@ -7,9 +7,7 @@ import 'models/habbitModel.dart';
 import 'add_habbit.dart';
 import 'no_habbit_image.dart';
 
-
 class HabbitScreen extends StatefulWidget {
-
   String? title;
 
   @override
@@ -26,7 +24,7 @@ class _HabbitScreenState extends State<HabbitScreen> {
       onCreate: (db, version) {
         return db.execute(
           'CREATE TABLE expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, '
-              'title TEXT, amount REAL, date TEXT)',
+          'title TEXT, amount REAL, date TEXT)',
         );
       },
       version: 1,
@@ -98,13 +96,13 @@ class _HabbitScreenState extends State<HabbitScreen> {
     AppBar appBar = AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      title: Text(
+      title: const Text(
         'Habit\'s',
         style: TextStyle(
             fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
       ),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -118,7 +116,7 @@ class _HabbitScreenState extends State<HabbitScreen> {
     List<Widget> _buildPortrait() {
       return <Widget>[
         Container(
-          padding: EdgeInsets.only(top: 50),
+          padding: const EdgeInsets.only(top: 50),
           height: bodySize * 0.7 + 20,
           child: txList.isEmpty
               ? NoTransactionImage(isLandscape)
@@ -158,7 +156,7 @@ class _HabbitScreenState extends State<HabbitScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () => _startAddTransaction(context),
         backgroundColor: Colors.black,
       ),

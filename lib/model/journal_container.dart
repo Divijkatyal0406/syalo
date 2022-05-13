@@ -12,14 +12,13 @@ class JournalContainer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
+        const Padding(
+          padding: EdgeInsets.only(left: 8.0),
           child: Text(
             '12 nov, 21  - 19:52',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1),
-
                 fontSize: 15,
                 letterSpacing:
                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -27,12 +26,12 @@ class JournalContainer extends StatelessWidget {
                 height: 1),
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
-          padding: EdgeInsets.only(left: 40),
+          padding: const EdgeInsets.only(left: 40),
           width: 328,
           height: 145,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
@@ -46,26 +45,24 @@ class JournalContainer extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Text(
                     topic,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
-
                         fontSize: 22,
                         letterSpacing:
                             0 /*percentages not used in flutter. defaulting to zero*/,
                         fontWeight: FontWeight.normal,
                         height: 1),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Text(
                     description,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
-
                         fontSize: 15,
                         letterSpacing:
                             0 /*percentages not used in flutter. defaulting to zero*/,
@@ -74,7 +71,7 @@ class JournalContainer extends StatelessWidget {
                   )
                 ],
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(16),
                 child: Align(
                   alignment: Alignment.centerRight,

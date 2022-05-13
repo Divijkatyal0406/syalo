@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:syalo/songTracks/musicPlayer.dart';
 
 import 'database.dart';
@@ -16,15 +16,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        brightness: Brightness.dark,
         backgroundColor: Colors.white,
         elevation: 0,
         // leading: Icon(Icons.search,
         //               size: 30,
         //       color: Colors.black),
-        leading:IconButton(
-          onPressed: (){Navigator.pop(context);},
-          icon:Icon(Icons.arrow_back,color: Colors.black,size:30),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back, color: Colors.black, size: 30),
         ),
         actions: [
           Column(
@@ -34,21 +35,18 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text(
                 "Hello, ${FirebaseAuth.instance.currentUser!.displayName!.split(' ')[0]}",
-                style: TextStyle(fontWeight: FontWeight.bold,
-                 color: Colors.black)
-                ,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.black),
               ),
             ],
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(right: 8, left: 15),
-            child: Icon(
-              Icons.notifications_active_outlined,
-              size: 30,
-              color: Colors.black
-            ),
+            child: Icon(Icons.notifications_active_outlined,
+                size: 30, color: Colors.black),
           )
         ],
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       body: Stack(
         children: [
@@ -56,7 +54,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 20),
                   child: Text(
                     "Sounds",
@@ -66,8 +64,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black),
                   ),
                 ),
-
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 20, top: 10, bottom: 20),
                   child: Text(
                     "Trending",
@@ -75,26 +72,23 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold, color: Colors.grey),
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 300,
                   child: TrackWidget(refresh),
                 ),
                 CircleTrackWidget(
                   song: newRelease,
                   title: "Meditation",
-                  
                   subtitle: "All songs",
                   notifyParent: refresh,
-                  
                 ),
                 CircleTrackWidget(
                   song: mostPopular,
                   title: "Favourites",
                   subtitle: "346 songs",
                   notifyParent: refresh,
-                  
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 130,
                 )
               ],
@@ -122,19 +116,19 @@ class _HomePageState extends State<HomePage> {
 //     color: Colors.black);
 // double currentSlider = 0;
 
-Song currentSong=Song(
+Song currentSong = Song(
   name: "Adventure",
   image: "assets/song1.jpg",
   singer: "Charle Cardin",
   duration: 300,
   color: Colors.grey,
   url:
-  "https://res.cloudinary.com/dhrju5vsa/video/upload/v1643014783/Sounds/Beautiful_Adventure_e9vk7e.mp4",
+      "https://res.cloudinary.com/dhrju5vsa/video/upload/v1643014783/Sounds/Beautiful_Adventure_e9vk7e.mp4",
 );
 
 class PlayerHome extends StatefulWidget {
   final Song song;
-  PlayerHome(this.song);
+  const PlayerHome(this.song);
 
   @override
   _PlayerHomeState createState() => _PlayerHomeState();
@@ -152,8 +146,8 @@ class _PlayerHomeState extends State<PlayerHome> {
       },
       child: Container(
         height: 130,
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(8),
+        decoration: const BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.only(topRight: Radius.circular(30))),
         child: Column(
@@ -170,20 +164,22 @@ class _PlayerHomeState extends State<PlayerHome> {
                         radius: 30,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(widget.song.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold)),
-                        SizedBox(width: 110,),
+                        const SizedBox(
+                          width: 110,
+                        ),
                         Text(widget.song.singer,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white54,
                             ))
                       ],
@@ -208,8 +204,11 @@ class _PlayerHomeState extends State<PlayerHome> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('Tap to play the song',style: TextStyle(color: Colors.red,fontSize: 15),)
+              children: const [
+                Text(
+                  'Tap to play the song',
+                  style: TextStyle(color: Colors.red, fontSize: 15),
+                )
                 // Text(
                 //   Duration(seconds: currentSlider.toInt())
                 //       .toString()
@@ -257,7 +256,7 @@ class _PlayerHomeState extends State<PlayerHome> {
 
 class TrackWidget extends StatelessWidget {
   final Function() notifyParent;
-  TrackWidget(this.notifyParent);
+  const TrackWidget(this.notifyParent);
 
   @override
   Widget build(BuildContext context) {
@@ -273,7 +272,7 @@ class TrackWidget extends StatelessWidget {
             notifyParent();
           },
           child: Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             width: 200,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -287,25 +286,25 @@ class TrackWidget extends StatelessWidget {
                     image: AssetImage(mostPopular[index].image),
                     fit: BoxFit.cover)),
             child: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     mostPopular[index].name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(mostPopular[index].singer,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white54,
                           fontWeight: FontWeight.bold,
                           fontSize: 12)),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   )
                 ],
@@ -324,7 +323,7 @@ class CircleTrackWidget extends StatelessWidget {
   final String subtitle;
   final Function() notifyParent;
 
-  CircleTrackWidget(
+  const CircleTrackWidget(
       {required this.title,
       required this.song,
       required this.subtitle,
@@ -332,29 +331,30 @@ class CircleTrackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 210,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 20, top: 10),
+            padding: const EdgeInsets.only(left: 20, top: 10),
             child: Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20, bottom: 20),
+            padding: const EdgeInsets.only(left: 20, bottom: 20),
             child: Text(
               subtitle,
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.grey),
             ),
           ),
-          Container(
+          SizedBox(
             height: 120,
             child: ListView.builder(
               itemCount: song.length,
@@ -368,23 +368,23 @@ class CircleTrackWidget extends StatelessWidget {
                     notifyParent();
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       children: [
                         CircleAvatar(
                           backgroundImage: AssetImage(song[index].image),
                           radius: 40,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         Text(
                           song[index].name,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         Text(
                           song[index].singer,
-                          style: TextStyle(color: Colors.white54),
+                          style: const TextStyle(color: Colors.white54),
                         )
                       ],
                     ),
