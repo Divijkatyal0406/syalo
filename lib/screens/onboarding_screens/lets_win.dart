@@ -54,6 +54,9 @@ class LetsWinScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 40,
+              ),
               ElevatedButton(
                   onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => DefaultMoodScreen())),
