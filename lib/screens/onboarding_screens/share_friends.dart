@@ -73,6 +73,8 @@ class ShareWithFriendsScreen extends StatelessWidget {
                           height: 2,
                         ),
                         TextFormField(
+                          toolbarOptions:
+                              const ToolbarOptions(copy: true, selectAll: true),
                           // initialValue:
                           textAlign: TextAlign.center,
                           readOnly: true,
