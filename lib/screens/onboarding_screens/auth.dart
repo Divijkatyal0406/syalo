@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:easy_firebase/easy_firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:syalo/screens/onboarding_screens/lets_win.dart';
+import 'package:syalo/screens/onboarding_screens/transitions.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -80,15 +80,16 @@ class _AuthScreenState extends State<AuthScreen> {
                     padding: MaterialStateProperty.all(EdgeInsets.symmetric(
                         vertical: 16, horizontal: width * .20))),
                 onPressed: () async {
-                  print("Connect me with firebase to signin"); //TODO
-                  try {
-                    await EasyFire().getAuthObject().signInWithGoogle();
-                  } catch (e) {
-                    print(e);
-                  }
+                  // print("Connect me with firebase to signin"); //TODO
+                  // try {
+                  //   await EasyFire().getAuthObject().signInWithGoogle();
+                  // } catch (e) {
+                  //   print(e);
+                  // }
 
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => LetsWinScreen()));
+                  Navigator.of(context).pushReplacement(PageTransition(
+                      child: LetsWinScreen(),
+                      type: PageTransitionType.rightToLeft));
                 },
                 icon: FaIcon(FontAwesomeIcons.google),
                 label: Padding(
