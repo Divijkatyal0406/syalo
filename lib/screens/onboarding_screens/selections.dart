@@ -141,8 +141,12 @@ class _BaseSelectionState extends State<BaseSelection> {
     );
   }
 
-  Widget selectionButton(
-      {required String item, required Color color, required index}) {
+  Widget selectionButton({
+    required String item,
+    required Color color,
+    required index,
+  }) {
+    double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -151,8 +155,10 @@ class _BaseSelectionState extends State<BaseSelection> {
             currentSelection = index;
           });
         },
-        child: Container(
-          width: double.infinity,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          width: currentSelection == index ? width * .95 : width * .85,
           key: ValueKey(item),
           decoration: BoxDecoration(
               border: Border.all(

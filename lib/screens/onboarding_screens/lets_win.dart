@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syalo/screens/onboarding_screens/default_mood_selection.dart';
+import 'package:syalo/screens/onboarding_screens/transitions.dart';
 
 class LetsWinScreen extends StatelessWidget {
   const LetsWinScreen({Key? key}) : super(key: key);
@@ -58,8 +59,10 @@ class LetsWinScreen extends StatelessWidget {
                 height: 40,
               ),
               ElevatedButton(
-                  onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => DefaultMoodScreen())),
+                  onPressed: () => Navigator.of(context).pushReplacement(
+                      PageTransition(
+                          child: DefaultMoodScreen(),
+                          type: PageTransitionType.rightToLeft)),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: width * .20, vertical: 12),
