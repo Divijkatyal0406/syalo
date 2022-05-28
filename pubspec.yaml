@@ -28,7 +28,7 @@ dependencies:
   flutter_svg: ^1.0.3
   flutter_icons: ^1.1.0
   fl_chart: ^0.41.0
-  easy_firebase: ^0.0.2
+  easy_firebase: ^0.0.4
   day_picker: ^1.0.1
   date_format: ^2.0.5
   date_time_picker: "^2.1.0"

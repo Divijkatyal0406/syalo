@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:easy_firebase/easy_firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:syalo/screens/onboarding_screens/lets_win.dart';
@@ -81,11 +82,11 @@ class _AuthScreenState extends State<AuthScreen> {
                         vertical: 16, horizontal: width * .20))),
                 onPressed: () async {
                   // print("Connect me with firebase to signin"); //TODO
-                  // try {
-                  //   await EasyFire().getAuthObject().signInWithGoogle();
-                  // } catch (e) {
-                  //   print(e);
-                  // }
+                  try {
+                    await EasyFire().getAuthObject().signInWithGoogle();
+                  } catch (e) {
+                    print(e);
+                  }
 
                   Navigator.of(context).pushReplacement(PageTransition(
                       child: LetsWinScreen(),
