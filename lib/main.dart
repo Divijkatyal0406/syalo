@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
-import 'package:syalo/screens/onboarding_screens/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:syalo/screens/onboarding_screens/welcome_screen.dart';
 //Uncomment next line to use signOut()
 //import 'package:firebase_auth/firebase_auth.dart';
 
@@ -24,13 +24,13 @@ class _SyaloAppState extends State<SyaloApp> {
   @override
   void initState() {
     super.initState();
-     initMixpanel();
+    initMixpanel();
   }
 
-   Future<void> initMixpanel() async {
-     mixpanel = await Mixpanel.init("1e307809e3aca420e9241fc84d0164cf",
-         optOutTrackingDefault: false);
-   }
+  Future<void> initMixpanel() async {
+    mixpanel = await Mixpanel.init("1e307809e3aca420e9241fc84d0164cf",
+        optOutTrackingDefault: false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _SyaloAppState extends State<SyaloApp> {
       // home: FirebaseAuth.instance.currentUser != null
       //     ? const MainFrame()
       //     : const WelcomeScreen(),
-      home: AuthScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
