@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
 import 'package:syalo/screens/onboarding_screens/auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+//Uncomment next line to use signOut()
+//import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const SyaloApp());
 }
 
@@ -31,7 +34,7 @@ class _SyaloAppState extends State<SyaloApp> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth.instance.signOut();
+    //FirebaseAuth.instance.signOut();
     //FireStoreDB().addHabit("Random Happy Faces",1);
     //print(FireStoreDB().getHabitsList());
     return const MaterialApp(
