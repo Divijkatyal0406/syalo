@@ -95,7 +95,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: TextButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (_) => LoginSignupScreen()));
+                        MaterialPageRoute(builder: (_) => AuthScreen()));
                   },
                   child: Text("skip >>")),
             ),
