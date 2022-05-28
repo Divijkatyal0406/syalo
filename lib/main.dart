@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mixpanel_flutter/mixpanel_flutter.dart';
-import 'package:syalo/screens/onboarding_screens/auth.dart';
+import 'package:syalo/screens/onboarding_screens/welcome_screen.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -35,14 +35,13 @@ class _SyaloAppState extends State<SyaloApp> {
     //FireStoreDB().addHabit("Random Happy Faces",1);
     //print(FireStoreDB().getHabitsList());
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'SuprSelf',
-      // theme: ThemeData(
-      // ),
-      // home: FirebaseAuth.instance.currentUser != null
-      //     ? const MainFrame()
-      //     : const WelcomeScreen(),
-      home: AuthScreen(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'SuprSelf',
+        // theme: ThemeData(
+        // ),
+        // home: FirebaseAuth.instance.currentUser != null
+        //     ? const MainFrame()
+        //     : const WelcomeScreen(),
+        home: WelcomeScreen());
   }
 }

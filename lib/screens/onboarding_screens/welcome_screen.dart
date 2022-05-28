@@ -19,8 +19,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _videoPlayerController = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4');
+    _videoPlayerController =
+        VideoPlayerController.asset('assets/onboarding/video.mp4');
+    _videoPlayerController.setVolume(0.10);
     _videoPlayerController.setLooping(false);
   }
 
