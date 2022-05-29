@@ -129,8 +129,9 @@ class ShareWithFriendsScreen extends StatelessWidget {
                                     side: const BorderSide(
                                         width: 1, color: Colors.blue)))),
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => const MainFrame()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (_) => const MainFrame()));
                         },
                         child: const Padding(
                           padding:

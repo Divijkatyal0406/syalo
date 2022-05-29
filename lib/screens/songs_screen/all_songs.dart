@@ -14,20 +14,8 @@ class AllSongs extends StatefulWidget {
 }
 
 class _AllSongsState extends State<AllSongs> {
-  var mostPopularSOngs = SongsContainer().mostPopular;
+  final Map<String, List<Song>> allSongs = SongsContainer().getAllSongs;
   final TextEditingController _searchController = TextEditingController();
-
-  List<String> songsImage = [
-    "https://s18670.pcdn.co/wp-content/uploads/WAT-Relaxing-Music.png",
-    "https://m.media-amazon.com/images/I/91CpAVMdz2L._SS500_.jpg",
-    "https://i.pinimg.com/originals/13/f7/f3/13f7f3512ab2804636c28c14e9f3daac.jpg",
-    "https://img.apmcdn.org/9ef69ededb1f2792f45e52294af605d4b4aaecc4/widescreen/786473-20200402-trees-in-vermont-at-sunset.jpg",
-    "https://i.scdn.co/image/ab67616d0000b2738876ae72bcec463ef10916ef",
-    "https://wallpaperaccess.com/full/7307632.jpg",
-    "https://i1.sndcdn.com/artworks-B5DCzAZwe4DTSnqu-ZmElDA-t500x500.jpg",
-    "https://i.pinimg.com/originals/cd/0e/3c/cd0e3c6522beab0f62b5a7cf363e216c.jpg",
-    "https://st.depositphotos.com/2284893/2439/i/450/depositphotos_24390641-stock-photo-monk-in-meditation-at-sunrise.jpg",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +24,7 @@ class _AllSongsState extends State<AllSongs> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           iconTheme: IconThemeData(color: Colors.black),
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -65,12 +54,11 @@ class _AllSongsState extends State<AllSongs> {
         ),
         body: ListView(
           children: [
-            songCategoryWise("Trending", mostPopularSOngs),
-            songCategoryWise("Favorites", mostPopularSOngs),
-            songCategoryWise("Calm", mostPopularSOngs),
-            songCategoryWise("Hard Rock", mostPopularSOngs),
-            songCategoryWise("Instrumental", mostPopularSOngs),
-            songCategoryWise("Nature", mostPopularSOngs),
+            songCategoryWise("Trending", allSongs["Trending"]!),
+            songCategoryWise("Nature", allSongs["Nature"]!),
+            songCategoryWise("Calming", allSongs["Calming"]!),
+            songCategoryWise("Meditation", allSongs["Meditation"]!),
+            songCategoryWise("Focus", allSongs["Focus"]!),
 
             // SizedBox(
             //   height: height,
@@ -152,7 +140,11 @@ class _AllSongsState extends State<AllSongs> {
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(
               categoryName,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 2.0,
+              ),
             ),
           ),
           SingleChildScrollView(
@@ -177,7 +169,7 @@ class _AllSongsState extends State<AllSongs> {
             builder: (_) => MusicPlayer(
                   tag: categoryName + index.toString(),
                   songURL: songDetail.url,
-                  imageURL: songsImage[index],
+                  imageURL: songDetail.image,
                 ))), //TODO: image url should be provided not assets
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
@@ -190,24 +182,9 @@ class _AllSongsState extends State<AllSongs> {
               child: Stack(
                 children: [
                   SizedBox.expand(
-                    child: Image.network(
-                      songsImage[index],
-                      //TODO: use songdetail.image
+                    child: Image.asset(
+                      songDetail.image,
                       fit: BoxFit.fill,
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                              // value: loadingProgress.expectedTotalBytes != null
-                              //     ? loadingProgress.cumulativeBytesLoaded /
-                              //         loadingProgress.expectedTotalBytes!
-                              //     : null,
-                              ),
-                        );
-                      },
-                      errorBuilder: (_, __, ___) =>
-                          Image.asset("assets/onboarding/auth.png"),
                     ),
                   ),
                   Positioned(

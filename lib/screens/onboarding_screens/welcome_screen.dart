@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:syalo/screens/onboarding_screens/auth.dart';
 import 'package:video_player/video_player.dart';
-import 'package:syalo/screens/login_signup.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

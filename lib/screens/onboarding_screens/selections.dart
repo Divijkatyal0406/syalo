@@ -3,7 +3,7 @@ import 'package:syalo/screens/onboarding_screens/how_anxiety.dart';
 import 'package:syalo/screens/onboarding_screens/how_energetic.dart';
 import 'package:syalo/screens/onboarding_screens/how_much_calm.dart';
 import 'package:syalo/screens/onboarding_screens/how_productive.dart';
-import 'package:syalo/screens/onboarding_screens/share_friends.dart';
+import 'package:syalo/screens/onboarding_screens/recommended_habits.dart';
 import 'package:syalo/screens/onboarding_screens/transitions.dart';
 
 // ignore: must_be_immutable
@@ -85,7 +85,7 @@ class _BaseSelectionState extends State<BaseSelection> {
                           context,
                           PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: const ShareWithFriendsScreen()));
+                              child: const RecommendedHabitsScreen()));
 
                       break;
                     default:
