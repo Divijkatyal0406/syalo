@@ -48,6 +48,8 @@ dependencies:
   just_audio: ^0.9.20
 #  camera: ^0.9.4+11
   share_plus: ^4.0.4
+  google_sign_in: ^5.3.2
+  firebase_auth: ^3.3.19
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +77,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/onboarding/
+    - assets/music_images/
     - assets/yoga.jpeg
     - assets/goodsleep.jpg
     - assets/learn.jpg
