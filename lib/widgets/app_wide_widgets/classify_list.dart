@@ -67,10 +67,7 @@ class ClassifyList extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        footer: Container(
-                          decoration: BoxDecoration(color: colors1[idx1]),
-                          child: Expanded(
-                            child: Column(
+                        footer:  Column(
                               children: [
                                 Text(
                                   heading1[idx1++],
@@ -83,8 +80,7 @@ class ClassifyList extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ),
-                        ),
+                        
                       ),
                     ),
                   ),
