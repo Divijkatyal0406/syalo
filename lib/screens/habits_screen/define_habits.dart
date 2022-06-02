@@ -15,12 +15,15 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
   late TextEditingController _perdayController;
   late TextEditingController _reasonController;
 
+  bool repeatEveryday = false;
+  List remainders = [];
+  int timesPerday = 1;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _nameController = TextEditingController(text: widget.habitName);
-    _perdayController = TextEditingController();
     _reasonController = TextEditingController();
   }
 
@@ -54,147 +57,163 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
             child: Text("Save. Let's Win!")),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: _nameController,
-                  readOnly: _nameController.text != "",
-                  decoration: InputDecoration(
-                      focusColor: Colors.red,
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: Colors.black),
-                          borderRadius: BorderRadius.circular(5)),
-                      prefixIcon: Icon(Icons.edit),
-                      hintText: "Name"),
+            child: Column(
+          children: [
+            ListTile(
+              leading: Icon(Icons.edit),
+              title: TextFormField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  hintText: "Name",
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: TextEditingController(text: "Repeat Everyday"),
-                  readOnly: true,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: Colors.black),
-                          borderRadius: BorderRadius.circular(5)),
-                      prefixIcon: Icon(Icons.repeat)),
-                ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            ListTile(
+              leading: Icon(Icons.repeat),
+              title: Text("Repeat Everyday"),
+              trailing: Checkbox(
+                value: repeatEveryday,
+                onChanged: (bool? newState) {
+                  setState(
+                    () {
+                      repeatEveryday = newState!;
+                    },
+                  );
+                },
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: _perdayController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      // enabledBorder: InputBorder.none,
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: Colors.black),
-                          borderRadius: BorderRadius.circular(5)),
-                      prefixIcon: Icon(Icons.location_searching),
-                      hintText: "Times Per day"),
-                ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.location_searching,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: Colors.grey)),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Icon(Icons.notifications),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text("Remind me At")
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(timeSelected),
-                              IconButton(
-                                  onPressed: () async {
-                                    TimeOfDay? time = await showTimePicker(
-                                        // onEntryModeChanged: (),
-                                        context: context,
-                                        initialTime: TimeOfDay.now());
-
-                                    if (time != null) {
-                                      setState(() {
-                                        String hour = time.hour.toString();
-                                        String min = time.minute.toString();
-                                        if (time.hour < 10) {
-                                          hour = "0" + time.hour.toString();
-                                        }
-                                        if (time.minute < 10) {
-                                          min = "0" + time.minute.toString();
-                                        }
-
-                                        timeSelected = hour + ":" + min;
-                                      });
-                                    }
-                                  },
-                                  icon: Icon(Icons.timer))
-                            ]),
-                      )
-                    ],
+              title: Text("Times per day"),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        timesPerday += timesPerday < 5 ? 1 : 0;
+                      });
+                    },
+                    icon: Icon(Icons.arrow_upward_sharp),
                   ),
-                ),
+                  Text(
+                    timesPerday.toString(),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          timesPerday -= timesPerday > 1 ? 1 : 0;
+                        });
+                      },
+                      icon: Icon(Icons.arrow_downward_sharp))
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: _reasonController,
-                  maxLines: maxLines,
-                  decoration: InputDecoration(
-                      hintText: "Whats your Why?",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: Colors.black),
-                          borderRadius: BorderRadius.circular(5)),
-                      prefixIcon: Icon(Icons.query_stats_sharp)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: Colors.grey)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            ListTile(
+              leading: Icon(Icons.alarm),
+              title: Text("Remind me at"),
+              subtitle: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (var remainder in remainders)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          children: [
-                            Icon(Icons.people),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text("Add Partners")
-                          ],
+                        Text(
+                          remainder,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        Icon(Icons.share)
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                remainders.remove(remainder);
+                              });
+                            },
+                            icon: Icon(Icons.cancel_rounded)),
                       ],
                     ),
-                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Add Remainder",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            timeConversion(context);
+                          },
+                          icon: Icon(Icons.add))
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            ListTile(
+              leading: Icon(Icons.data_array),
+              title: TextFormField(
+                controller: _reasonController,
+                // maxLines: 2,
+                decoration: InputDecoration(
+                  hintText: "Whats Your Why?",
                 ),
-              )
-            ],
-          ),
-        ));
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            ListTile(
+              leading: Icon(Icons.people),
+              title: Text("Add Partners"),
+              trailing: IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+          ],
+        )));
+  }
+
+  Future<void> timeConversion(BuildContext context) async {
+    TimeOfDay? time = await showTimePicker(
+        // onEntryModeChanged: (),
+        context: context,
+        initialTime: TimeOfDay.now());
+
+    if (time != null) {
+      setState(() {
+        String hour = time.hour.toString();
+        String min = time.minute.toString();
+        if (time.hour < 10) {
+          hour = "0" + time.hour.toString();
+        }
+        if (time.minute < 10) {
+          min = "0" + time.minute.toString();
+        }
+
+        timeSelected = hour + ":" + min;
+        remainders.add(timeSelected);
+      });
+    }
   }
 
   @override
