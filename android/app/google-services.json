@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "912096233649-t6rpjhi0lq40nbpqtcdhc7bqju3ke7an.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.health.suprself",
+            "certificate_hash": "17a7c3689463555548ac1db4f51f7c15c9753224"
+          }
+        },
+        {
           "client_id": "912096233649-qfkae83q5oep2hdhcufkppkj5nmaf47f.apps.googleusercontent.com",
           "client_type": 3
         }

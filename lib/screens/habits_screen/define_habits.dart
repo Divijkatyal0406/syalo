@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:syalo/screens/habits_screen/habit_storage_mangement.dart';
+import 'package:syalo/screens/habits_screen/models/define_habit_models.dart';
 
 class HabitsDescription extends StatefulWidget {
   String habitName;
@@ -15,8 +18,8 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
   late TextEditingController _perdayController;
   late TextEditingController _reasonController;
 
-  bool repeatEveryday = false;
-  List remainders = [];
+  bool repeatEveryday = true;
+  List<String> reminders = [];
   int timesPerday = 1;
 
   @override
@@ -25,7 +28,39 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
     super.initState();
     _nameController = TextEditingController(text: widget.habitName);
     _reasonController = TextEditingController();
+    _perdayController = TextEditingController();
   }
+
+  List<String> days = [
+    'Sunday',
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  List<bool> selectedDays = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
+
+  String selected_days() {
+    String result = "";
+    for (int i = 0; i < selectedDays.length; i++) {
+      if (selectedDays[i]) {
+        result += i.toString();
+      }
+    }
+    return result;
+  }
+
+  final _box = Hive.box<Map<dynamic, dynamic>>("User");
 
   int maxLines = 1;
   String timeSelected = "12:00";
@@ -48,11 +83,62 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
           ),
         ),
         floatingActionButton: ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               print("Save all the data in the database");
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  duration: Duration(seconds: 1),
-                  content: Text("Succesfully saved")));
+
+              String repeatDays = "";
+              String image =
+                  "https://www.ecommunity.com/sites/default/files/styles/blog_post_desktop/public/blog-posts/2019-03/sugar-intake-blog.jpg?itok=-C8Hidtj";
+
+              if (repeatEveryday) {
+                for (int i = 0; i < 7; i++) {
+                  repeatDays += i.toString();
+                  repeatDays += ',';
+                }
+              } else {
+                for (int i = 0; i < selectedDays.length; i++) {
+                  if (selectedDays[i]) {
+                    repeatDays += i.toString();
+                    repeatDays += ',';
+                  }
+                }
+              }
+
+              Habit newHabit = Habit(
+                userId: await _box.get(0)!['id'],
+                name: _nameController.text,
+                repeatDays: repeatDays,
+                image: image,
+                timesPerDay: timesPerday,
+                reminder: reminders.join(','),
+                reason: _reasonController.text,
+                streak: 0,
+              );
+              var response = await HabitService().addHabits(habit: newHabit);
+              if (response.toString() == "Success") {
+                // print(response.toString());
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.green,
+                    duration: Duration(seconds: 1),
+                    content: Text(
+                      "Added Successfully",
+                    ),
+                  ),
+                );
+              } else {
+                // print(response.toString());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.red,
+                    duration: Duration(seconds: 1),
+                    content: Text(
+                      "Failed to Add",
+                    ),
+                  ),
+                );
+              }
             },
             child: Text("Save. Let's Win!")),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -62,6 +148,7 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
             ListTile(
               leading: Icon(Icons.edit),
               title: TextFormField(
+                readOnly: widget.habitName != "",
                 controller: _nameController,
                 decoration: InputDecoration(
                   hintText: "Name",
@@ -85,6 +172,18 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
                 },
               ),
             ),
+            if (!repeatEveryday)
+              for (int i = 0; i <= 6; i++)
+                ListTile(
+                  title: Text(days[i]),
+                  trailing: Checkbox(
+                      value: selectedDays[i],
+                      onChanged: (bool? newVal) {
+                        setState(() {
+                          selectedDays[i] = newVal!;
+                        });
+                      }),
+                ),
             SizedBox(
               height: 15,
             ),
@@ -127,7 +226,7 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
               subtitle: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  for (var remainder in remainders)
+                  for (var remainder in reminders)
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -139,7 +238,7 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
                         IconButton(
                             onPressed: () {
                               setState(() {
-                                remainders.remove(remainder);
+                                reminders.remove(remainder);
                               });
                             },
                             icon: Icon(Icons.cancel_rounded)),
@@ -157,7 +256,9 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
                       ),
                       IconButton(
                           onPressed: () {
-                            timeConversion(context);
+                            if (reminders.length < timesPerday) {
+                              timeConversion(context);
+                            } else {}
                           },
                           icon: Icon(Icons.add))
                     ],
@@ -211,7 +312,7 @@ class _HabitsDescriptionState extends State<HabitsDescription> {
         }
 
         timeSelected = hour + ":" + min;
-        remainders.add(timeSelected);
+        reminders.add(timeSelected);
       });
     }
   }

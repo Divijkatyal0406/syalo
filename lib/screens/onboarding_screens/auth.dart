@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:easy_firebase/easy_firebase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:syalo/screens/onboarding_screens/lets_win.dart';
+import 'package:syalo/screens/onboarding_screens/onbording_server.dart';
 import 'package:syalo/screens/onboarding_screens/transitions.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -14,6 +17,8 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  var box = Hive.box<Map<dynamic, dynamic>>("User");
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -81,16 +86,24 @@ class _AuthScreenState extends State<AuthScreen> {
                     padding: MaterialStateProperty.all(EdgeInsets.symmetric(
                         vertical: 16, horizontal: width * .20))),
                 onPressed: () async {
-                  // print("Connect me with firebase to signin"); //TODO
+                  print("Connect me with firebase to signin"); //TODO
                   try {
                     await EasyFire().getAuthObject().signInWithGoogle();
+                    Navigator.of(context).pushReplacement(PageTransition(
+                        child: LetsWinScreen(),
+                        type: PageTransitionType.rightToLeft));
+                    String id = await OnboardingService()
+                        .register(instance: FirebaseAuth.instance);
+                    if (id == "Invalid") {
+                      throw Exception();
+                    } else {
+                      print("Save to database");
+                      box.add({"id": id});
+                    }
                   } catch (e) {
+                    print("Failed below is the reason: ");
                     print(e);
                   }
-
-                  Navigator.of(context).pushReplacement(PageTransition(
-                      child: LetsWinScreen(),
-                      type: PageTransitionType.rightToLeft));
                 },
                 icon: FaIcon(FontAwesomeIcons.google),
                 label: Padding(

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:syalo/database/db.dart';
 import 'package:syalo/screens/habits_screen/define_habits.dart';
 import 'package:syalo/screens/mainframe.dart';
 
@@ -67,152 +66,110 @@ class _SelectHabitsState extends State<SelectHabits> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return FutureBuilder(
-        future: FireStoreDB().getHabitsList(),
-        builder: (context, snapshot) {
-          Widget gridTile(double height, double width, Map habit) {
-            return InkWell(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) =>
-                          HabitsDescription(habitName: habit['name']!))),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(children: [
-                    SizedBox.expand(
-                      child: Image.network(
-                        habit["imageUrl"]!,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Positioned(
-                        left: 10,
-                        bottom: 10,
-                        child: Text(
-                          habit["name"]!,
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.w600),
-                        ))
-                  ]),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Colors.black),
+          title: Text(
+            "Add Habits",
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.w600, color: Colors.black),
+          ),
+          // actions: widget.firstPage == true
+          //     ? []
+          //     : [
+          //         TextButton(
+          //             onPressed: () => Navigator.push(
+          //                 context,
+          //                 MaterialPageRoute(
+          //                     builder: (_) => OngoingHabits())),
+          //             child: Text("My Habits"))
+          //       ],
+        ),
+        body: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            Positioned(
+              top: 0,
+              child: SizedBox(
+                height: height,
+                width: width,
+                child: GridView.count(
+                  // shrinkWrap: true,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                  children: [
+                    for (int i = 0; i < habits.length; i++)
+                      gridTile(height, width, habits[i]),
+                    Container()
+                  ],
                 ),
               ),
-            );
-          }
-
-          // Checking if future is resolved or not
-          if (snapshot.connectionState == ConnectionState.done) {
-            // If we got an error
-            if (snapshot.hasError) {
-              return Center(
-                child: Text(
-                  '${snapshot.error} occured',
-                  style: TextStyle(fontSize: 18),
-                ),
-              );
-
-              // if we got our data
-            } else if (snapshot.hasData) {
-              // Extracting data from snapshot object
-              final data = snapshot.data as List;
-              //print(data);
-              if (habits.length == 1) {
-                habits = [];
-              }
-              for (int i = 0; i < data.length; i++) {
-                habits.add(data[i]);
-              }
-              //print(habits);
-              return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.white,
-                    elevation: 0,
-                    iconTheme: IconThemeData(color: Colors.black),
-                    title: Text(
-                      "Add Habits",
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black),
+            ),
+            Positioned(
+              bottom: 50,
+              child: Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(
+                          horizontal: width * .3, vertical: 18.0)),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
                     ),
-                    // actions: widget.firstPage == true
-                    //     ? []
-                    //     : [
-                    //         TextButton(
-                    //             onPressed: () => Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                     builder: (_) => OngoingHabits())),
-                    //             child: Text("My Habits"))
-                    //       ],
-                  ),
-                  body: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Positioned(
-                        top: 0,
-                        child: SizedBox(
-                          height: height,
-                          width: width,
-                          child: GridView.count(
-                            // shrinkWrap: true,
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            children: [
-                              for (int i = 0; i < habits.length; i++)
-                                gridTile(height, width, habits[i]),
-                              Container()
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 50,
-                        child: Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                    EdgeInsets.symmetric(
-                                        horizontal: width * .3,
-                                        vertical: 18.0)),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8))),
-                              ),
-                              onPressed: () {
-                                widget.firstPage == true
-                                    ? Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => MainFrame()))
-                                    : Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => HabitsDescription(
-                                                habitName: "")));
-                                // TODO: Navigate to home page after atleast 3 selection
-                                //                 },
-                                //                 child: Text("Create My Own")),
-                              },
-                              child: widget.firstPage == true
-                                  ? Text("Go to Home")
-                                  : Text("Create my own"),
-                            )),
-                      )
-                    ],
-                  ));
-            }
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+                    onPressed: () {
+                      widget.firstPage == true
+                          ? Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => MainFrame()))
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) =>
+                                      HabitsDescription(habitName: "")));
+                      // TODO: Navigate to home page after atleast 3 selection
+                      //                 },
+                      //                 child: Text("Create My Own")),
+                    },
+                    child: widget.firstPage == true
+                        ? Text("Go to Home")
+                        : Text("Create my own"),
+                  )),
+            )
+          ],
+        ));
+  }
+
+  Widget gridTile(double height, double width, Map habit) {
+    return InkWell(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => HabitsDescription(habitName: habit['name']!))),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(children: [
+            SizedBox.expand(
+              child: Image.network(
+                habit["imageUrl"]!,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Positioned(
+                left: 10,
+                bottom: 10,
+                child: Text(
+                  habit["name"]!,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                ))
+          ]),
+        ),
+      ),
+    );
   }
 }

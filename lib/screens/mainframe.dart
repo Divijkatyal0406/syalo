@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
-import 'package:syalo/habbits/habbitHome.dart';
 import 'package:syalo/screens/consultant_screen.dart';
+import 'package:syalo/screens/habits_screen/ongoing_habits.dart';
 import 'package:syalo/screens/home_screen.dart';
 import 'package:syalo/screens/learningPaths.dart';
 import 'package:syalo/screens/songs_screen/all_songs.dart';
@@ -22,11 +22,11 @@ class _MainFrameState extends State<MainFrame> {
     //Add learning path widget here @mayank
     LearingPath(),
     AllSongs(),
-    HabbitScreen(),
+    // HabbitScreen(),
     // SupportGroupScreen(),
     // HomePage(),
     // SupportGroupScreen(),
-    // OngoingHabits(),
+    const OngoingHabits(),
 
     // ProfileScreen()
   ];

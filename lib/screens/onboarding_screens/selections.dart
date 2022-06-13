@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:syalo/screens/onboarding_screens/how_anxiety.dart';
 import 'package:syalo/screens/onboarding_screens/how_energetic.dart';
 import 'package:syalo/screens/onboarding_screens/how_much_calm.dart';
@@ -24,6 +25,9 @@ class BaseSelection extends StatefulWidget {
 
 class _BaseSelectionState extends State<BaseSelection> {
   int currentSelection = -1;
+
+  final Box _box = Hive.box<Map<dynamic, dynamic>>("User");
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -48,48 +52,7 @@ class _BaseSelectionState extends State<BaseSelection> {
             ),
             IconButton(
                 onPressed: () {
-                  switch (widget.tag) {
-                    case "Default Mood":
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: CalmMindScreen()));
-                      break;
-                    case "Anxiety":
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: ProductiveScreen()));
-
-                      break;
-                    case "Energetic":
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: AnxietyScreen()));
-
-                      break;
-                    case "Calm Mind":
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: EnergeticScreen()));
-
-                      break;
-                    case "Productive":
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: const RecommendedHabitsScreen()));
-
-                      break;
-                    default:
-                  }
+                  nextQuestionSelction(context);
                 },
                 icon: const Icon(
                   Icons.fast_forward,
@@ -141,6 +104,49 @@ class _BaseSelectionState extends State<BaseSelection> {
     );
   }
 
+  void nextQuestionSelction(BuildContext context) {
+    switch (widget.tag) {
+      case "Default Mood":
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft, child: CalmMindScreen()));
+        break;
+      case "Anxiety":
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: ProductiveScreen()));
+
+        break;
+      case "Energetic":
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft, child: AnxietyScreen()));
+
+        break;
+      case "Calm Mind":
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: EnergeticScreen()));
+
+        break;
+      case "Productive":
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: const RecommendedHabitsScreen()));
+
+        break;
+      default:
+    }
+  }
+
   Widget selectionButton({
     required String item,
     required Color color,
@@ -150,9 +156,15 @@ class _BaseSelectionState extends State<BaseSelection> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onTap: () {
+        onTap: () async {
           setState(() {
             currentSelection = index;
+            // var list = _box.getAt(1)['optionsSelected'];
+            // list.add(index);
+            // _box.putAt(index, {"optionsSelected": list});
+            Future.delayed(const Duration(milliseconds: 150), () {
+              nextQuestionSelction(context);
+            });
           });
         },
         child: AnimatedContainer(

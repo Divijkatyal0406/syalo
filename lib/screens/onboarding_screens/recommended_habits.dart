@@ -2,8 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:syalo/screens/onboarding_screens/share_friends.dart';
 import 'package:syalo/screens/onboarding_screens/transitions.dart';
 
-class RecommendedHabitsScreen extends StatelessWidget {
+class RecommendedHabitsScreen extends StatefulWidget {
   const RecommendedHabitsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RecommendedHabitsScreen> createState() =>
+      _RecommendedHabitsScreenState();
+}
+
+class _RecommendedHabitsScreenState extends State<RecommendedHabitsScreen> {
+  bool hasData = true;
+
+  String expectedText = "are adding";
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +22,19 @@ class RecommendedHabitsScreen extends StatelessWidget {
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: const ShareWithFriendsScreen()));
-            },
+            onPressed: hasData
+                ? () {
+                    setState(() {
+                      hasData = true;
+                      expectedText = "have added";
+                    });
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const ShareWithFriendsScreen()));
+                  }
+                : null,
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: Text(
@@ -35,32 +51,35 @@ class RecommendedHabitsScreen extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.all(12.0),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
               child: Text(
-                "We Have Added the Habits you Need",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                "We " + expectedText + " some Habits you Need",
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
             Expanded(
-              child: ListView(
-                children: const [
-                  RecommendationConatiner(
-                    title: "Meditate 10 Mins",
-                    imageUrl: "assets/music_images/monk.jpg",
-                  ),
-                  RecommendationConatiner(
-                    title: "Nature Walk",
-                    imageUrl: "assets/music_images/nature_walk.jpg",
-                  ),
-                  RecommendationConatiner(
-                    title: "Start Day Without Phone",
-                    imageUrl: "assets/music_images/deep_calm.jpg",
-                  ),
-                ],
-              ),
-            )
+                child: hasData
+                    ? ListView(
+                        // TODO this listview is based on data from node
+                        children: const [
+                          RecommendationConatiner(
+                            title: "Meditate 10 Mins",
+                            imageUrl: "assets/music_images/monk.jpg",
+                          ),
+                          RecommendationConatiner(
+                            title: "Nature Walk",
+                            imageUrl: "assets/music_images/nature_walk.jpg",
+                          ),
+                          RecommendationConatiner(
+                            title: "Start Day Without Phone",
+                            imageUrl: "assets/music_images/deep_calm.jpg",
+                          ),
+                        ],
+                      )
+                    : const Center(child: CircularProgressIndicator()))
           ],
         ),
       ),
